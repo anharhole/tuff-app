@@ -1,0 +1,6 @@
+{
+  "name": "LocalConnect",
+  "description": "Your Neighbourhood. Your Services. AI-powered local services marketplace for Kerala, India — zero commission.",
+  "requestFramePermissions": ["geolocation"],
+  "majorCapabilities": ["MAJOR_CAPABILITY_SERVER_SIDE_GEMINI_API"]
+}

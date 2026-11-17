@@ -1,0 +1,116 @@
+@import "tailwindcss";
+@import "leaflet/dist/leaflet.css";
+
+@layer base {
+  :root {
+    --lc-bg: #F8F7F4;
+    --lc-surface: #FFFFFF;
+    --lc-surface-muted: #F1EFE9;
+    --lc-border: #E4E1D8;
+    --lc-ink: #181A18;
+    --lc-ink-muted: #5A605A;
+    --lc-forest: #134E3A;
+    --lc-forest-hover: #0D3B2B;
+    --lc-mint: #E6F2EC;
+    --lc-gold: #B68A1E;
+    --lc-crimson: #B91C1C;
+  }
+
+  body {
+    font-family: 'Plus Jakarta Sans', -apple-system, BlinkMacSystemFont, sans-serif;
+    background-color: var(--lc-bg);
+    color: var(--lc-ink);
+  }
+
+  h1, h2, h3, .font-display {
+    font-family: 'Bricolage Grotesque', 'Plus Jakarta Sans', sans-serif;
+  }
+
+  .font-mono-nums {
+    font-family: 'JetBrains Mono', monospace;
+    font-variant-numeric: tabular-nums;
+  }
+}
+
+/* Balanced headlines to avoid orphan words */
+.text-balance {
+  text-wrap: balance;
+}
+
+/* Accessibility: High Contrast mode using crisp surface/ink/border pairs */
+html.lc-high-contrast {
+  --lc-bg: #FFFFFF;
+  --lc-surface: #FFFFFF;
+  --lc-surface-muted: #F3F4F6;
+  --lc-border: #181A18;
+  --lc-ink: #000000;
+  --lc-ink-muted: #1F2937;
+  --lc-forest: #0B3D2C;
+  --lc-forest-hover: #06281C;
+  --lc-mint: #DCEFE5;
+}
+
+html.lc-high-contrast body {
+  background-color: #FFFFFF;
+  color: #000000;
+}
+
+html.lc-high-contrast [class*="border-[#E4E1D8]"] {
+  border-color: #181A18;
+}
+
+html.lc-high-contrast [class*="text-[#5A605A]"] {
+  color: #1F2937;
+}
+
+/* Accessibility: Larger Touch Targets */
+html.lc-large-targets button:not([data-compact="true"]),
+html.lc-large-targets a,
+html.lc-large-targets select,
+html.lc-large-targets input:not([type="checkbox"]):not([type="radio"]) {
+  min-height: 46px;
+}
+
+/* Accessibility: Reduced Motion */
+html.lc-reduced-motion *,
+html.lc-reduced-motion *::before,
+html.lc-reduced-motion *::after {
+  animation-duration: 0.01ms !important;
+  animation-iteration-count: 1 !important;
+  transition-duration: 0.01ms !important;
+  scroll-behavior: auto !important;
+}
+
+/* Custom Leaflet container refinements */
+.leaflet-container {
+  font-family: 'Plus Jakarta Sans', sans-serif;
+  z-index: 10;
+}
+
+@keyframes lc-brass-sweep {
+  0% {
+    background-position: -150% 0;
+  }
+  100% {
+    background-position: 250% 0;
+  }
+}
+
+.lc-brass-shimmer {
+  background-image: linear-gradient(
+    115deg,
+    transparent 20%,
+    rgba(201, 155, 44, 0.14) 48%,
+    transparent 76%
+  );
+  background-size: 220% 100%;
+  animation: lc-brass-sweep 3.2s cubic-bezier(0.16, 1, 0.3, 1) infinite;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  *, *::before, *::after {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+  }
+}

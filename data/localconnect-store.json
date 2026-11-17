@@ -1,0 +1,3680 @@
+{
+  "users": [
+    {
+      "id": "user-demo-customer",
+      "name": "Arjun Menon (Demo Customer)",
+      "email": "demo.customer@localconnect.in",
+      "passwordHash": "$2b$08$XYvBCeYNJ9ILlfSvNyLw1uZFY6cPitvqlJrZ6w9iNg3fq.HSBNrrK",
+      "phone": "+91 98470 11223",
+      "role": "customer",
+      "activeMode": "customer",
+      "canSwitchToProvider": true,
+      "ageVerified": true,
+      "isDemo": true,
+      "district": "Malappuram",
+      "town": "Tirur",
+      "locality": "Payyanangadi",
+      "pincode": "676101",
+      "lat": 10.9165,
+      "lng": 75.9245,
+      "language": "en",
+      "allowRecommendations": true,
+      "searchHistory": [
+        "electrician",
+        "ac repair",
+        "tirur"
+      ],
+      "createdAt": "2026-10-03T06:16:57.145Z"
+    },
+    {
+      "id": "user-demo-provider",
+      "name": "Rajesh Nair (Demo Provider)",
+      "email": "demo.provider@localconnect.in",
+      "passwordHash": "$2b$08$XYvBCeYNJ9ILlfSvNyLw1uZFY6cPitvqlJrZ6w9iNg3fq.HSBNrrK",
+      "phone": "+91 98471 44556",
+      "role": "provider",
+      "activeMode": "provider",
+      "canSwitchToProvider": true,
+      "ageVerified": true,
+      "isDemo": true,
+      "district": "Malappuram",
+      "town": "Tirur",
+      "locality": "Thazhepalam",
+      "pincode": "676101",
+      "lat": 10.919,
+      "lng": 75.926,
+      "language": "en",
+      "allowRecommendations": true,
+      "searchHistory": [],
+      "createdAt": "2026-07-20T06:16:57.145Z"
+    },
+    {
+      "id": "user-demo-admin",
+      "name": "Meera Krishnan (Admin)",
+      "email": "admin@localconnect.in",
+      "passwordHash": "$2b$08$BBqT4NX/VX2Xws9LRWKnGOXG4qSboARX2EsV5R6ftz2ebKBGrxG2C",
+      "phone": "+91 98472 00991",
+      "role": "admin",
+      "activeMode": "customer",
+      "canSwitchToProvider": false,
+      "ageVerified": true,
+      "isDemo": true,
+      "district": "Ernakulam",
+      "town": "Kochi",
+      "locality": "Edappally",
+      "pincode": "682001",
+      "lat": 9.9312,
+      "lng": 76.2673,
+      "language": "en",
+      "allowRecommendations": true,
+      "searchHistory": [],
+      "createdAt": "2026-05-01T06:16:57.145Z"
+    }
+  ],
+  "providers": [
+    {
+      "id": "prov-1",
+      "userId": "user-demo-provider",
+      "name": "Rajesh Nair",
+      "title": "Licensed Master Electrician & Inverter Specialist",
+      "phone": "+91 98471 44556",
+      "whatsapp": "919847144556",
+      "avatarUrl": "/src/assets/images/provider_featured_portrait_1794634396399.jpg",
+      "bio": "KSEB-trained residential electrician serving Tirur, BP Angadi, and Tanur for 12 years. Specializes in MCB/RCCB tripping diagnostics, solar inverter changeover wiring, and monsoon earthing checks.",
+      "categoryIds": [
+        "home-services",
+        "appliance-repair"
+      ],
+      "subcategoryIds": [
+        "electrician",
+        "other-appliance-repair"
+      ],
+      "services": [
+        {
+          "id": "srv-1a",
+          "categoryId": "home-services",
+          "subcategoryId": "electrician",
+          "name": "MCB / Short-Circuit Fault Inspection",
+          "startingPrice": 250,
+          "priceUnit": "visit",
+          "description": "Complete DB load check, thermal inspection, and breaker replacement."
+        },
+        {
+          "id": "srv-1b",
+          "categoryId": "home-services",
+          "subcategoryId": "electrician",
+          "name": "Inverter & UPS Home Wiring",
+          "startingPrice": 650,
+          "priceUnit": "job",
+          "description": "Safe changeover setup for single/double battery inverters."
+        },
+        {
+          "id": "srv-1c",
+          "categoryId": "appliance-repair",
+          "subcategoryId": "other-appliance-repair",
+          "name": "Ceiling Fan & Stabilizer Servicing",
+          "startingPrice": 200,
+          "priceUnit": "unit",
+          "description": "Capacitor, bearing replacement, and voltage stabilizer testing."
+        }
+      ],
+      "startingPrice": 250,
+      "district": "Malappuram",
+      "town": "Tirur",
+      "locality": "Thazhepalam",
+      "pincode": "676101",
+      "lat": 10.919,
+      "lng": 75.926,
+      "serviceRadiusKm": 20,
+      "experienceYears": 12,
+      "workingHours": "7:30 AM – 8:30 PM",
+      "isAvailable": true,
+      "availableDays": [
+        "Mon",
+        "Tue",
+        "Wed",
+        "Thu",
+        "Fri",
+        "Sat",
+        "Sun"
+      ],
+      "urgentAvailable": true,
+      "rating": 5,
+      "reviewCount": 2,
+      "completedJobs": 187,
+      "profileViews": 412,
+      "identityVerified": true,
+      "skillVerified": true,
+      "profileVerified": true,
+      "isFeatured": true,
+      "isDemo": true,
+      "portfolioImages": [
+        "/src/assets/images/hero_kerala_craftsman_1794634394731.jpg",
+        "/src/assets/images/cat_appliance_home_1794634394694.jpg"
+      ],
+      "createdAt": "2026-07-20T06:16:57.145Z"
+    },
+    {
+      "id": "prov-2",
+      "userId": "seed-u2",
+      "name": "Muhammed Basheer K.",
+      "title": "Split AC & Inverter Refrigerator Technician",
+      "phone": "+91 94471 33012",
+      "whatsapp": "919447133012",
+      "avatarUrl": "",
+      "bio": "Doorstep cooling care across Tirur and Kottakkal. High-pressure jet AC cleaning, R32/R410A gas charging, and inverter fridge PCB diagnostics with transparent part estimates.",
+      "categoryIds": [
+        "appliance-repair"
+      ],
+      "subcategoryIds": [
+        "ac-repair",
+        "refrigerator-repair"
+      ],
+      "services": [
+        {
+          "id": "srv-2a",
+          "categoryId": "appliance-repair",
+          "subcategoryId": "ac-repair",
+          "name": "Split AC Jet Foam Service",
+          "startingPrice": 499,
+          "priceUnit": "unit",
+          "description": "Indoor/outdoor coil wash, drain pipe flush, and cooling check."
+        },
+        {
+          "id": "srv-2b",
+          "categoryId": "appliance-repair",
+          "subcategoryId": "refrigerator-repair",
+          "name": "Refrigerator Cooling & Relay Fix",
+          "startingPrice": 350,
+          "priceUnit": "visit",
+          "description": "Thermostat, fan motor, and gas leak pressure test."
+        }
+      ],
+      "startingPrice": 350,
+      "district": "Malappuram",
+      "town": "Tirur",
+      "locality": "BP Angadi",
+      "pincode": "676102",
+      "lat": 10.9035,
+      "lng": 75.9321,
+      "serviceRadiusKm": 25,
+      "experienceYears": 9,
+      "workingHours": "8:30 AM – 7:30 PM",
+      "isAvailable": true,
+      "availableDays": [
+        "Mon",
+        "Tue",
+        "Wed",
+        "Thu",
+        "Fri",
+        "Sat"
+      ],
+      "urgentAvailable": true,
+      "rating": 4.8,
+      "reviewCount": 36,
+      "completedJobs": 142,
+      "profileViews": 298,
+      "identityVerified": true,
+      "skillVerified": true,
+      "profileVerified": true,
+      "isFeatured": true,
+      "isDemo": true,
+      "portfolioImages": [
+        "/src/assets/images/cat_appliance_home_1794634394694.jpg"
+      ],
+      "createdAt": "2026-08-14T06:16:57.145Z"
+    },
+    {
+      "id": "prov-3",
+      "userId": "seed-u3",
+      "name": "Abdul Latheef P.",
+      "title": "Plumbing, Overhead Tank & Pump Specialist",
+      "phone": "+91 98950 22814",
+      "whatsapp": "919895022814",
+      "avatarUrl": "",
+      "bio": "Fast leak detection, CPVC/UPVC bathroom lines, automatic water level controllers, and well motor priming across Tirur and Ponnani.",
+      "categoryIds": [
+        "home-services"
+      ],
+      "subcategoryIds": [
+        "plumber"
+      ],
+      "services": [
+        {
+          "id": "srv-3a",
+          "categoryId": "home-services",
+          "subcategoryId": "plumber",
+          "name": "Tap, Mixer & Concealed Leak Repair",
+          "startingPrice": 300,
+          "priceUnit": "visit",
+          "description": "Wall mixer cartridge change, pipe joint sealing, and flush tank service."
+        },
+        {
+          "id": "srv-3b",
+          "categoryId": "home-services",
+          "subcategoryId": "plumber",
+          "name": "Well Motor & Automatic Tank Controller",
+          "startingPrice": 550,
+          "priceUnit": "job",
+          "description": "Foot valve replacement, priming, and float switch installation."
+        }
+      ],
+      "startingPrice": 300,
+      "district": "Malappuram",
+      "town": "Tirur",
+      "locality": "Chembra",
+      "pincode": "676101",
+      "lat": 10.9255,
+      "lng": 75.9182,
+      "serviceRadiusKm": 18,
+      "experienceYears": 14,
+      "workingHours": "7:00 AM – 9:00 PM",
+      "isAvailable": true,
+      "availableDays": [
+        "Mon",
+        "Tue",
+        "Wed",
+        "Thu",
+        "Fri",
+        "Sat",
+        "Sun"
+      ],
+      "urgentAvailable": true,
+      "rating": 4.9,
+      "reviewCount": 52,
+      "completedJobs": 210,
+      "profileViews": 375,
+      "identityVerified": true,
+      "skillVerified": true,
+      "profileVerified": true,
+      "isFeatured": true,
+      "isDemo": true,
+      "portfolioImages": [
+        "/src/assets/images/hero_kerala_craftsman_1794634394731.jpg"
+      ],
+      "createdAt": "2026-08-29T06:16:57.145Z"
+    },
+    {
+      "id": "prov-4",
+      "userId": "seed-u4",
+      "name": "Suresh Babu T.",
+      "title": "Washing Machine & LED TV Technician",
+      "phone": "+91 97450 61230",
+      "whatsapp": "919745061230",
+      "avatarUrl": "",
+      "bio": "Front-load & top-load drum bearing, inlet solenoid, and Smart TV backlight replacement across Kottakkal and Malappuram.",
+      "categoryIds": [
+        "appliance-repair"
+      ],
+      "subcategoryIds": [
+        "washing-machine-repair",
+        "television-repair"
+      ],
+      "services": [
+        {
+          "id": "srv-4a",
+          "categoryId": "appliance-repair",
+          "subcategoryId": "washing-machine-repair",
+          "name": "Washing Machine Drain & Spin Repair",
+          "startingPrice": 400,
+          "priceUnit": "visit",
+          "description": "Drain pump clearing, belt replacement, and error code reset."
+        },
+        {
+          "id": "srv-4b",
+          "categoryId": "appliance-repair",
+          "subcategoryId": "television-repair",
+          "name": "LED / Smart TV Backlight & Wall Mount",
+          "startingPrice": 500,
+          "priceUnit": "unit",
+          "description": "Backlight strip replacement and swivel wall bracket installation."
+        }
+      ],
+      "startingPrice": 400,
+      "district": "Malappuram",
+      "town": "Kottakkal",
+      "locality": "Changuvetty",
+      "pincode": "676503",
+      "lat": 11.0014,
+      "lng": 76.0049,
+      "serviceRadiusKm": 22,
+      "experienceYears": 11,
+      "workingHours": "9:00 AM – 7:00 PM",
+      "isAvailable": true,
+      "availableDays": [
+        "Mon",
+        "Tue",
+        "Wed",
+        "Thu",
+        "Fri",
+        "Sat"
+      ],
+      "urgentAvailable": false,
+      "rating": 4.7,
+      "reviewCount": 29,
+      "completedJobs": 115,
+      "profileViews": 210,
+      "identityVerified": true,
+      "skillVerified": true,
+      "profileVerified": true,
+      "isFeatured": false,
+      "isDemo": true,
+      "portfolioImages": [
+        "/src/assets/images/cat_appliance_home_1794634394694.jpg"
+      ],
+      "createdAt": "2026-09-16T06:16:57.145Z"
+    },
+    {
+      "id": "prov-5",
+      "userId": "seed-u5",
+      "name": "Vijayan Achari",
+      "title": "Traditional Teak Carpenter & Modular Joiner",
+      "phone": "+91 94462 78110",
+      "whatsapp": "919446278110",
+      "avatarUrl": "",
+      "bio": "Master carpenter for Kerala teak doors, window frame planing during monsoon swelling, kitchen cabinet soft-close hinges, and custom timber furniture.",
+      "categoryIds": [
+        "home-services",
+        "construction"
+      ],
+      "subcategoryIds": [
+        "carpenter",
+        "interior-work"
+      ],
+      "services": [
+        {
+          "id": "srv-5a",
+          "categoryId": "home-services",
+          "subcategoryId": "carpenter",
+          "name": "Door Alignment, Locks & Hinge Repair",
+          "startingPrice": 400,
+          "priceUnit": "visit",
+          "description": "Monsoon door planing, mortise lock fitting, and cabinet hinge replacement."
+        },
+        {
+          "id": "srv-5b",
+          "categoryId": "construction",
+          "subcategoryId": "interior-work",
+          "name": "Marine Ply Kitchen & Wardrobe Work",
+          "startingPrice": 1200,
+          "priceUnit": "sq.ft",
+          "description": "Custom waterproof cabinetry tailored to home dimensions."
+        }
+      ],
+      "startingPrice": 400,
+      "district": "Malappuram",
+      "town": "Malappuram",
+      "locality": "Up Hill",
+      "pincode": "676505",
+      "lat": 11.051,
+      "lng": 76.0711,
+      "serviceRadiusKm": 30,
+      "experienceYears": 20,
+      "workingHours": "8:00 AM – 6:30 PM",
+      "isAvailable": true,
+      "availableDays": [
+        "Mon",
+        "Tue",
+        "Wed",
+        "Thu",
+        "Fri",
+        "Sat"
+      ],
+      "urgentAvailable": true,
+      "rating": 4.9,
+      "reviewCount": 41,
+      "completedJobs": 165,
+      "profileViews": 260,
+      "identityVerified": true,
+      "skillVerified": true,
+      "profileVerified": true,
+      "isFeatured": true,
+      "isDemo": true,
+      "portfolioImages": [
+        "/src/assets/images/cat_construction_interior_1794634395444.jpg"
+      ],
+      "createdAt": "2026-09-23T06:16:57.145Z"
+    },
+    {
+      "id": "prov-6",
+      "userId": "seed-u6",
+      "name": "Fathima Zuhra M.",
+      "title": "Mathematics & Science Home Tutor (SCERT / CBSE)",
+      "phone": "+91 96331 55209",
+      "whatsapp": "919633155209",
+      "avatarUrl": "",
+      "bio": "M.Sc. Mathematics graduate with 7 years of home and online tuition experience for Classes 8–12 in Tirur and Kottakkal. Patient concept-first coaching in English and Malayalam.",
+      "categoryIds": [
+        "education-tuition"
+      ],
+      "subcategoryIds": [
+        "home-tuition",
+        "mathematics",
+        "science"
+      ],
+      "services": [
+        {
+          "id": "srv-6a",
+          "categoryId": "education-tuition",
+          "subcategoryId": "mathematics",
+          "name": "High School & Plus Two Mathematics",
+          "startingPrice": 450,
+          "priceUnit": "hour",
+          "description": "Board exam focus, chapter tests, and step-by-step problem solving."
+        },
+        {
+          "id": "srv-6b",
+          "categoryId": "education-tuition",
+          "subcategoryId": "home-tuition",
+          "name": "All-Subject Home Tuition (Class 5–9)",
+          "startingPrice": 2800,
+          "priceUnit": "month",
+          "description": "Structured daily homework and exam preparation at student home."
+        }
+      ],
+      "startingPrice": 450,
+      "district": "Malappuram",
+      "town": "Tirur",
+      "locality": "Payyanangadi",
+      "pincode": "676101",
+      "lat": 10.9145,
+      "lng": 75.921,
+      "serviceRadiusKm": 12,
+      "experienceYears": 7,
+      "workingHours": "3:30 PM – 8:30 PM",
+      "isAvailable": true,
+      "availableDays": [
+        "Mon",
+        "Tue",
+        "Wed",
+        "Thu",
+        "Fri",
+        "Sat"
+      ],
+      "urgentAvailable": false,
+      "rating": 4.9,
+      "reviewCount": 24,
+      "completedJobs": 78,
+      "profileViews": 190,
+      "identityVerified": true,
+      "skillVerified": true,
+      "profileVerified": true,
+      "isFeatured": true,
+      "isDemo": true,
+      "portfolioImages": [
+        "/src/assets/images/cat_appliance_home_1794634394694.jpg"
+      ],
+      "createdAt": "2026-10-08T06:16:57.145Z"
+    },
+    {
+      "id": "prov-7",
+      "userId": "seed-u7",
+      "name": "Nikhil Varghese",
+      "title": "Civil Contractor & Laterite Masonry Lead",
+      "phone": "+91 98460 88741",
+      "whatsapp": "919846088741",
+      "avatarUrl": "",
+      "bio": "B.Tech Civil Engineer leading a skilled team of laterite masons, tilers, and structural renovators across Manjeri and Perinthalmanna.",
+      "categoryIds": [
+        "construction"
+      ],
+      "subcategoryIds": [
+        "civil-contractor",
+        "mason",
+        "tile-work",
+        "general-construction"
+      ],
+      "services": [
+        {
+          "id": "srv-7a",
+          "categoryId": "construction",
+          "subcategoryId": "civil-contractor",
+          "name": "Home Extension & Structural Renovation",
+          "startingPrice": 1500,
+          "priceUnit": "consultation",
+          "description": "Site measurement, BOQ estimate, and full execution supervision."
+        },
+        {
+          "id": "srv-7b",
+          "categoryId": "construction",
+          "subcategoryId": "tile-work",
+          "name": "Vitrified Tile & Granite Laying",
+          "startingPrice": 45,
+          "priceUnit": "sq.ft",
+          "description": "Laser-leveled floor tiling and bathroom waterproofing."
+        }
+      ],
+      "startingPrice": 950,
+      "district": "Malappuram",
+      "town": "Manjeri",
+      "locality": "Kacherippadi",
+      "pincode": "676121",
+      "lat": 11.1194,
+      "lng": 76.1199,
+      "serviceRadiusKm": 35,
+      "experienceYears": 13,
+      "workingHours": "8:00 AM – 6:00 PM",
+      "isAvailable": true,
+      "availableDays": [
+        "Mon",
+        "Tue",
+        "Wed",
+        "Thu",
+        "Fri",
+        "Sat"
+      ],
+      "urgentAvailable": false,
+      "rating": 4.8,
+      "reviewCount": 31,
+      "completedJobs": 94,
+      "profileViews": 230,
+      "identityVerified": true,
+      "skillVerified": true,
+      "profileVerified": true,
+      "isFeatured": false,
+      "isDemo": true,
+      "portfolioImages": [
+        "/src/assets/images/cat_construction_interior_1794634395444.jpg"
+      ],
+      "createdAt": "2026-09-08T06:16:57.145Z"
+    },
+    {
+      "id": "prov-8",
+      "userId": "seed-u8",
+      "name": "Shafeek Rahman",
+      "title": "MS/SS Welding, Gate & Truss Fabricator",
+      "phone": "+91 99461 73920",
+      "whatsapp": "919946173920",
+      "avatarUrl": "",
+      "bio": "On-site arc and MIG welding for sliding gates, car porch roofing trusses, window safety grills, and staircase railings across Perinthalmanna.",
+      "categoryIds": [
+        "construction"
+      ],
+      "subcategoryIds": [
+        "welding"
+      ],
+      "services": [
+        {
+          "id": "srv-8a",
+          "categoryId": "construction",
+          "subcategoryId": "welding",
+          "name": "Gate Hinge Repair & Fabrication",
+          "startingPrice": 500,
+          "priceUnit": "visit",
+          "description": "Heavy-duty gate wheel/hinge welding and rust-primer finish."
+        }
+      ],
+      "startingPrice": 500,
+      "district": "Malappuram",
+      "town": "Perinthalmanna",
+      "locality": "Angadipuram",
+      "pincode": "679322",
+      "lat": 10.976,
+      "lng": 76.2254,
+      "serviceRadiusKm": 25,
+      "experienceYears": 10,
+      "workingHours": "8:30 AM – 6:30 PM",
+      "isAvailable": true,
+      "availableDays": [
+        "Mon",
+        "Tue",
+        "Wed",
+        "Thu",
+        "Fri",
+        "Sat"
+      ],
+      "urgentAvailable": false,
+      "rating": 4.6,
+      "reviewCount": 19,
+      "completedJobs": 88,
+      "profileViews": 145,
+      "identityVerified": true,
+      "skillVerified": true,
+      "profileVerified": false,
+      "isFeatured": false,
+      "isDemo": true,
+      "portfolioImages": [
+        "/src/assets/images/cat_construction_interior_1794634395444.jpg"
+      ],
+      "createdAt": "2026-10-23T06:16:57.145Z"
+    },
+    {
+      "id": "prov-9",
+      "userId": "seed-u9",
+      "name": "Aysha Sherin",
+      "title": "Bridal Makeup, Mehendi & Home Salon Artist",
+      "phone": "+91 97468 90211",
+      "whatsapp": "919746890211",
+      "avatarUrl": "",
+      "bio": "Certified bridal makeup & organic henna artist offering hygienic home salon services, nikkah/wedding looks, and saree draping in Kozhikode & Malappuram.",
+      "categoryIds": [
+        "beauty-grooming"
+      ],
+      "subcategoryIds": [
+        "makeup",
+        "mehendi",
+        "hair-styling",
+        "home-salon-services",
+        "beauty-parlour"
+      ],
+      "services": [
+        {
+          "id": "srv-9a",
+          "categoryId": "beauty-grooming",
+          "subcategoryId": "mehendi",
+          "name": "Organic Bridal Mehendi (Both Hands)",
+          "startingPrice": 1200,
+          "priceUnit": "session",
+          "description": "Fresh homemade henna paste with intricate floral/Arabic motifs."
+        },
+        {
+          "id": "srv-9b",
+          "categoryId": "beauty-grooming",
+          "subcategoryId": "makeup",
+          "name": "HD Engagement & Bridal Makeup",
+          "startingPrice": 4500,
+          "priceUnit": "event",
+          "description": "Long-wear humid-climate finish with hair styling and draping."
+        },
+        {
+          "id": "srv-9c",
+          "categoryId": "beauty-grooming",
+          "subcategoryId": "home-salon-services",
+          "name": "Home Facial & Hair Spa Visit",
+          "startingPrice": 650,
+          "priceUnit": "session",
+          "description": "Sanitized kit brought to your home for relaxed grooming."
+        }
+      ],
+      "startingPrice": 650,
+      "district": "Kozhikode",
+      "town": "Kozhikode",
+      "locality": "Nadakkavu",
+      "pincode": "673001",
+      "lat": 11.2588,
+      "lng": 75.7804,
+      "serviceRadiusKm": 40,
+      "experienceYears": 6,
+      "workingHours": "7:00 AM – 8:00 PM",
+      "isAvailable": true,
+      "availableDays": [
+        "Mon",
+        "Tue",
+        "Wed",
+        "Thu",
+        "Fri",
+        "Sat",
+        "Sun"
+      ],
+      "urgentAvailable": false,
+      "rating": 4.9,
+      "reviewCount": 44,
+      "completedJobs": 129,
+      "profileViews": 320,
+      "identityVerified": true,
+      "skillVerified": true,
+      "profileVerified": true,
+      "isFeatured": true,
+      "isDemo": true,
+      "portfolioImages": [
+        "/src/assets/images/cat_events_beauty_1794634396437.jpg"
+      ],
+      "createdAt": "2026-10-30T06:16:57.145Z"
+    },
+    {
+      "id": "prov-10",
+      "userId": "seed-u10",
+      "name": "Malabar Courtyard Events",
+      "title": "Event Decoration, Sadya Catering & Tent Services",
+      "phone": "+91 98470 55104",
+      "whatsapp": "919847055104",
+      "avatarUrl": "",
+      "bio": "Family-run event collective providing traditional Kerala floral decor, brass lamps, waterproof shamiana pandals, sound/DJ, and Sadya/Malabar catering.",
+      "categoryIds": [
+        "event-services"
+      ],
+      "subcategoryIds": [
+        "decoration",
+        "catering",
+        "tent-services",
+        "dj",
+        "photography"
+      ],
+      "services": [
+        {
+          "id": "srv-10a",
+          "categoryId": "event-services",
+          "subcategoryId": "decoration",
+          "name": "Traditional Jasmine & Lamp Stage Decor",
+          "startingPrice": 5500,
+          "priceUnit": "event",
+          "description": "Fresh jasmine garlands, brass nilavilakku lamps, and ambient lighting."
+        },
+        {
+          "id": "srv-10b",
+          "categoryId": "event-services",
+          "subcategoryId": "catering",
+          "name": "Malabar Feast & Kerala Sadya Catering",
+          "startingPrice": 240,
+          "priceUnit": "plate",
+          "description": "Hygienic on-site or hot-packed serving for 50 to 1,500 guests."
+        },
+        {
+          "id": "srv-10c",
+          "categoryId": "event-services",
+          "subcategoryId": "tent-services",
+          "name": "Waterproof Pandal & Seating Setup",
+          "startingPrice": 3500,
+          "priceUnit": "event",
+          "description": "Monsoon-ready German/box pandals with chairs and cooling fans."
+        }
+      ],
+      "startingPrice": 3500,
+      "district": "Kozhikode",
+      "town": "Kozhikode",
+      "locality": "Mavoor Road",
+      "pincode": "673004",
+      "lat": 11.2535,
+      "lng": 75.792,
+      "serviceRadiusKm": 60,
+      "experienceYears": 15,
+      "workingHours": "6:30 AM – 10:00 PM",
+      "isAvailable": true,
+      "availableDays": [
+        "Mon",
+        "Tue",
+        "Wed",
+        "Thu",
+        "Fri",
+        "Sat",
+        "Sun"
+      ],
+      "urgentAvailable": false,
+      "rating": 4.8,
+      "reviewCount": 57,
+      "completedJobs": 230,
+      "profileViews": 410,
+      "identityVerified": true,
+      "skillVerified": true,
+      "profileVerified": true,
+      "isFeatured": true,
+      "isDemo": true,
+      "portfolioImages": [
+        "/src/assets/images/cat_events_beauty_1794634396437.jpg"
+      ],
+      "createdAt": "2026-10-13T06:16:57.145Z"
+    },
+    {
+      "id": "prov-11",
+      "userId": "seed-u11",
+      "name": "Riyas & Brothers Transport",
+      "title": "Car Rental, Goods Tempo & Shifting Trucks",
+      "phone": "+91 98477 19034",
+      "whatsapp": "919847719034",
+      "avatarUrl": "",
+      "bio": "Clean sedans, 14-ft shifting trucks, goods tempos, and experienced acting drivers for Calicut/Kochi airport drops and local house shifting.",
+      "categoryIds": [
+        "rental-vehicles"
+      ],
+      "subcategoryIds": [
+        "car-rental",
+        "tempo-rental",
+        "truck-rental",
+        "driver-services"
+      ],
+      "services": [
+        {
+          "id": "srv-11a",
+          "categoryId": "rental-vehicles",
+          "subcategoryId": "car-rental",
+          "name": "Calicut Airport Sedan Drop / Pickup",
+          "startingPrice": 1400,
+          "priceUnit": "trip",
+          "description": "On-time AC sedan with luggage support from Malappuram/Tirur."
+        },
+        {
+          "id": "srv-11b",
+          "categoryId": "rental-vehicles",
+          "subcategoryId": "tempo-rental",
+          "name": "Goods Tempo for Local Shifting",
+          "startingPrice": 1100,
+          "priceUnit": "trip",
+          "description": "Covered pickup/tempo for furniture and appliance transport."
+        },
+        {
+          "id": "srv-11c",
+          "categoryId": "rental-vehicles",
+          "subcategoryId": "driver-services",
+          "name": "Acting Driver (Day / Night Shift)",
+          "startingPrice": 750,
+          "priceUnit": "shift",
+          "description": "Experienced license-verified driver for your personal car."
+        }
+      ],
+      "startingPrice": 750,
+      "district": "Malappuram",
+      "town": "Ponnani",
+      "locality": "Chamravattom",
+      "pincode": "679577",
+      "lat": 10.7677,
+      "lng": 75.9254,
+      "serviceRadiusKm": 45,
+      "experienceYears": 11,
+      "workingHours": "5:00 AM – 11:30 PM",
+      "isAvailable": true,
+      "availableDays": [
+        "Mon",
+        "Tue",
+        "Wed",
+        "Thu",
+        "Fri",
+        "Sat",
+        "Sun"
+      ],
+      "urgentAvailable": true,
+      "rating": 4.7,
+      "reviewCount": 33,
+      "completedJobs": 190,
+      "profileViews": 245,
+      "identityVerified": true,
+      "skillVerified": true,
+      "profileVerified": true,
+      "isFeatured": false,
+      "isDemo": true,
+      "portfolioImages": [
+        "/src/assets/images/cat_construction_interior_1794634395444.jpg"
+      ],
+      "createdAt": "2026-11-03T06:16:57.145Z"
+    },
+    {
+      "id": "prov-12",
+      "userId": "seed-u12",
+      "name": "Haridasan Green Care & Water",
+      "title": "Gardening, Lawn Care & Pure Water Delivery",
+      "phone": "+91 94479 34812",
+      "whatsapp": "919447934812",
+      "avatarUrl": "",
+      "bio": "Reliable compound clearing, ornamental garden maintenance, and urgent drinking/tanker water delivery across Tirur, Kottakkal, and Ponnani.",
+      "categoryIds": [
+        "daily-needs"
+      ],
+      "subcategoryIds": [
+        "gardening",
+        "water-delivery",
+        "local-supplies",
+        "other-local-essentials"
+      ],
+      "services": [
+        {
+          "id": "srv-12a",
+          "categoryId": "daily-needs",
+          "subcategoryId": "water-delivery",
+          "name": "2000L / 5000L Tanker Water Delivery",
+          "startingPrice": 800,
+          "priceUnit": "load",
+          "description": "Tested clean well water delivered directly to sump or overhead tank."
+        },
+        {
+          "id": "srv-12b",
+          "categoryId": "daily-needs",
+          "subcategoryId": "gardening",
+          "name": "Garden Clearing & Shrub Trimming",
+          "startingPrice": 550,
+          "priceUnit": "visit",
+          "description": "Brush cutter grass clearing, hedging, and organic compost care."
+        }
+      ],
+      "startingPrice": 550,
+      "district": "Malappuram",
+      "town": "Kottakkal",
+      "locality": "Edarikode",
+      "pincode": "676503",
+      "lat": 10.985,
+      "lng": 75.982,
+      "serviceRadiusKm": 25,
+      "experienceYears": 8,
+      "workingHours": "6:30 AM – 7:30 PM",
+      "isAvailable": true,
+      "availableDays": [
+        "Mon",
+        "Tue",
+        "Wed",
+        "Thu",
+        "Fri",
+        "Sat",
+        "Sun"
+      ],
+      "urgentAvailable": true,
+      "rating": 4.8,
+      "reviewCount": 27,
+      "completedJobs": 156,
+      "profileViews": 175,
+      "identityVerified": true,
+      "skillVerified": false,
+      "profileVerified": true,
+      "isFeatured": false,
+      "isDemo": true,
+      "portfolioImages": [
+        "/src/assets/images/hero_kerala_craftsman_1794634394731.jpg"
+      ],
+      "createdAt": "2026-11-08T06:16:57.145Z"
+    },
+    {
+      "id": "prov-13",
+      "userId": "seed-u13",
+      "name": "Deepak K. Menon",
+      "title": "Deep Home Cleaning, Painting & Pest Control",
+      "phone": "+91 98954 11902",
+      "whatsapp": "919895411902",
+      "avatarUrl": "",
+      "bio": "Trained crew for post-construction deep cleaning, overhead tank sanitization, monsoon damp-proof painting, and herbal anti-termite treatment in Thrissur & Kochi.",
+      "categoryIds": [
+        "home-services"
+      ],
+      "subcategoryIds": [
+        "house-cleaning",
+        "painting",
+        "pest-control"
+      ],
+      "services": [
+        {
+          "id": "srv-13a",
+          "categoryId": "home-services",
+          "subcategoryId": "house-cleaning",
+          "name": "Full 3BHK Deep Cleaning & Sanitization",
+          "startingPrice": 2400,
+          "priceUnit": "home",
+          "description": "Steam kitchen degreasing, bathroom descaling, and floor scrubbing."
+        },
+        {
+          "id": "srv-13b",
+          "categoryId": "home-services",
+          "subcategoryId": "pest-control",
+          "name": "Termite & Cockroach Gel Treatment",
+          "startingPrice": 950,
+          "priceUnit": "visit",
+          "description": "Odourless household-safe gel and perimeter barrier spray."
+        }
+      ],
+      "startingPrice": 950,
+      "district": "Thrissur",
+      "town": "Thrissur",
+      "locality": "Punkunnam",
+      "pincode": "680001",
+      "lat": 10.5276,
+      "lng": 76.2144,
+      "serviceRadiusKm": 35,
+      "experienceYears": 9,
+      "workingHours": "8:00 AM – 7:00 PM",
+      "isAvailable": true,
+      "availableDays": [
+        "Mon",
+        "Tue",
+        "Wed",
+        "Thu",
+        "Fri",
+        "Sat"
+      ],
+      "urgentAvailable": false,
+      "rating": 4.8,
+      "reviewCount": 38,
+      "completedJobs": 147,
+      "profileViews": 265,
+      "identityVerified": true,
+      "skillVerified": true,
+      "profileVerified": true,
+      "isFeatured": true,
+      "isDemo": true,
+      "portfolioImages": [
+        "/src/assets/images/cat_appliance_home_1794634394694.jpg"
+      ],
+      "createdAt": "2026-11-06T06:16:57.145Z"
+    },
+    {
+      "id": "prov-14",
+      "userId": "seed-u14",
+      "name": "Anjali Sreekumar",
+      "title": "Computer Science, Python & Spoken Language Coach",
+      "phone": "+91 95670 43218",
+      "whatsapp": "919567043218",
+      "avatarUrl": "",
+      "bio": "MCA educator offering hands-on Python, Tally Prime, CBSE Computer Science, Spoken English, and digital skills training in Kochi and online across Kerala.",
+      "categoryIds": [
+        "education-tuition"
+      ],
+      "subcategoryIds": [
+        "computer-classes",
+        "language-classes",
+        "skill-training",
+        "home-tuition"
+      ],
+      "services": [
+        {
+          "id": "srv-14a",
+          "categoryId": "education-tuition",
+          "subcategoryId": "computer-classes",
+          "name": "Python, Web & Tally Practical Coaching",
+          "startingPrice": 2000,
+          "priceUnit": "month",
+          "description": "Project-based individual sessions for students and job seekers."
+        },
+        {
+          "id": "srv-14b",
+          "categoryId": "education-tuition",
+          "subcategoryId": "language-classes",
+          "name": "Spoken English & Interview Confidence",
+          "startingPrice": 1600,
+          "priceUnit": "month",
+          "description": "Conversational fluency in friendly one-on-one sessions."
+        }
+      ],
+      "startingPrice": 1600,
+      "district": "Ernakulam",
+      "town": "Kochi",
+      "locality": "Kakkanad",
+      "pincode": "682030",
+      "lat": 10.0159,
+      "lng": 76.3419,
+      "serviceRadiusKm": 20,
+      "experienceYears": 8,
+      "workingHours": "9:00 AM – 8:00 PM",
+      "isAvailable": true,
+      "availableDays": [
+        "Mon",
+        "Tue",
+        "Wed",
+        "Thu",
+        "Fri",
+        "Sat"
+      ],
+      "urgentAvailable": false,
+      "rating": 4.9,
+      "reviewCount": 22,
+      "completedJobs": 64,
+      "profileViews": 185,
+      "identityVerified": true,
+      "skillVerified": true,
+      "profileVerified": true,
+      "isFeatured": false,
+      "isDemo": true,
+      "portfolioImages": [
+        "/src/assets/images/cat_appliance_home_1794634394694.jpg"
+      ],
+      "createdAt": "2026-11-11T06:16:57.145Z"
+    },
+    {
+      "id": "prov-15",
+      "userId": "seed-u15",
+      "name": "Prashanth Frame Studio",
+      "title": "Candid Wedding Photography & Event DJ Sound",
+      "phone": "+91 98473 66701",
+      "whatsapp": "919847366701",
+      "avatarUrl": "",
+      "bio": "Documentary wedding photography, housewarming reels, and clean acoustic/DJ sound systems covering Kannur, Kozhikode, and Malappuram.",
+      "categoryIds": [
+        "event-services"
+      ],
+      "subcategoryIds": [
+        "photography",
+        "dj"
+      ],
+      "services": [
+        {
+          "id": "srv-15a",
+          "categoryId": "event-services",
+          "subcategoryId": "photography",
+          "name": "Housewarming & Family Event Photography",
+          "startingPrice": 6500,
+          "priceUnit": "event",
+          "description": "Full-day candid coverage + 150 edited high-resolution photos."
+        },
+        {
+          "id": "srv-15b",
+          "categoryId": "event-services",
+          "subcategoryId": "dj",
+          "name": "Reception Sound & Stage Lighting",
+          "startingPrice": 4500,
+          "priceUnit": "event",
+          "description": "Dual line-array speakers, wireless mics, and warm stage uplights."
+        }
+      ],
+      "startingPrice": 4500,
+      "district": "Kannur",
+      "town": "Kannur",
+      "locality": "Thana",
+      "pincode": "670001",
+      "lat": 11.8745,
+      "lng": 75.3704,
+      "serviceRadiusKm": 75,
+      "experienceYears": 9,
+      "workingHours": "7:00 AM – 10:30 PM",
+      "isAvailable": true,
+      "availableDays": [
+        "Mon",
+        "Tue",
+        "Wed",
+        "Thu",
+        "Fri",
+        "Sat",
+        "Sun"
+      ],
+      "urgentAvailable": false,
+      "rating": 4.8,
+      "reviewCount": 30,
+      "completedJobs": 102,
+      "profileViews": 240,
+      "identityVerified": true,
+      "skillVerified": true,
+      "profileVerified": true,
+      "isFeatured": false,
+      "isDemo": true,
+      "portfolioImages": [
+        "/src/assets/images/cat_events_beauty_1794634396437.jpg"
+      ],
+      "createdAt": "2026-11-13T06:16:57.145Z"
+    },
+    {
+      "id": "prov-16",
+      "userId": "seed-u16",
+      "name": "Jafar Sadik Electricals",
+      "title": "24x7 Urgent Electrician & Plumbing Crew",
+      "phone": "+91 98475 91022",
+      "whatsapp": "919847591022",
+      "avatarUrl": "",
+      "bio": "Rapid-response home electrician and emergency plumber stationed near Tirur Railway Station & Kottakkal bypass.",
+      "categoryIds": [
+        "home-services",
+        "appliance-repair"
+      ],
+      "subcategoryIds": [
+        "electrician",
+        "plumber",
+        "ac-repair"
+      ],
+      "services": [
+        {
+          "id": "srv-16a",
+          "categoryId": "home-services",
+          "subcategoryId": "electrician",
+          "name": "Urgent Main Fuse & Short-Circuit Fix",
+          "startingPrice": 350,
+          "priceUnit": "visit",
+          "description": "Priority troubleshooting for sudden outages and sparking boards."
+        },
+        {
+          "id": "srv-16b",
+          "categoryId": "home-services",
+          "subcategoryId": "plumber",
+          "name": "Urgent Pipe Burst & Valve Replacement",
+          "startingPrice": 400,
+          "priceUnit": "visit",
+          "description": "Immediate leak shutoff and pressure line joint repair."
+        }
+      ],
+      "startingPrice": 350,
+      "district": "Malappuram",
+      "town": "Tirur",
+      "locality": "Vettom",
+      "pincode": "676102",
+      "lat": 10.892,
+      "lng": 75.913,
+      "serviceRadiusKm": 20,
+      "experienceYears": 7,
+      "workingHours": "24 Hours (Emergency Priority)",
+      "isAvailable": true,
+      "availableDays": [
+        "Mon",
+        "Tue",
+        "Wed",
+        "Thu",
+        "Fri",
+        "Sat",
+        "Sun"
+      ],
+      "urgentAvailable": true,
+      "rating": 4.7,
+      "reviewCount": 21,
+      "completedJobs": 96,
+      "profileViews": 192,
+      "identityVerified": true,
+      "skillVerified": true,
+      "profileVerified": true,
+      "isFeatured": false,
+      "isDemo": true,
+      "portfolioImages": [
+        "/src/assets/images/hero_kerala_craftsman_1794634394731.jpg"
+      ],
+      "createdAt": "2026-11-14T06:16:57.145Z"
+    },
+    {
+      "id": "prov-17",
+      "userId": "seed-u17",
+      "name": "Sajitha Beauty & Henna Lounge",
+      "title": "Home Salon, Hair Styling & Bridal Mehendi",
+      "phone": "+91 96452 77310",
+      "whatsapp": "919645277310",
+      "avatarUrl": "",
+      "bio": "Ladies-only doorstep parlour & mehendi artist covering Tirur, Tanur, and Kottakkal. Comfortable home service for brides and elderly family members.",
+      "categoryIds": [
+        "beauty-grooming"
+      ],
+      "subcategoryIds": [
+        "beauty-parlour",
+        "hair-styling",
+        "mehendi",
+        "home-salon-services"
+      ],
+      "services": [
+        {
+          "id": "srv-17a",
+          "categoryId": "beauty-grooming",
+          "subcategoryId": "home-salon-services",
+          "name": "Doorstep Haircut, Threading & Cleanup",
+          "startingPrice": 450,
+          "priceUnit": "visit",
+          "description": "Single-use disposables and sterilized salon tools."
+        },
+        {
+          "id": "srv-17b",
+          "categoryId": "beauty-grooming",
+          "subcategoryId": "mehendi",
+          "name": "Event Guest Mehendi (Per Hand)",
+          "startingPrice": 300,
+          "priceUnit": "hand",
+          "description": "Fast natural stain Arabic designs for family functions."
+        }
+      ],
+      "startingPrice": 300,
+      "district": "Malappuram",
+      "town": "Tirur",
+      "locality": "Pookayil",
+      "pincode": "676107",
+      "lat": 10.909,
+      "lng": 75.908,
+      "serviceRadiusKm": 18,
+      "experienceYears": 5,
+      "workingHours": "9:00 AM – 7:30 PM",
+      "isAvailable": true,
+      "availableDays": [
+        "Mon",
+        "Tue",
+        "Wed",
+        "Thu",
+        "Fri",
+        "Sat",
+        "Sun"
+      ],
+      "urgentAvailable": false,
+      "rating": 4.8,
+      "reviewCount": 18,
+      "completedJobs": 72,
+      "profileViews": 158,
+      "identityVerified": true,
+      "skillVerified": true,
+      "profileVerified": true,
+      "isFeatured": false,
+      "isDemo": true,
+      "portfolioImages": [
+        "/src/assets/images/cat_events_beauty_1794634396437.jpg"
+      ],
+      "createdAt": "2026-11-15T06:16:57.145Z"
+    },
+    {
+      "id": "prov-18",
+      "userId": "seed-u18",
+      "name": "Vinod Kumar Palakkad Motors",
+      "title": "Water Pump, AC & Local Appliance Supplies",
+      "phone": "+91 94474 20987",
+      "whatsapp": "919447420987",
+      "avatarUrl": "",
+      "bio": "Multi-brand appliance repair, water purifier filter changes, and genuine spare delivery in Palakkad & Ottapalam.",
+      "categoryIds": [
+        "appliance-repair",
+        "daily-needs"
+      ],
+      "subcategoryIds": [
+        "ac-repair",
+        "other-appliance-repair",
+        "local-supplies"
+      ],
+      "services": [
+        {
+          "id": "srv-18a",
+          "categoryId": "appliance-repair",
+          "subcategoryId": "other-appliance-repair",
+          "name": "RO Water Purifier Filter & Membrane Service",
+          "startingPrice": 350,
+          "priceUnit": "visit",
+          "description": "TDS calibration and sediment/carbon cartridge replacement."
+        }
+      ],
+      "startingPrice": 350,
+      "district": "Palakkad",
+      "town": "Palakkad",
+      "locality": "Kalpathy",
+      "pincode": "678001",
+      "lat": 10.7867,
+      "lng": 76.6548,
+      "serviceRadiusKm": 28,
+      "experienceYears": 12,
+      "workingHours": "8:30 AM – 7:30 PM",
+      "isAvailable": true,
+      "availableDays": [
+        "Mon",
+        "Tue",
+        "Wed",
+        "Thu",
+        "Fri",
+        "Sat"
+      ],
+      "urgentAvailable": false,
+      "rating": 4.6,
+      "reviewCount": 16,
+      "completedJobs": 83,
+      "profileViews": 120,
+      "identityVerified": true,
+      "skillVerified": false,
+      "profileVerified": true,
+      "isFeatured": false,
+      "isDemo": true,
+      "portfolioImages": [
+        "/src/assets/images/cat_appliance_home_1794634394694.jpg"
+      ],
+      "createdAt": "2026-11-16T06:16:57.145Z"
+    },
+    {
+      "id": "prov-19",
+      "userId": "seed-u19",
+      "name": "Kochi Precision Painting & Interiors",
+      "title": "Weather-Coat Painting, False Ceiling & Interiors",
+      "phone": "+91 98465 32019",
+      "whatsapp": "919846532019",
+      "avatarUrl": "",
+      "bio": "Dust-free mechanized wall sanding, Asian/Berger weatherproof exterior coatings, and contemporary home interiors across Ernakulam & Kottayam.",
+      "categoryIds": [
+        "home-services",
+        "construction"
+      ],
+      "subcategoryIds": [
+        "painting",
+        "interior-work"
+      ],
+      "services": [
+        {
+          "id": "srv-19a",
+          "categoryId": "home-services",
+          "subcategoryId": "painting",
+          "name": "Exterior Monsoon Damp-Proof Painting",
+          "startingPrice": 22,
+          "priceUnit": "sq.ft",
+          "description": "Crack filling, damp primer, and 2-coat weather shield emulsion."
+        }
+      ],
+      "startingPrice": 800,
+      "district": "Ernakulam",
+      "town": "Kochi",
+      "locality": "Edappally",
+      "pincode": "682024",
+      "lat": 10.0261,
+      "lng": 76.3125,
+      "serviceRadiusKm": 35,
+      "experienceYears": 10,
+      "workingHours": "8:00 AM – 6:30 PM",
+      "isAvailable": true,
+      "availableDays": [
+        "Mon",
+        "Tue",
+        "Wed",
+        "Thu",
+        "Fri",
+        "Sat"
+      ],
+      "urgentAvailable": false,
+      "rating": 4.8,
+      "reviewCount": 25,
+      "completedJobs": 91,
+      "profileViews": 205,
+      "identityVerified": true,
+      "skillVerified": true,
+      "profileVerified": true,
+      "isFeatured": false,
+      "isDemo": true,
+      "portfolioImages": [
+        "/src/assets/images/cat_construction_interior_1794634395444.jpg"
+      ],
+      "createdAt": "2026-11-05T06:16:57.145Z"
+    },
+    {
+      "id": "prov-20",
+      "userId": "seed-u20",
+      "name": "Dr. Gopika Nair Tuition Centre",
+      "title": "Plus Two Physics, Chemistry & Skill Training",
+      "phone": "+91 94951 88403",
+      "whatsapp": "919495188403",
+      "avatarUrl": "",
+      "bio": "Ph.D. science educator offering small-batch and home coaching for NEET/KEAM foundation, CBSE Science, and Malayalam/English academic writing in Trivandrum.",
+      "categoryIds": [
+        "education-tuition"
+      ],
+      "subcategoryIds": [
+        "science",
+        "mathematics",
+        "language-classes",
+        "skill-training"
+      ],
+      "services": [
+        {
+          "id": "srv-20a",
+          "categoryId": "education-tuition",
+          "subcategoryId": "science",
+          "name": "Physics & Chemistry Board Prep (Class 11–12)",
+          "startingPrice": 550,
+          "priceUnit": "hour",
+          "description": "Numerical drills, previous paper walkthroughs, and concept maps."
+        }
+      ],
+      "startingPrice": 550,
+      "district": "Thiruvananthapuram",
+      "town": "Thiruvananthapuram",
+      "locality": "Pattom",
+      "pincode": "695004",
+      "lat": 8.5241,
+      "lng": 76.9366,
+      "serviceRadiusKm": 15,
+      "experienceYears": 11,
+      "workingHours": "4:00 PM – 8:30 PM",
+      "isAvailable": true,
+      "availableDays": [
+        "Mon",
+        "Tue",
+        "Wed",
+        "Thu",
+        "Fri",
+        "Sat"
+      ],
+      "urgentAvailable": false,
+      "rating": 5,
+      "reviewCount": 19,
+      "completedJobs": 55,
+      "profileViews": 170,
+      "identityVerified": true,
+      "skillVerified": true,
+      "profileVerified": true,
+      "isFeatured": true,
+      "isDemo": true,
+      "portfolioImages": [
+        "/src/assets/images/cat_appliance_home_1794634394694.jpg"
+      ],
+      "createdAt": "2026-11-09T06:16:57.145Z"
+    }
+  ],
+  "categories": [
+    {
+      "id": "appliance-repair",
+      "name": "Appliance Repair",
+      "nameMl": "ഉപകരണ അറ്റകുറ്റപ്പണി",
+      "nameHi": "उपकरण मरम्मत",
+      "description": "Doorstep diagnostics, gas refilling, PCB troubleshooting, and scheduled maintenance for home cooling, laundry, and entertainment appliances.",
+      "iconName": "Wrench",
+      "accentImage": "/src/assets/images/cat_appliance_home_1794634394694.jpg",
+      "subcategories": [
+        {
+          "id": "ac-repair",
+          "categoryId": "appliance-repair",
+          "name": "AC repair",
+          "nameMl": "എസി റിപ്പയർ",
+          "nameHi": "एसी मरम्मत",
+          "description": "Split and window AC servicing, jet wash, gas top-up, and compressor repairs.",
+          "typicalPriceRange": "₹450 – ₹1,800",
+          "urgentSupported": true
+        },
+        {
+          "id": "refrigerator-repair",
+          "categoryId": "appliance-repair",
+          "name": "Refrigerator repair",
+          "nameMl": "ഫ്രിഡ്ജ് റിപ്പയർ",
+          "nameHi": "फ्रिज मरम्मत",
+          "description": "Single/double-door cooling issues, thermostat replacement, and inverter board fixes.",
+          "typicalPriceRange": "₹350 – ₹1,500",
+          "urgentSupported": true
+        },
+        {
+          "id": "washing-machine-repair",
+          "categoryId": "appliance-repair",
+          "name": "Washing machine repair",
+          "nameMl": "വാഷിംഗ് മെഷീൻ റിപ്പയർ",
+          "nameHi": "वॉशिंग मशीन मरम्मत",
+          "description": "Front-load and top-load drum, drain pump, inlet valve, and motor service.",
+          "typicalPriceRange": "₹400 – ₹1,600"
+        },
+        {
+          "id": "television-repair",
+          "categoryId": "appliance-repair",
+          "name": "Television repair",
+          "nameMl": "ടിവി റിപ്പയർ",
+          "nameHi": "टीवी मरम्मत",
+          "description": "LED/QLED backlight, power supply board, display calibration, and wall mounting.",
+          "typicalPriceRange": "₹500 – ₹2,500"
+        },
+        {
+          "id": "other-appliance-repair",
+          "categoryId": "appliance-repair",
+          "name": "Other appliance repair",
+          "nameMl": "മറ്റ് ഉപകരണങ്ങൾ",
+          "nameHi": "अन्य उपकरण मरम्मत",
+          "description": "Microwave ovens, water purifiers, mixer-grinders, induction cooktops, and inverters.",
+          "typicalPriceRange": "₹250 – ₹1,200"
+        }
+      ]
+    },
+    {
+      "id": "home-services",
+      "name": "Home Services",
+      "nameMl": "വീട്ടുസേവനങ്ങൾ",
+      "nameHi": "घरेलू सेवाएँ",
+      "description": "Everyday household specialists for safe electrical wiring, leak-free plumbing, custom woodwork, deep cleaning, monsoon waterproofing, and pest care.",
+      "iconName": "Home",
+      "accentImage": "/src/assets/images/hero_kerala_craftsman_1794634394731.jpg",
+      "subcategories": [
+        {
+          "id": "electrician",
+          "categoryId": "home-services",
+          "name": "Electrician",
+          "nameMl": "ഇലക്ട്രീഷ്യൻ",
+          "nameHi": "इलेक्ट्रीशियन",
+          "description": "DB/MCB tripping fixes, inverter wiring, earthing, ceiling fans, and full house rewiring.",
+          "typicalPriceRange": "₹250 – ₹1,200",
+          "urgentSupported": true
+        },
+        {
+          "id": "plumber",
+          "categoryId": "home-services",
+          "name": "Plumber",
+          "nameMl": "പ്ലംബർ",
+          "nameHi": "प्लंबर",
+          "description": "Pipe leak repair, overhead tank motor plumbing, bathroom fittings, and blockage clearing.",
+          "typicalPriceRange": "₹300 – ₹1,400",
+          "urgentSupported": true
+        },
+        {
+          "id": "carpenter",
+          "categoryId": "home-services",
+          "name": "Carpenter",
+          "nameMl": "ആശാരി / കാർപെന്റർ",
+          "nameHi": "बढ़ई",
+          "description": "Teak door alignment, modular cabinet hinges, bed repair, and custom shelving.",
+          "typicalPriceRange": "₹400 – ₹1,800"
+        },
+        {
+          "id": "house-cleaning",
+          "categoryId": "home-services",
+          "name": "House cleaning",
+          "nameMl": "വീട് വൃത്തിയാക്കൽ",
+          "nameHi": "घर की सफाई",
+          "description": "Deep kitchen/bathroom sanitization, water tank cleaning, and post-renovation cleanup.",
+          "typicalPriceRange": "₹900 – ₹4,500"
+        },
+        {
+          "id": "painting",
+          "categoryId": "home-services",
+          "name": "Painting",
+          "nameMl": "പെയിന്റിംഗ്",
+          "nameHi": "पेंटिंग",
+          "description": "Interior emulsion, monsoon exterior weather-coat, dampness treatment, and wood polish.",
+          "typicalPriceRange": "₹18 – ₹42 / sq.ft"
+        },
+        {
+          "id": "pest-control",
+          "categoryId": "home-services",
+          "name": "Pest control",
+          "nameMl": "കീടനിയന്ത്രണം",
+          "nameHi": "कीट नियंत्रण",
+          "description": "Termite anti-borer treatment, cockroach gel control, and mosquito/rodent proofing.",
+          "typicalPriceRange": "₹800 – ₹3,200"
+        }
+      ]
+    },
+    {
+      "id": "construction",
+      "name": "Construction",
+      "nameMl": "നിർമ്മാണ സേവനങ്ങൾ",
+      "nameHi": "निर्माण कार्य",
+      "description": "Experienced civil contractors, laterite masons, fabricators, tilers, and interior teams built for Kerala climate and architecture.",
+      "iconName": "Hammer",
+      "accentImage": "/src/assets/images/cat_construction_interior_1794634395444.jpg",
+      "subcategories": [
+        {
+          "id": "mason",
+          "categoryId": "construction",
+          "name": "Mason",
+          "nameMl": "മേസൺ / കൽപ്പണി",
+          "nameHi": "राजमिस्त्री",
+          "description": "Laterite stone masonry, plastering, compound walls, and roof slab waterproofing.",
+          "typicalPriceRange": "₹900 – ₹1,400 / day"
+        },
+        {
+          "id": "civil-contractor",
+          "categoryId": "construction",
+          "name": "Civil contractor",
+          "nameMl": "സിവിൽ കോൺട്രാക്ടർ",
+          "nameHi": "सिविल ठेकेदार",
+          "description": "Turnkey house construction, extension estimates, structural renovation, and supervision.",
+          "typicalPriceRange": "Custom quotation"
+        },
+        {
+          "id": "welding",
+          "categoryId": "construction",
+          "name": "Welding",
+          "nameMl": "വെൽഡിംഗ്",
+          "nameHi": "वेल्डिंग",
+          "description": "MS/SS gates, truss roofing sheets, window safety grills, and staircase handrails.",
+          "typicalPriceRange": "₹500 – ₹3,500"
+        },
+        {
+          "id": "tile-work",
+          "categoryId": "construction",
+          "name": "Tile work",
+          "nameMl": "ടൈൽ പണി",
+          "nameHi": "टाइल का काम",
+          "description": "Vitrified floor laying, granite kitchen countertops, bathroom cladding, and interlock paving.",
+          "typicalPriceRange": "₹35 – ₹85 / sq.ft"
+        },
+        {
+          "id": "interior-work",
+          "categoryId": "construction",
+          "name": "Interior work",
+          "nameMl": "ഇന്റീരിയർ വർക്ക്",
+          "nameHi": "इंटीरियर वर्क",
+          "description": "Modular kitchens, marine-ply wardrobes, gypsum false ceilings, and architectural lighting.",
+          "typicalPriceRange": "Custom quotation"
+        },
+        {
+          "id": "general-construction",
+          "categoryId": "construction",
+          "name": "General construction",
+          "nameMl": "പൊതു നിർമ്മാണം",
+          "nameHi": "सामान्य निर्माण",
+          "description": "Well ring sinking, septic tank repair, rainwater harvesting pits, and site prep.",
+          "typicalPriceRange": "₹1,200+"
+        }
+      ]
+    },
+    {
+      "id": "rental-vehicles",
+      "name": "Rental Vehicles",
+      "nameMl": "വാഹന വാടക",
+      "nameHi": "किराये के वाहन",
+      "description": "Local cars, goods tempos, mini-trucks for home shifting, and reliable verified drivers across Kerala towns.",
+      "iconName": "Truck",
+      "accentImage": "/src/assets/images/cat_construction_interior_1794634395444.jpg",
+      "subcategories": [
+        {
+          "id": "car-rental",
+          "categoryId": "rental-vehicles",
+          "name": "Car rental",
+          "nameMl": "കാർ വാടക",
+          "nameHi": "कार किराया",
+          "description": "Airport drops (Calicut / Kochi), family outstation trips, and wedding cars.",
+          "typicalPriceRange": "₹1,500 – ₹3,500 / day"
+        },
+        {
+          "id": "tempo-rental",
+          "categoryId": "rental-vehicles",
+          "name": "Tempo rental",
+          "nameMl": "ടെമ്പോ വാടക",
+          "nameHi": "टेम्पो किराया",
+          "description": "Tempo Traveller for group tours and goods carriers for local shop/house transport.",
+          "typicalPriceRange": "₹1,200 – ₹4,500"
+        },
+        {
+          "id": "truck-rental",
+          "categoryId": "rental-vehicles",
+          "name": "Truck rental",
+          "nameMl": "ട്രക്ക് വാടക",
+          "nameHi": "ट्रक किराया",
+          "description": "House shifting trucks, construction material haulage, and inter-district cargo.",
+          "typicalPriceRange": "₹2,000 – ₹8,000"
+        },
+        {
+          "id": "driver-services",
+          "categoryId": "rental-vehicles",
+          "name": "Driver services",
+          "nameMl": "ഡ്രൈവർ സേവനം",
+          "nameHi": "ड्राइवर सेवा",
+          "description": "On-call acting drivers for personal cars, night hospital drops, and long journeys.",
+          "typicalPriceRange": "₹700 – ₹1,300 / shift"
+        }
+      ]
+    },
+    {
+      "id": "daily-needs",
+      "name": "Daily Needs",
+      "nameMl": "ദൈനംദിന ആവശ്യങ്ങൾ",
+      "nameHi": "दैनिक आवश्यकताएँ",
+      "description": "Neighbourhood essentials including coconut-tree & garden care, tanker drinking water, and trusted local supplies.",
+      "iconName": "Leaf",
+      "accentImage": "/src/assets/images/hero_kerala_craftsman_1794634394731.jpg",
+      "subcategories": [
+        {
+          "id": "gardening",
+          "categoryId": "daily-needs",
+          "name": "Gardening",
+          "nameMl": "പൂന്തോട്ട പരിപാലനം",
+          "nameHi": "बागवानी",
+          "description": "Lawn mowing, bush clearing, kitchen garden setup, and tree pruning.",
+          "typicalPriceRange": "₹500 – ₹1,800"
+        },
+        {
+          "id": "water-delivery",
+          "categoryId": "daily-needs",
+          "name": "Water delivery",
+          "nameMl": "കുടിവെള്ള വിതരണം",
+          "nameHi": "पानी की डिलीवरी",
+          "description": "20L drinking water cans and bulk tanker water supply for homes and events.",
+          "typicalPriceRange": "₹60 – ₹1,500",
+          "urgentSupported": true
+        },
+        {
+          "id": "local-supplies",
+          "categoryId": "daily-needs",
+          "name": "Local supplies",
+          "nameMl": "പ്രാദേശിക സാധനങ്ങൾ",
+          "nameHi": "स्थानीय आपूर्ति",
+          "description": "Hardware, plumbing spares, gas stove parts, and household utility delivery.",
+          "typicalPriceRange": "₹150+"
+        },
+        {
+          "id": "other-local-essentials",
+          "categoryId": "daily-needs",
+          "name": "Other local essentials",
+          "nameMl": "മറ്റ് അവശ്യ സേവനങ്ങൾ",
+          "nameHi": "अन्य स्थानीय सेवाएँ",
+          "description": "Key duplication, inverter battery top-up, and doorstep elder assistance errands.",
+          "typicalPriceRange": "₹200 – ₹800"
+        }
+      ]
+    },
+    {
+      "id": "beauty-grooming",
+      "name": "Beauty and Grooming",
+      "nameMl": "സൗന്ദര്യവും ഗ്രൂമിംഗും",
+      "nameHi": "सौंदर्य और ग्रूमिंग",
+      "description": "Bridal makeup artists, traditional mehendi specialists, hair stylists, and comfortable home salon professionals.",
+      "iconName": "Sparkles",
+      "accentImage": "/src/assets/images/cat_events_beauty_1794634396437.jpg",
+      "subcategories": [
+        {
+          "id": "hair-styling",
+          "categoryId": "beauty-grooming",
+          "name": "Hair styling",
+          "nameMl": "ഹെയർ സ്റ്റൈലിംഗ്",
+          "nameHi": "हेयर स्टाइलिंग",
+          "description": "Haircuts, bridal hairstyling, jasmine flower setting, and keratin care.",
+          "typicalPriceRange": "₹350 – ₹2,500"
+        },
+        {
+          "id": "beauty-parlour",
+          "categoryId": "beauty-grooming",
+          "name": "Beauty parlour",
+          "nameMl": "ബ്യൂട്ടി പാർലർ",
+          "nameHi": "ब्यूटी पार्लर",
+          "description": "Facials, threading, waxing, manicure, and pre-wedding skin prep.",
+          "typicalPriceRange": "₹400 – ₹3,000"
+        },
+        {
+          "id": "mehendi",
+          "categoryId": "beauty-grooming",
+          "name": "Mehendi",
+          "nameMl": "മെഹന്ദി / മൈലാഞ്ചി",
+          "nameHi": "मेहंदी",
+          "description": "Organic bridal henna, Arabic patterns, and group wedding mehendi artists.",
+          "typicalPriceRange": "₹600 – ₹5,500"
+        },
+        {
+          "id": "makeup",
+          "categoryId": "beauty-grooming",
+          "name": "Makeup",
+          "nameMl": "മേക്കപ്പ്",
+          "nameHi": "मेकअप",
+          "description": "HD/airbrush bridal makeup, nikkah/engagement looks, and saree draping.",
+          "typicalPriceRange": "₹2,500 – ₹18,000"
+        },
+        {
+          "id": "home-salon-services",
+          "categoryId": "beauty-grooming",
+          "name": "Home salon services",
+          "nameMl": "ഹോം സലൂൺ",
+          "nameHi": "होम सैलून सेवाएँ",
+          "description": "Hygienic doorstep grooming and senior-friendly home haircut visits.",
+          "typicalPriceRange": "₹400 – ₹2,000"
+        }
+      ]
+    },
+    {
+      "id": "event-services",
+      "name": "Event Services",
+      "nameMl": "ഇവന്റ് സേവനങ്ങൾ",
+      "nameHi": "इवेंट सेवाएँ",
+      "description": "Trusted local photographers, Malabar & Sadya caterers, floral stage decorators, DJs, and pandal/tent providers.",
+      "iconName": "Camera",
+      "accentImage": "/src/assets/images/cat_events_beauty_1794634396437.jpg",
+      "subcategories": [
+        {
+          "id": "photography",
+          "categoryId": "event-services",
+          "name": "Photography",
+          "nameMl": "ഫോട്ടോഗ്രാഫി",
+          "nameHi": "फोटोग्राफी",
+          "description": "Candid wedding photography, housewarming shoots, and 4K event videography.",
+          "typicalPriceRange": "₹6,000 – ₹45,000"
+        },
+        {
+          "id": "catering",
+          "categoryId": "event-services",
+          "name": "Catering",
+          "nameMl": "കാറ്ററിംഗ്",
+          "nameHi": "कैटरिंग",
+          "description": "Traditional Sadya, Malabar biryani, live counters, and family function catering.",
+          "typicalPriceRange": "₹220 – ₹650 / plate"
+        },
+        {
+          "id": "decoration",
+          "categoryId": "event-services",
+          "name": "Decoration",
+          "nameMl": "ഡെക്കറേഷൻ",
+          "nameHi": "सजावट",
+          "description": "Floral pandal arches, brass lamp courtyards, birthday backdrops, and car decor.",
+          "typicalPriceRange": "₹3,500 – ₹35,000"
+        },
+        {
+          "id": "dj",
+          "categoryId": "event-services",
+          "name": "DJ",
+          "nameMl": "ഡിജെ & സൗണ്ട്",
+          "nameHi": "डीजे और साउंड",
+          "description": "Event sound systems, wireless mics, stage lighting, and reception DJs.",
+          "typicalPriceRange": "₹4,000 – ₹18,000"
+        },
+        {
+          "id": "tent-services",
+          "categoryId": "event-services",
+          "name": "Tent services",
+          "nameMl": "പന്തൽ / ടെന്റ്",
+          "nameHi": "टेंट सेवाएँ",
+          "description": "Waterproof shamiana pandals, chairs, dining tables, cooling fans, and generators.",
+          "typicalPriceRange": "₹2,500 – ₹25,000"
+        }
+      ]
+    },
+    {
+      "id": "education-tuition",
+      "name": "Education and Tuition",
+      "nameMl": "വിദ്യാഭ്യാസവും ട്യൂഷനും",
+      "nameHi": "शिक्षा और ट्यूशन",
+      "description": "Qualified Kerala syllabus, CBSE, and ICSE home tutors, STEM mentors, computer trainers, language coaches, and vocational skill teachers.",
+      "iconName": "GraduationCap",
+      "accentImage": "/src/assets/images/cat_appliance_home_1794634394694.jpg",
+      "subcategories": [
+        {
+          "id": "home-tuition",
+          "categoryId": "education-tuition",
+          "name": "Home tuition",
+          "nameMl": "ഹോം ട്യൂഷൻ",
+          "nameHi": "होम ट्यूशन",
+          "description": "One-on-one Kerala SCERT, CBSE, and ICSE school support for Classes 1 to 12.",
+          "typicalPriceRange": "₹2,000 – ₹5,500 / month"
+        },
+        {
+          "id": "mathematics",
+          "categoryId": "education-tuition",
+          "name": "Mathematics",
+          "nameMl": "ഗണിതശാസ്ത്രം",
+          "nameHi": "गणित",
+          "description": "High school, Plus Two, KEAM/JEE foundation, and mental maths coaching.",
+          "typicalPriceRange": "₹400 – ₹800 / hour"
+        },
+        {
+          "id": "science",
+          "categoryId": "education-tuition",
+          "name": "Science",
+          "nameMl": "സയൻസ്",
+          "nameHi": "विज्ञान",
+          "description": "Physics, Chemistry, and Biology board exam coaching and lab concept clarity.",
+          "typicalPriceRange": "₹400 – ₹850 / hour"
+        },
+        {
+          "id": "computer-classes",
+          "categoryId": "education-tuition",
+          "name": "Computer classes",
+          "nameMl": "കമ്പ്യൂട്ടർ ക്ലാസ്",
+          "nameHi": "कंप्यूटर कक्षाएँ",
+          "description": "Python, Tally Prime, MS Office, web design, and digital literacy for seniors.",
+          "typicalPriceRange": "₹1,800 – ₹4,500 / month"
+        },
+        {
+          "id": "language-classes",
+          "categoryId": "education-tuition",
+          "name": "Language classes",
+          "nameMl": "ഭാഷാ പഠനം",
+          "nameHi": "भाषा कक्षाएँ",
+          "description": "Spoken English, Malayalam reading/writing, Hindi, and Gulf Arabic coaching.",
+          "typicalPriceRange": "₹1,500 – ₹3,500 / month"
+        },
+        {
+          "id": "skill-training",
+          "categoryId": "education-tuition",
+          "name": "Skill training",
+          "nameMl": "നൈപുണ്യ പരിശീലനം",
+          "nameHi": "कौशल प्रशिक्षण",
+          "description": "Tailoring, classical music, chess coaching, and practical electronics workshops.",
+          "typicalPriceRange": "₹1,200 – ₹4,000 / month"
+        }
+      ]
+    }
+  ],
+  "serviceRequests": [
+    {
+      "id": "req-2e296c2603",
+      "customerId": "user-demo-customer",
+      "customerName": "Arjun Menon (Demo Customer)",
+      "categoryId": "home-services",
+      "subcategoryId": "electrician",
+      "targetProviderId": "prov-1",
+      "title": "Final audit booking test",
+      "description": "Verify arrived -> start -> OTP complete",
+      "photos": [],
+      "preferredDate": "2026-12-03",
+      "preferredTime": "10:00",
+      "district": "Malappuram",
+      "town": "Tirur",
+      "locality": "Payyanangadi",
+      "pincode": "676101",
+      "lat": 10.9165,
+      "lng": 75.9245,
+      "status": "service_completed",
+      "notifiedProviderIds": [
+        "prov-1"
+      ],
+      "createdAt": "2026-11-17T06:44:06.368Z",
+      "updatedAt": "2026-11-17T06:44:06.428Z",
+      "selectedQuotationId": "quot-175bd0ec92",
+      "selectedProviderId": "prov-1"
+    },
+    {
+      "id": "req-ae4fab3dee",
+      "customerId": "user-demo-customer",
+      "customerName": "Arjun Menon (Demo Customer)",
+      "categoryId": "home-services",
+      "subcategoryId": "electrician",
+      "title": "Audit test inverter check",
+      "description": "Audit verification full booking lifecycle",
+      "photos": [],
+      "preferredDate": "2026-12-02",
+      "preferredTime": "11:00",
+      "district": "Malappuram",
+      "town": "Tirur",
+      "locality": "Payyanangadi",
+      "pincode": "676101",
+      "lat": 10.9165,
+      "lng": 75.9245,
+      "status": "service_completed",
+      "notifiedProviderIds": [
+        "prov-1",
+        "prov-3",
+        "prov-5",
+        "prov-13",
+        "prov-16"
+      ],
+      "createdAt": "2026-11-17T06:42:29.038Z",
+      "updatedAt": "2026-11-17T06:42:29.076Z",
+      "selectedQuotationId": "quot-beb7122446",
+      "selectedProviderId": "prov-1"
+    },
+    {
+      "id": "req-1873bc14a7",
+      "customerId": "user-demo-customer",
+      "customerName": "Arjun Menon (Demo Customer)",
+      "categoryId": "home-services",
+      "subcategoryId": "electrician",
+      "title": "Audit test ceiling fan wiring",
+      "description": "Audit verification request for decline workflow",
+      "photos": [],
+      "preferredDate": "2026-12-01",
+      "preferredTime": "10:00",
+      "district": "Malappuram",
+      "town": "Tirur",
+      "locality": "Payyanangadi",
+      "pincode": "676101",
+      "lat": 10.9165,
+      "lng": 75.9245,
+      "status": "cancelled",
+      "notifiedProviderIds": [
+        "prov-1",
+        "prov-3",
+        "prov-5",
+        "prov-13",
+        "prov-16"
+      ],
+      "createdAt": "2026-11-17T06:42:29.016Z",
+      "updatedAt": "2026-11-17T06:42:29.031Z",
+      "declinedByProviderIds": [
+        "prov-1"
+      ]
+    },
+    {
+      "id": "req-ce39603f87",
+      "customerId": "user-demo-customer",
+      "customerName": "Arjun Menon (Demo Customer)",
+      "categoryId": "home-services",
+      "subcategoryId": "electrician",
+      "title": "Audit test inverter check",
+      "description": "Audit verification full booking lifecycle",
+      "photos": [],
+      "preferredDate": "2026-12-02",
+      "preferredTime": "11:00",
+      "district": "Malappuram",
+      "town": "Tirur",
+      "locality": "Payyanangadi",
+      "pincode": "676101",
+      "lat": 10.9165,
+      "lng": 75.9245,
+      "status": "service_completed",
+      "notifiedProviderIds": [
+        "prov-1",
+        "prov-3",
+        "prov-5",
+        "prov-13",
+        "prov-16"
+      ],
+      "createdAt": "2026-11-17T06:42:00.936Z",
+      "updatedAt": "2026-11-17T06:42:00.981Z",
+      "selectedQuotationId": "quot-0b6ea6d7ce",
+      "selectedProviderId": "prov-1"
+    },
+    {
+      "id": "req-8d58be0639",
+      "customerId": "user-demo-customer",
+      "customerName": "Arjun Menon (Demo Customer)",
+      "categoryId": "home-services",
+      "subcategoryId": "electrician",
+      "title": "Audit test ceiling fan wiring",
+      "description": "Audit verification request for decline workflow",
+      "photos": [],
+      "preferredDate": "2026-12-01",
+      "preferredTime": "10:00",
+      "district": "Malappuram",
+      "town": "Tirur",
+      "locality": "Payyanangadi",
+      "pincode": "676101",
+      "lat": 10.9165,
+      "lng": 75.9245,
+      "status": "cancelled",
+      "notifiedProviderIds": [
+        "prov-1",
+        "prov-3",
+        "prov-5",
+        "prov-13",
+        "prov-16"
+      ],
+      "createdAt": "2026-11-17T06:42:00.919Z",
+      "updatedAt": "2026-11-17T06:42:00.931Z",
+      "declinedByProviderIds": [
+        "prov-1"
+      ]
+    },
+    {
+      "id": "req-18f4e22bfa",
+      "customerId": "user-demo-customer",
+      "customerName": "Arjun Menon (Demo Customer)",
+      "categoryId": "home-services",
+      "subcategoryId": "electrician",
+      "title": "Audit test inverter check",
+      "description": "Audit verification full booking lifecycle",
+      "photos": [],
+      "preferredDate": "2026-12-02",
+      "preferredTime": "11:00",
+      "district": "Malappuram",
+      "town": "Tirur",
+      "locality": "Payyanangadi",
+      "pincode": "676101",
+      "lat": 10.9165,
+      "lng": 75.9245,
+      "status": "providers_notified",
+      "notifiedProviderIds": [
+        "prov-1",
+        "prov-3",
+        "prov-5",
+        "prov-13",
+        "prov-16"
+      ],
+      "createdAt": "2026-11-17T06:41:39.855Z",
+      "updatedAt": "2026-11-17T06:41:39.855Z"
+    },
+    {
+      "id": "req-2af041801a",
+      "customerId": "user-demo-customer",
+      "customerName": "Arjun Menon (Demo Customer)",
+      "categoryId": "home-services",
+      "subcategoryId": "electrician",
+      "title": "Audit test ceiling fan wiring",
+      "description": "Audit verification request for decline workflow",
+      "photos": [],
+      "preferredDate": "2026-12-01",
+      "preferredTime": "10:00",
+      "district": "Malappuram",
+      "town": "Tirur",
+      "locality": "Payyanangadi",
+      "pincode": "676101",
+      "lat": 10.9165,
+      "lng": 75.9245,
+      "status": "cancelled",
+      "notifiedProviderIds": [
+        "prov-1",
+        "prov-3",
+        "prov-5",
+        "prov-13",
+        "prov-16"
+      ],
+      "createdAt": "2026-11-17T06:41:39.844Z",
+      "updatedAt": "2026-11-17T06:41:39.851Z"
+    },
+    {
+      "id": "req-21051f3f3c",
+      "customerId": "user-demo-customer",
+      "customerName": "Arjun Menon (Demo Customer)",
+      "categoryId": "home-services",
+      "subcategoryId": "electrician",
+      "title": "Audit test inverter check",
+      "description": "Audit verification full booking lifecycle",
+      "photos": [],
+      "preferredDate": "2026-12-02",
+      "preferredTime": "11:00",
+      "district": "Malappuram",
+      "town": "Tirur",
+      "locality": "Payyanangadi",
+      "pincode": "676101",
+      "lat": 10.9165,
+      "lng": 75.9245,
+      "status": "providers_notified",
+      "notifiedProviderIds": [
+        "prov-1",
+        "prov-3",
+        "prov-5",
+        "prov-13",
+        "prov-16"
+      ],
+      "createdAt": "2026-11-17T06:40:33.504Z",
+      "updatedAt": "2026-11-17T06:40:33.504Z"
+    },
+    {
+      "id": "req-2df9a567fd",
+      "customerId": "user-demo-customer",
+      "customerName": "Arjun Menon (Demo Customer)",
+      "categoryId": "home-services",
+      "subcategoryId": "electrician",
+      "title": "Audit test ceiling fan wiring",
+      "description": "Audit verification request for decline workflow",
+      "photos": [],
+      "preferredDate": "2026-12-01",
+      "preferredTime": "10:00",
+      "district": "Malappuram",
+      "town": "Tirur",
+      "locality": "Payyanangadi",
+      "pincode": "676101",
+      "lat": 10.9165,
+      "lng": 75.9245,
+      "status": "cancelled",
+      "notifiedProviderIds": [
+        "prov-1",
+        "prov-3",
+        "prov-5",
+        "prov-13",
+        "prov-16"
+      ],
+      "createdAt": "2026-11-17T06:40:33.487Z",
+      "updatedAt": "2026-11-17T06:40:33.498Z"
+    },
+    {
+      "id": "req-101",
+      "customerId": "user-demo-customer",
+      "customerName": "Arjun Menon (Demo Customer)",
+      "categoryId": "home-services",
+      "subcategoryId": "electrician",
+      "title": "Bedroom MCB trips whenever split AC turns on",
+      "description": "Our 1.5 ton split AC runs for 5 minutes and then the 20A MCB in the main DB trips. Need an electrician to inspect the stabilizer socket and breaker load.",
+      "photos": [],
+      "preferredDate": "2026-11-18",
+      "preferredTime": "10:00 AM",
+      "district": "Malappuram",
+      "town": "Tirur",
+      "locality": "Payyanangadi",
+      "pincode": "676101",
+      "lat": 10.9165,
+      "lng": 75.9245,
+      "status": "quotations_received",
+      "notifiedProviderIds": [
+        "prov-1",
+        "prov-16"
+      ],
+      "createdAt": "2026-11-16T08:16:57.145Z",
+      "updatedAt": "2026-11-17T02:16:57.145Z"
+    },
+    {
+      "id": "req-102",
+      "customerId": "user-demo-customer",
+      "customerName": "Arjun Menon (Demo Customer)",
+      "categoryId": "appliance-repair",
+      "subcategoryId": "ac-repair",
+      "targetProviderId": "prov-2",
+      "title": "Annual jet wash & gas pressure check for 2 Split ACs",
+      "description": "Both bedroom split ACs need pre-summer jet foam cleaning and drain line flushing.",
+      "photos": [],
+      "preferredDate": "2026-11-19",
+      "preferredTime": "03:00 PM",
+      "district": "Malappuram",
+      "town": "Tirur",
+      "locality": "Payyanangadi",
+      "pincode": "676101",
+      "lat": 10.9165,
+      "lng": 75.9245,
+      "status": "booking_confirmed",
+      "notifiedProviderIds": [
+        "prov-2"
+      ],
+      "selectedProviderId": "prov-2",
+      "selectedQuotationId": "quot-202",
+      "createdAt": "2026-11-13T06:16:57.145Z",
+      "updatedAt": "2026-11-15T06:16:57.145Z"
+    },
+    {
+      "id": "req-103",
+      "customerId": "seed-cust-2",
+      "customerName": "Faisal K.",
+      "categoryId": "home-services",
+      "subcategoryId": "plumber",
+      "title": "Overhead tank float valve leaking in Chembra",
+      "description": "Water overflows from the terrace tank even when float valve is closed.",
+      "photos": [],
+      "preferredDate": "2026-11-18",
+      "preferredTime": "09:00 AM",
+      "district": "Malappuram",
+      "town": "Tirur",
+      "locality": "Chembra",
+      "pincode": "676101",
+      "lat": 10.9255,
+      "lng": 75.9182,
+      "status": "providers_notified",
+      "notifiedProviderIds": [
+        "prov-3",
+        "prov-16"
+      ],
+      "createdAt": "2026-11-17T03:16:57.145Z",
+      "updatedAt": "2026-11-17T03:16:57.145Z"
+    }
+  ],
+  "quotations": [
+    {
+      "id": "quot-175bd0ec92",
+      "requestId": "req-2e296c2603",
+      "providerId": "prov-1",
+      "providerName": "Rajesh Nair",
+      "providerTitle": "Licensed Master Electrician & Inverter Specialist",
+      "providerRating": 5,
+      "providerExperience": 12,
+      "providerVerified": true,
+      "providerIsDemo": true,
+      "estimatedPrice": 500,
+      "description": "Standard visit",
+      "estimatedArrival": "30 mins",
+      "notes": "",
+      "status": "accepted",
+      "createdAt": "2026-11-17T06:44:06.379Z"
+    },
+    {
+      "id": "quot-beb7122446",
+      "requestId": "req-ae4fab3dee",
+      "providerId": "prov-1",
+      "providerName": "Rajesh Nair",
+      "providerTitle": "Licensed Master Electrician & Inverter Specialist",
+      "providerRating": 4.9,
+      "providerExperience": 12,
+      "providerVerified": true,
+      "providerIsDemo": true,
+      "estimatedPrice": 650,
+      "description": "Full inverter load inspection",
+      "estimatedArrival": "30 mins",
+      "notes": "",
+      "status": "accepted",
+      "createdAt": "2026-11-17T06:42:29.044Z"
+    },
+    {
+      "id": "quot-0b6ea6d7ce",
+      "requestId": "req-ce39603f87",
+      "providerId": "prov-1",
+      "providerName": "Rajesh Nair",
+      "providerTitle": "Licensed Master Electrician & Inverter Specialist",
+      "providerRating": 4.9,
+      "providerExperience": 12,
+      "providerVerified": true,
+      "providerIsDemo": true,
+      "estimatedPrice": 650,
+      "description": "Full inverter load inspection",
+      "estimatedArrival": "30 mins",
+      "notes": "",
+      "status": "accepted",
+      "createdAt": "2026-11-17T06:42:00.944Z"
+    },
+    {
+      "id": "quot-101",
+      "requestId": "req-101",
+      "providerId": "prov-1",
+      "providerName": "Rajesh Nair",
+      "providerTitle": "Licensed Master Electrician & Inverter Specialist",
+      "providerRating": 4.9,
+      "providerExperience": 12,
+      "providerVerified": true,
+      "providerIsDemo": true,
+      "estimatedPrice": 450,
+      "description": "Includes DB thermal/clamp-meter load test, AC socket contact inspection, and 25A C-curve MCB replacement (excluding heavy breaker hardware if needed).",
+      "estimatedArrival": "Tomorrow 10:00 AM (within 15 min window)",
+      "notes": "Will bring Schneider/Legrand 25A MCB spare in van.",
+      "status": "pending",
+      "createdAt": "2026-11-17T01:16:57.145Z"
+    },
+    {
+      "id": "quot-102",
+      "requestId": "req-101",
+      "providerId": "prov-16",
+      "providerName": "Jafar Sadik Electricals",
+      "providerTitle": "24x7 Urgent Electrician & Plumbing Crew",
+      "providerRating": 4.7,
+      "providerExperience": 7,
+      "providerVerified": true,
+      "providerIsDemo": true,
+      "estimatedPrice": 550,
+      "description": "Full circuit check from meter board to AC power plug and earthing test.",
+      "estimatedArrival": "Tomorrow 9:30 AM",
+      "notes": "Available for same-evening visit if urgent.",
+      "status": "pending",
+      "createdAt": "2026-11-17T03:16:57.145Z"
+    },
+    {
+      "id": "quot-202",
+      "requestId": "req-102",
+      "providerId": "prov-2",
+      "providerName": "Muhammed Basheer K.",
+      "providerTitle": "Split AC & Inverter Refrigerator Technician",
+      "providerRating": 4.8,
+      "providerExperience": 9,
+      "providerVerified": true,
+      "providerIsDemo": true,
+      "estimatedPrice": 950,
+      "description": "Jet foam cleaning for 2 indoor + outdoor units with waterproof cover sheet.",
+      "estimatedArrival": "Confirmed 3:00 PM slot",
+      "notes": "No mess guaranteed; pressure gauge check included.",
+      "status": "accepted",
+      "createdAt": "2026-11-14T06:16:57.145Z"
+    }
+  ],
+  "bookings": [
+    {
+      "id": "book-423aa51489",
+      "requestId": "req-2e296c2603",
+      "quotationId": "quot-175bd0ec92",
+      "customerId": "user-demo-customer",
+      "customerName": "Arjun Menon (Demo Customer)",
+      "providerId": "prov-1",
+      "providerName": "Rajesh Nair",
+      "categoryId": "home-services",
+      "subcategoryId": "electrician",
+      "serviceTitle": "Final audit booking test",
+      "agreedPrice": 500,
+      "preferredDate": "2026-12-03",
+      "preferredTime": "10:00",
+      "locationLabel": "Payyanangadi, Tirur · 676101",
+      "status": "service_completed",
+      "completionOtp": "3249",
+      "otpRequired": true,
+      "otpVerified": true,
+      "liveLocationShared": false,
+      "reviewed": false,
+      "createdAt": "2026-11-17T06:44:06.389Z",
+      "updatedAt": "2026-11-17T06:44:06.428Z",
+      "providerArrivedAt": "2026-11-17T06:44:06.400Z",
+      "startedAt": "2026-11-17T06:44:06.410Z",
+      "completedAt": "2026-11-17T06:44:06.428Z",
+      "providerTrackingActive": false
+    },
+    {
+      "id": "book-de6ad8635b",
+      "requestId": "req-ae4fab3dee",
+      "quotationId": "quot-beb7122446",
+      "customerId": "user-demo-customer",
+      "customerName": "Arjun Menon (Demo Customer)",
+      "providerId": "prov-1",
+      "providerName": "Rajesh Nair",
+      "categoryId": "home-services",
+      "subcategoryId": "electrician",
+      "serviceTitle": "Audit test inverter check",
+      "agreedPrice": 650,
+      "preferredDate": "2026-12-02",
+      "preferredTime": "11:00",
+      "locationLabel": "Payyanangadi, Tirur · 676101",
+      "status": "service_completed",
+      "completionOtp": "5554",
+      "otpRequired": true,
+      "otpVerified": true,
+      "liveLocationShared": false,
+      "reviewed": false,
+      "createdAt": "2026-11-17T06:42:29.053Z",
+      "updatedAt": "2026-11-17T06:42:29.076Z",
+      "providerArrivedAt": "2026-11-17T06:42:29.062Z",
+      "completedAt": "2026-11-17T06:42:29.076Z",
+      "providerTrackingActive": false
+    },
+    {
+      "id": "book-f024736a24",
+      "requestId": "req-ce39603f87",
+      "quotationId": "quot-0b6ea6d7ce",
+      "customerId": "user-demo-customer",
+      "customerName": "Arjun Menon (Demo Customer)",
+      "providerId": "prov-1",
+      "providerName": "Rajesh Nair",
+      "categoryId": "home-services",
+      "subcategoryId": "electrician",
+      "serviceTitle": "Audit test inverter check",
+      "agreedPrice": 650,
+      "preferredDate": "2026-12-02",
+      "preferredTime": "11:00",
+      "locationLabel": "Payyanangadi, Tirur · 676101",
+      "status": "service_completed",
+      "completionOtp": "3265",
+      "otpRequired": true,
+      "otpVerified": true,
+      "liveLocationShared": false,
+      "reviewed": false,
+      "createdAt": "2026-11-17T06:42:00.951Z",
+      "updatedAt": "2026-11-17T06:42:00.981Z",
+      "providerArrivedAt": "2026-11-17T06:42:00.963Z",
+      "completedAt": "2026-11-17T06:42:00.981Z",
+      "providerTrackingActive": false
+    },
+    {
+      "id": "book-202",
+      "requestId": "req-102",
+      "quotationId": "quot-202",
+      "customerId": "user-demo-customer",
+      "customerName": "Arjun Menon (Demo Customer)",
+      "providerId": "prov-2",
+      "providerName": "Muhammed Basheer K.",
+      "categoryId": "appliance-repair",
+      "subcategoryId": "ac-repair",
+      "serviceTitle": "Annual jet wash & gas pressure check for 2 Split ACs",
+      "agreedPrice": 950,
+      "preferredDate": "2026-11-19",
+      "preferredTime": "03:00 PM",
+      "locationLabel": "Payyanangadi, Tirur · 676101",
+      "status": "booking_confirmed",
+      "completionOtp": "4829",
+      "otpRequired": true,
+      "otpVerified": false,
+      "liveLocationShared": false,
+      "reviewed": false,
+      "createdAt": "2026-11-15T06:16:57.145Z",
+      "updatedAt": "2026-11-15T06:16:57.145Z"
+    },
+    {
+      "id": "book-205",
+      "requestId": "req-101",
+      "quotationId": "quot-101",
+      "customerId": "user-demo-customer",
+      "customerName": "Arjun Menon (Demo Customer)",
+      "providerId": "prov-1",
+      "providerName": "Rajesh Nair",
+      "categoryId": "home-services",
+      "subcategoryId": "electrician",
+      "serviceTitle": "Inverter Load & Bedroom MCB Inspection",
+      "agreedPrice": 450,
+      "preferredDate": "2026-11-17",
+      "preferredTime": "04:30 PM",
+      "locationLabel": "Payyanangadi, Tirur · 676101",
+      "status": "booking_confirmed",
+      "completionOtp": "6194",
+      "otpRequired": true,
+      "otpVerified": false,
+      "liveLocationShared": true,
+      "customerLiveCoords": {
+        "lat": 10.9165,
+        "lng": 75.9245,
+        "updatedAt": "2026-11-17T06:04:57.145Z"
+      },
+      "providerTrackingActive": true,
+      "providerLiveCoords": {
+        "lat": 10.9102,
+        "lng": 75.9188,
+        "updatedAt": "2026-11-17T06:13:57.145Z",
+        "mode": "demo_simulation"
+      },
+      "reviewed": false,
+      "createdAt": "2026-11-17T02:16:57.145Z",
+      "updatedAt": "2026-11-17T06:13:57.145Z"
+    },
+    {
+      "id": "book-190",
+      "requestId": "req-100-past",
+      "customerId": "user-demo-customer",
+      "customerName": "Arjun Menon (Demo Customer)",
+      "providerId": "prov-1",
+      "providerName": "Rajesh Nair",
+      "categoryId": "home-services",
+      "subcategoryId": "electrician",
+      "serviceTitle": "Inverter changeover & kitchen exhaust wiring",
+      "agreedPrice": 700,
+      "preferredDate": "2026-11-05",
+      "preferredTime": "11:00 AM",
+      "locationLabel": "Payyanangadi, Tirur · 676101",
+      "status": "service_completed",
+      "completionOtp": "7314",
+      "otpRequired": true,
+      "otpVerified": true,
+      "liveLocationShared": false,
+      "providerArrivedAt": "2026-11-05T06:16:57.145Z",
+      "startedAt": "2026-11-05T06:28:57.145Z",
+      "completedAt": "2026-11-05T07:46:57.145Z",
+      "reviewed": true,
+      "createdAt": "2026-11-04T06:16:57.145Z",
+      "updatedAt": "2026-11-05T06:16:57.145Z"
+    }
+  ],
+  "conversations": [
+    {
+      "id": "conv-1",
+      "customerId": "user-demo-customer",
+      "customerName": "Arjun Menon (Demo Customer)",
+      "providerId": "prov-1",
+      "providerName": "Rajesh Nair",
+      "providerPhone": "+91 98471 44556",
+      "requestId": "req-101",
+      "lastMessage": "Audit verification test message",
+      "lastMessageAt": "2026-11-17T06:44:09.840Z",
+      "unreadCustomer": 1,
+      "unreadProvider": 1
+    }
+  ],
+  "messages": [
+    {
+      "id": "msg-1",
+      "conversationId": "conv-1",
+      "senderId": "user-demo-customer",
+      "senderName": "Arjun Menon (Demo Customer)",
+      "senderRole": "customer",
+      "text": "Hello Rajesh, our bedroom AC trips the 20A MCB after 5 minutes. Can you check tomorrow morning?",
+      "readByRecipient": true,
+      "createdAt": "2026-11-17T03:16:57.145Z"
+    },
+    {
+      "id": "msg-2",
+      "conversationId": "conv-1",
+      "senderId": "user-demo-provider",
+      "senderName": "Rajesh Nair",
+      "senderRole": "provider",
+      "text": "I have a 25A C-curve MCB ready in my kit for tomorrow 10 AM. Will check stabilizer load too.",
+      "readByRecipient": false,
+      "createdAt": "2026-11-17T04:16:57.145Z"
+    },
+    {
+      "id": "msg-eddf97ca98",
+      "conversationId": "conv-1",
+      "senderId": "user-demo-customer",
+      "senderName": "Arjun Menon (Demo Customer)",
+      "senderRole": "customer",
+      "text": "Audit verification test message",
+      "readByRecipient": false,
+      "createdAt": "2026-11-17T06:44:09.840Z"
+    }
+  ],
+  "reviews": [
+    {
+      "id": "rev-7e97464998",
+      "providerId": "prov-1",
+      "customerId": "user-demo-customer",
+      "customerName": "Arjun Menon",
+      "rating": 5,
+      "comment": "Audit verified prompt electrical check",
+      "serviceName": "Inverter check",
+      "moderatedStatus": "published",
+      "createdAt": "2026-11-17T06:42:50.762Z"
+    },
+    {
+      "id": "rev-1",
+      "bookingId": "book-190",
+      "providerId": "prov-1",
+      "customerId": "user-demo-customer",
+      "customerName": "Arjun Menon",
+      "rating": 5,
+      "comment": "Rajesh explained why the old changeover switch was overheating and neatly dressed all wires inside the DB. Zero commission and very fair ₹700 charge.",
+      "serviceName": "Inverter & UPS Home Wiring",
+      "moderatedStatus": "published",
+      "createdAt": "2026-11-06T06:16:57.145Z"
+    },
+    {
+      "id": "rev-2",
+      "providerId": "prov-2",
+      "customerId": "seed-cust-3",
+      "customerName": "Shabna K., Kottakkal",
+      "rating": 5,
+      "comment": "Used a clean waterproof wash bag for our living room split AC so not a drop spilled on the sofa. Cooling improved immediately.",
+      "serviceName": "Split AC Jet Foam Service",
+      "moderatedStatus": "published",
+      "createdAt": "2026-11-01T06:16:57.145Z"
+    },
+    {
+      "id": "rev-3",
+      "providerId": "prov-3",
+      "customerId": "seed-cust-4",
+      "customerName": "Hameed P., BP Angadi",
+      "rating": 5,
+      "comment": "Arrived within 45 minutes when our kitchen pipe joint burst. Replaced with heavy CPVC union neatly.",
+      "serviceName": "Tap, Mixer & Concealed Leak Repair",
+      "moderatedStatus": "published",
+      "createdAt": "2026-10-27T06:16:57.145Z"
+    },
+    {
+      "id": "rev-4",
+      "providerId": "prov-6",
+      "customerId": "seed-cust-5",
+      "customerName": "Lakshmi Nair, Tirur",
+      "rating": 5,
+      "comment": "My son gained real confidence in Plus One Maths within six weeks. Punctual and clear notes.",
+      "serviceName": "High School & Plus Two Mathematics",
+      "moderatedStatus": "published",
+      "createdAt": "2026-10-20T06:16:57.145Z"
+    },
+    {
+      "id": "rev-5",
+      "providerId": "prov-9",
+      "customerId": "seed-cust-6",
+      "customerName": "Nandana R., Kozhikode",
+      "rating": 5,
+      "comment": "Natural dark mehendi stain and very calm home visit before our sister’s engagement.",
+      "serviceName": "Organic Bridal Mehendi",
+      "moderatedStatus": "published",
+      "createdAt": "2026-11-07T06:16:57.145Z"
+    }
+  ],
+  "notifications": [
+    {
+      "id": "notif-20e633aead",
+      "userId": "user-demo-provider",
+      "type": "message",
+      "title": "Message from Arjun Menon (Demo Customer)",
+      "body": "Audit verification test message",
+      "linkPage": "chat",
+      "linkId": "conv-1",
+      "read": false,
+      "createdAt": "2026-11-17T06:44:09.840Z"
+    },
+    {
+      "id": "notif-f1544fb0e9",
+      "userId": "user-demo-customer",
+      "type": "booking",
+      "title": "Service Completed — Share Your Review",
+      "body": "\"Final audit booking test\" is marked complete. Tap to rate Rajesh Nair.",
+      "linkPage": "booking-details",
+      "linkId": "book-423aa51489",
+      "read": false,
+      "createdAt": "2026-11-17T06:44:06.428Z"
+    },
+    {
+      "id": "notif-2cdee6525d",
+      "userId": "user-demo-customer",
+      "type": "booking",
+      "title": "Service Started",
+      "body": "Rajesh Nair started work on \"Final audit booking test\".",
+      "linkPage": "booking-details",
+      "linkId": "book-423aa51489",
+      "read": false,
+      "createdAt": "2026-11-17T06:44:06.410Z"
+    },
+    {
+      "id": "notif-e6fb2ce848",
+      "userId": "user-demo-customer",
+      "type": "booking",
+      "title": "Rajesh Nair has arrived",
+      "body": "Your specialist arrived for \"Final audit booking test\".",
+      "linkPage": "booking-details",
+      "linkId": "book-423aa51489",
+      "read": false,
+      "createdAt": "2026-11-17T06:44:06.400Z"
+    },
+    {
+      "id": "notif-f619561106",
+      "userId": "user-demo-provider",
+      "type": "booking",
+      "title": "Booking Confirmed by Arjun Menon (Demo Customer)",
+      "body": "Final audit booking test · ₹500 · 2026-12-03 10:00",
+      "linkPage": "booking-details",
+      "linkId": "book-423aa51489",
+      "read": false,
+      "createdAt": "2026-11-17T06:44:06.389Z"
+    },
+    {
+      "id": "notif-1d7e6eabbd",
+      "userId": "user-demo-customer",
+      "type": "quotation",
+      "title": "New Quotation from Rajesh Nair (₹500)",
+      "body": "Final audit booking test · ETA: 30 mins",
+      "linkPage": "quotations",
+      "linkId": "req-2e296c2603",
+      "read": false,
+      "createdAt": "2026-11-17T06:44:06.379Z"
+    },
+    {
+      "id": "notif-d5b3d4a3bf",
+      "userId": "user-demo-provider",
+      "type": "request",
+      "title": "New Service Request in Tirur",
+      "body": "Final audit booking test · Preferred 2026-12-03 at 10:00",
+      "linkPage": "provider-dashboard",
+      "linkId": "req-2e296c2603",
+      "read": false,
+      "createdAt": "2026-11-17T06:44:06.368Z"
+    },
+    {
+      "id": "notif-518f822bfd",
+      "userId": "user-demo-customer",
+      "type": "booking",
+      "title": "Service Completed — Share Your Review",
+      "body": "\"Audit test inverter check\" is marked complete. Tap to rate Rajesh Nair.",
+      "linkPage": "booking-details",
+      "linkId": "book-de6ad8635b",
+      "read": false,
+      "createdAt": "2026-11-17T06:42:29.076Z"
+    },
+    {
+      "id": "notif-c523ff88de",
+      "userId": "user-demo-customer",
+      "type": "booking",
+      "title": "Rajesh Nair has arrived",
+      "body": "Your specialist arrived for \"Audit test inverter check\".",
+      "linkPage": "booking-details",
+      "linkId": "book-de6ad8635b",
+      "read": false,
+      "createdAt": "2026-11-17T06:42:29.062Z"
+    },
+    {
+      "id": "notif-4d612f99bb",
+      "userId": "user-demo-provider",
+      "type": "booking",
+      "title": "Booking Confirmed by Arjun Menon (Demo Customer)",
+      "body": "Audit test inverter check · ₹650 · 2026-12-02 11:00",
+      "linkPage": "booking-details",
+      "linkId": "book-de6ad8635b",
+      "read": false,
+      "createdAt": "2026-11-17T06:42:29.053Z"
+    },
+    {
+      "id": "notif-a419626b47",
+      "userId": "user-demo-customer",
+      "type": "quotation",
+      "title": "New Quotation from Rajesh Nair (₹650)",
+      "body": "Audit test inverter check · ETA: 30 mins",
+      "linkPage": "quotations",
+      "linkId": "req-ae4fab3dee",
+      "read": false,
+      "createdAt": "2026-11-17T06:42:29.044Z"
+    },
+    {
+      "id": "notif-7976664e13",
+      "userId": "seed-u16",
+      "type": "request",
+      "title": "New Service Request in Tirur",
+      "body": "Audit test inverter check · Preferred 2026-12-02 at 11:00",
+      "linkPage": "provider-dashboard",
+      "linkId": "req-ae4fab3dee",
+      "read": false,
+      "createdAt": "2026-11-17T06:42:29.038Z"
+    },
+    {
+      "id": "notif-2348f808fe",
+      "userId": "seed-u13",
+      "type": "request",
+      "title": "New Service Request in Tirur",
+      "body": "Audit test inverter check · Preferred 2026-12-02 at 11:00",
+      "linkPage": "provider-dashboard",
+      "linkId": "req-ae4fab3dee",
+      "read": false,
+      "createdAt": "2026-11-17T06:42:29.038Z"
+    },
+    {
+      "id": "notif-e0d4936325",
+      "userId": "seed-u5",
+      "type": "request",
+      "title": "New Service Request in Tirur",
+      "body": "Audit test inverter check · Preferred 2026-12-02 at 11:00",
+      "linkPage": "provider-dashboard",
+      "linkId": "req-ae4fab3dee",
+      "read": false,
+      "createdAt": "2026-11-17T06:42:29.038Z"
+    },
+    {
+      "id": "notif-c2c3e6e253",
+      "userId": "seed-u3",
+      "type": "request",
+      "title": "New Service Request in Tirur",
+      "body": "Audit test inverter check · Preferred 2026-12-02 at 11:00",
+      "linkPage": "provider-dashboard",
+      "linkId": "req-ae4fab3dee",
+      "read": false,
+      "createdAt": "2026-11-17T06:42:29.038Z"
+    },
+    {
+      "id": "notif-52b16fd2ea",
+      "userId": "user-demo-provider",
+      "type": "request",
+      "title": "New Service Request in Tirur",
+      "body": "Audit test inverter check · Preferred 2026-12-02 at 11:00",
+      "linkPage": "provider-dashboard",
+      "linkId": "req-ae4fab3dee",
+      "read": false,
+      "createdAt": "2026-11-17T06:42:29.038Z"
+    },
+    {
+      "id": "notif-d7257ceab1",
+      "userId": "seed-u16",
+      "type": "request",
+      "title": "New Service Request in Tirur",
+      "body": "Audit test ceiling fan wiring · Preferred 2026-12-01 at 10:00",
+      "linkPage": "provider-dashboard",
+      "linkId": "req-1873bc14a7",
+      "read": false,
+      "createdAt": "2026-11-17T06:42:29.016Z"
+    },
+    {
+      "id": "notif-baed3b1947",
+      "userId": "seed-u13",
+      "type": "request",
+      "title": "New Service Request in Tirur",
+      "body": "Audit test ceiling fan wiring · Preferred 2026-12-01 at 10:00",
+      "linkPage": "provider-dashboard",
+      "linkId": "req-1873bc14a7",
+      "read": false,
+      "createdAt": "2026-11-17T06:42:29.016Z"
+    },
+    {
+      "id": "notif-74026f72a1",
+      "userId": "seed-u5",
+      "type": "request",
+      "title": "New Service Request in Tirur",
+      "body": "Audit test ceiling fan wiring · Preferred 2026-12-01 at 10:00",
+      "linkPage": "provider-dashboard",
+      "linkId": "req-1873bc14a7",
+      "read": false,
+      "createdAt": "2026-11-17T06:42:29.016Z"
+    },
+    {
+      "id": "notif-1124255abb",
+      "userId": "seed-u3",
+      "type": "request",
+      "title": "New Service Request in Tirur",
+      "body": "Audit test ceiling fan wiring · Preferred 2026-12-01 at 10:00",
+      "linkPage": "provider-dashboard",
+      "linkId": "req-1873bc14a7",
+      "read": false,
+      "createdAt": "2026-11-17T06:42:29.016Z"
+    },
+    {
+      "id": "notif-d1fc7a03ec",
+      "userId": "user-demo-provider",
+      "type": "request",
+      "title": "New Service Request in Tirur",
+      "body": "Audit test ceiling fan wiring · Preferred 2026-12-01 at 10:00",
+      "linkPage": "provider-dashboard",
+      "linkId": "req-1873bc14a7",
+      "read": false,
+      "createdAt": "2026-11-17T06:42:29.016Z"
+    },
+    {
+      "id": "notif-a9653d0753",
+      "userId": "user-demo-customer",
+      "type": "booking",
+      "title": "Service Completed — Share Your Review",
+      "body": "\"Audit test inverter check\" is marked complete. Tap to rate Rajesh Nair.",
+      "linkPage": "booking-details",
+      "linkId": "book-f024736a24",
+      "read": false,
+      "createdAt": "2026-11-17T06:42:00.981Z"
+    },
+    {
+      "id": "notif-1b55d2eaf7",
+      "userId": "user-demo-customer",
+      "type": "booking",
+      "title": "Rajesh Nair has arrived",
+      "body": "Your specialist arrived for \"Audit test inverter check\".",
+      "linkPage": "booking-details",
+      "linkId": "book-f024736a24",
+      "read": false,
+      "createdAt": "2026-11-17T06:42:00.963Z"
+    },
+    {
+      "id": "notif-05ded59ff9",
+      "userId": "user-demo-provider",
+      "type": "booking",
+      "title": "Booking Confirmed by Arjun Menon (Demo Customer)",
+      "body": "Audit test inverter check · ₹650 · 2026-12-02 11:00",
+      "linkPage": "booking-details",
+      "linkId": "book-f024736a24",
+      "read": false,
+      "createdAt": "2026-11-17T06:42:00.951Z"
+    },
+    {
+      "id": "notif-2f35c7a9c4",
+      "userId": "user-demo-customer",
+      "type": "quotation",
+      "title": "New Quotation from Rajesh Nair (₹650)",
+      "body": "Audit test inverter check · ETA: 30 mins",
+      "linkPage": "quotations",
+      "linkId": "req-ce39603f87",
+      "read": false,
+      "createdAt": "2026-11-17T06:42:00.944Z"
+    },
+    {
+      "id": "notif-7682a93ba9",
+      "userId": "seed-u16",
+      "type": "request",
+      "title": "New Service Request in Tirur",
+      "body": "Audit test inverter check · Preferred 2026-12-02 at 11:00",
+      "linkPage": "provider-dashboard",
+      "linkId": "req-ce39603f87",
+      "read": false,
+      "createdAt": "2026-11-17T06:42:00.936Z"
+    },
+    {
+      "id": "notif-d32fff8242",
+      "userId": "seed-u13",
+      "type": "request",
+      "title": "New Service Request in Tirur",
+      "body": "Audit test inverter check · Preferred 2026-12-02 at 11:00",
+      "linkPage": "provider-dashboard",
+      "linkId": "req-ce39603f87",
+      "read": false,
+      "createdAt": "2026-11-17T06:42:00.936Z"
+    },
+    {
+      "id": "notif-c6ba11dde7",
+      "userId": "seed-u5",
+      "type": "request",
+      "title": "New Service Request in Tirur",
+      "body": "Audit test inverter check · Preferred 2026-12-02 at 11:00",
+      "linkPage": "provider-dashboard",
+      "linkId": "req-ce39603f87",
+      "read": false,
+      "createdAt": "2026-11-17T06:42:00.936Z"
+    },
+    {
+      "id": "notif-873ffe2d45",
+      "userId": "seed-u3",
+      "type": "request",
+      "title": "New Service Request in Tirur",
+      "body": "Audit test inverter check · Preferred 2026-12-02 at 11:00",
+      "linkPage": "provider-dashboard",
+      "linkId": "req-ce39603f87",
+      "read": false,
+      "createdAt": "2026-11-17T06:42:00.936Z"
+    },
+    {
+      "id": "notif-9f1d30471e",
+      "userId": "user-demo-provider",
+      "type": "request",
+      "title": "New Service Request in Tirur",
+      "body": "Audit test inverter check · Preferred 2026-12-02 at 11:00",
+      "linkPage": "provider-dashboard",
+      "linkId": "req-ce39603f87",
+      "read": false,
+      "createdAt": "2026-11-17T06:42:00.936Z"
+    },
+    {
+      "id": "notif-58b9cbbd44",
+      "userId": "seed-u16",
+      "type": "request",
+      "title": "New Service Request in Tirur",
+      "body": "Audit test ceiling fan wiring · Preferred 2026-12-01 at 10:00",
+      "linkPage": "provider-dashboard",
+      "linkId": "req-8d58be0639",
+      "read": false,
+      "createdAt": "2026-11-17T06:42:00.919Z"
+    },
+    {
+      "id": "notif-f159f1dcf9",
+      "userId": "seed-u13",
+      "type": "request",
+      "title": "New Service Request in Tirur",
+      "body": "Audit test ceiling fan wiring · Preferred 2026-12-01 at 10:00",
+      "linkPage": "provider-dashboard",
+      "linkId": "req-8d58be0639",
+      "read": false,
+      "createdAt": "2026-11-17T06:42:00.919Z"
+    },
+    {
+      "id": "notif-bc986666ce",
+      "userId": "seed-u5",
+      "type": "request",
+      "title": "New Service Request in Tirur",
+      "body": "Audit test ceiling fan wiring · Preferred 2026-12-01 at 10:00",
+      "linkPage": "provider-dashboard",
+      "linkId": "req-8d58be0639",
+      "read": false,
+      "createdAt": "2026-11-17T06:42:00.919Z"
+    },
+    {
+      "id": "notif-63188566d7",
+      "userId": "seed-u3",
+      "type": "request",
+      "title": "New Service Request in Tirur",
+      "body": "Audit test ceiling fan wiring · Preferred 2026-12-01 at 10:00",
+      "linkPage": "provider-dashboard",
+      "linkId": "req-8d58be0639",
+      "read": false,
+      "createdAt": "2026-11-17T06:42:00.919Z"
+    },
+    {
+      "id": "notif-b03190b152",
+      "userId": "user-demo-provider",
+      "type": "request",
+      "title": "New Service Request in Tirur",
+      "body": "Audit test ceiling fan wiring · Preferred 2026-12-01 at 10:00",
+      "linkPage": "provider-dashboard",
+      "linkId": "req-8d58be0639",
+      "read": false,
+      "createdAt": "2026-11-17T06:42:00.919Z"
+    },
+    {
+      "id": "notif-dc6d291917",
+      "userId": "seed-u16",
+      "type": "request",
+      "title": "New Service Request in Tirur",
+      "body": "Audit test inverter check · Preferred 2026-12-02 at 11:00",
+      "linkPage": "provider-dashboard",
+      "linkId": "req-18f4e22bfa",
+      "read": false,
+      "createdAt": "2026-11-17T06:41:39.855Z"
+    },
+    {
+      "id": "notif-4c6576dd52",
+      "userId": "seed-u13",
+      "type": "request",
+      "title": "New Service Request in Tirur",
+      "body": "Audit test inverter check · Preferred 2026-12-02 at 11:00",
+      "linkPage": "provider-dashboard",
+      "linkId": "req-18f4e22bfa",
+      "read": false,
+      "createdAt": "2026-11-17T06:41:39.855Z"
+    },
+    {
+      "id": "notif-a1fa8cd816",
+      "userId": "seed-u5",
+      "type": "request",
+      "title": "New Service Request in Tirur",
+      "body": "Audit test inverter check · Preferred 2026-12-02 at 11:00",
+      "linkPage": "provider-dashboard",
+      "linkId": "req-18f4e22bfa",
+      "read": false,
+      "createdAt": "2026-11-17T06:41:39.855Z"
+    },
+    {
+      "id": "notif-b7ad77770c",
+      "userId": "seed-u3",
+      "type": "request",
+      "title": "New Service Request in Tirur",
+      "body": "Audit test inverter check · Preferred 2026-12-02 at 11:00",
+      "linkPage": "provider-dashboard",
+      "linkId": "req-18f4e22bfa",
+      "read": false,
+      "createdAt": "2026-11-17T06:41:39.855Z"
+    },
+    {
+      "id": "notif-822fdac229",
+      "userId": "user-demo-provider",
+      "type": "request",
+      "title": "New Service Request in Tirur",
+      "body": "Audit test inverter check · Preferred 2026-12-02 at 11:00",
+      "linkPage": "provider-dashboard",
+      "linkId": "req-18f4e22bfa",
+      "read": false,
+      "createdAt": "2026-11-17T06:41:39.855Z"
+    },
+    {
+      "id": "notif-34e2709144",
+      "userId": "seed-u16",
+      "type": "request",
+      "title": "New Service Request in Tirur",
+      "body": "Audit test ceiling fan wiring · Preferred 2026-12-01 at 10:00",
+      "linkPage": "provider-dashboard",
+      "linkId": "req-2af041801a",
+      "read": false,
+      "createdAt": "2026-11-17T06:41:39.844Z"
+    },
+    {
+      "id": "notif-963c9778e5",
+      "userId": "seed-u13",
+      "type": "request",
+      "title": "New Service Request in Tirur",
+      "body": "Audit test ceiling fan wiring · Preferred 2026-12-01 at 10:00",
+      "linkPage": "provider-dashboard",
+      "linkId": "req-2af041801a",
+      "read": false,
+      "createdAt": "2026-11-17T06:41:39.844Z"
+    },
+    {
+      "id": "notif-8bb236113f",
+      "userId": "seed-u5",
+      "type": "request",
+      "title": "New Service Request in Tirur",
+      "body": "Audit test ceiling fan wiring · Preferred 2026-12-01 at 10:00",
+      "linkPage": "provider-dashboard",
+      "linkId": "req-2af041801a",
+      "read": false,
+      "createdAt": "2026-11-17T06:41:39.844Z"
+    },
+    {
+      "id": "notif-c60cf25f32",
+      "userId": "seed-u3",
+      "type": "request",
+      "title": "New Service Request in Tirur",
+      "body": "Audit test ceiling fan wiring · Preferred 2026-12-01 at 10:00",
+      "linkPage": "provider-dashboard",
+      "linkId": "req-2af041801a",
+      "read": false,
+      "createdAt": "2026-11-17T06:41:39.844Z"
+    },
+    {
+      "id": "notif-edfdd6083c",
+      "userId": "user-demo-provider",
+      "type": "request",
+      "title": "New Service Request in Tirur",
+      "body": "Audit test ceiling fan wiring · Preferred 2026-12-01 at 10:00",
+      "linkPage": "provider-dashboard",
+      "linkId": "req-2af041801a",
+      "read": false,
+      "createdAt": "2026-11-17T06:41:39.844Z"
+    },
+    {
+      "id": "notif-0ea91e4160",
+      "userId": "seed-u16",
+      "type": "request",
+      "title": "New Service Request in Tirur",
+      "body": "Audit test inverter check · Preferred 2026-12-02 at 11:00",
+      "linkPage": "provider-dashboard",
+      "linkId": "req-21051f3f3c",
+      "read": false,
+      "createdAt": "2026-11-17T06:40:33.504Z"
+    },
+    {
+      "id": "notif-94bc8b8cfc",
+      "userId": "seed-u13",
+      "type": "request",
+      "title": "New Service Request in Tirur",
+      "body": "Audit test inverter check · Preferred 2026-12-02 at 11:00",
+      "linkPage": "provider-dashboard",
+      "linkId": "req-21051f3f3c",
+      "read": false,
+      "createdAt": "2026-11-17T06:40:33.504Z"
+    },
+    {
+      "id": "notif-4710d88722",
+      "userId": "seed-u5",
+      "type": "request",
+      "title": "New Service Request in Tirur",
+      "body": "Audit test inverter check · Preferred 2026-12-02 at 11:00",
+      "linkPage": "provider-dashboard",
+      "linkId": "req-21051f3f3c",
+      "read": false,
+      "createdAt": "2026-11-17T06:40:33.504Z"
+    },
+    {
+      "id": "notif-7b9bb8b19f",
+      "userId": "seed-u3",
+      "type": "request",
+      "title": "New Service Request in Tirur",
+      "body": "Audit test inverter check · Preferred 2026-12-02 at 11:00",
+      "linkPage": "provider-dashboard",
+      "linkId": "req-21051f3f3c",
+      "read": false,
+      "createdAt": "2026-11-17T06:40:33.504Z"
+    },
+    {
+      "id": "notif-f64397c04a",
+      "userId": "user-demo-provider",
+      "type": "request",
+      "title": "New Service Request in Tirur",
+      "body": "Audit test inverter check · Preferred 2026-12-02 at 11:00",
+      "linkPage": "provider-dashboard",
+      "linkId": "req-21051f3f3c",
+      "read": false,
+      "createdAt": "2026-11-17T06:40:33.504Z"
+    },
+    {
+      "id": "notif-99ec0e0afc",
+      "userId": "seed-u16",
+      "type": "request",
+      "title": "New Service Request in Tirur",
+      "body": "Audit test ceiling fan wiring · Preferred 2026-12-01 at 10:00",
+      "linkPage": "provider-dashboard",
+      "linkId": "req-2df9a567fd",
+      "read": false,
+      "createdAt": "2026-11-17T06:40:33.487Z"
+    },
+    {
+      "id": "notif-cf20813a67",
+      "userId": "seed-u13",
+      "type": "request",
+      "title": "New Service Request in Tirur",
+      "body": "Audit test ceiling fan wiring · Preferred 2026-12-01 at 10:00",
+      "linkPage": "provider-dashboard",
+      "linkId": "req-2df9a567fd",
+      "read": false,
+      "createdAt": "2026-11-17T06:40:33.487Z"
+    },
+    {
+      "id": "notif-5c132703bc",
+      "userId": "seed-u5",
+      "type": "request",
+      "title": "New Service Request in Tirur",
+      "body": "Audit test ceiling fan wiring · Preferred 2026-12-01 at 10:00",
+      "linkPage": "provider-dashboard",
+      "linkId": "req-2df9a567fd",
+      "read": false,
+      "createdAt": "2026-11-17T06:40:33.487Z"
+    },
+    {
+      "id": "notif-7247ece26e",
+      "userId": "seed-u3",
+      "type": "request",
+      "title": "New Service Request in Tirur",
+      "body": "Audit test ceiling fan wiring · Preferred 2026-12-01 at 10:00",
+      "linkPage": "provider-dashboard",
+      "linkId": "req-2df9a567fd",
+      "read": false,
+      "createdAt": "2026-11-17T06:40:33.487Z"
+    },
+    {
+      "id": "notif-adc58675cc",
+      "userId": "user-demo-provider",
+      "type": "request",
+      "title": "New Service Request in Tirur",
+      "body": "Audit test ceiling fan wiring · Preferred 2026-12-01 at 10:00",
+      "linkPage": "provider-dashboard",
+      "linkId": "req-2df9a567fd",
+      "read": false,
+      "createdAt": "2026-11-17T06:40:33.487Z"
+    },
+    {
+      "id": "notif-1",
+      "userId": "user-demo-customer",
+      "type": "quotation",
+      "title": "2 Quotations Received for MCB Trip Issue",
+      "body": "Rajesh Nair (₹450) and Jafar Sadik Electricals (₹550) submitted quotes for your Tirur request.",
+      "linkPage": "quotations",
+      "linkId": "req-101",
+      "read": false,
+      "createdAt": "2026-11-17T03:16:57.145Z"
+    },
+    {
+      "id": "notif-2",
+      "userId": "user-demo-customer",
+      "type": "message",
+      "title": "New Message from Rajesh Nair",
+      "body": "I have a 25A C-curve MCB ready in my kit for tomorrow 10 AM.",
+      "linkPage": "chat",
+      "linkId": "conv-1",
+      "read": false,
+      "createdAt": "2026-11-17T04:16:57.145Z"
+    },
+    {
+      "id": "notif-3",
+      "userId": "user-demo-provider",
+      "type": "request",
+      "title": "New Customer Request Nearby in Tirur",
+      "body": "Bedroom MCB trips whenever split AC turns on · Payyanangadi, Tirur.",
+      "linkPage": "provider-dashboard",
+      "linkId": "req-101",
+      "read": false,
+      "createdAt": "2026-11-16T06:16:57.145Z"
+    }
+  ],
+  "favourites": {
+    "user-demo-customer": [
+      "prov-1",
+      "prov-3",
+      "prov-6"
+    ]
+  },
+  "verificationRequests": [
+    {
+      "id": "ver-1",
+      "providerId": "prov-8",
+      "providerName": "Shafeek Rahman",
+      "type": "profile",
+      "summary": "Submitted trade workshop photos & municipality license reference for Perinthalmanna.",
+      "experienceClaim": "10 years MS/SS fabrication experience",
+      "status": "pending",
+      "createdAt": "2026-11-12T06:16:57.145Z"
+    },
+    {
+      "id": "ver-2",
+      "providerId": "prov-12",
+      "providerName": "Haridasan Green Care & Water",
+      "type": "skill",
+      "summary": "Requested skill badge verification for water quality testing & tanker hygiene.",
+      "experienceClaim": "8 years water supply & garden maintenance",
+      "status": "pending",
+      "createdAt": "2026-11-14T06:16:57.145Z"
+    }
+  ],
+  "reports": [
+    {
+      "id": "rep-1",
+      "reporterId": "seed-cust-8",
+      "reporterName": "Ramesh K.",
+      "targetType": "platform",
+      "targetId": "general",
+      "targetName": "Quotation Clarification",
+      "reason": "Pricing question",
+      "details": "Customer asked how spare parts are billed separately from visiting charges.",
+      "status": "resolved",
+      "adminResolution": "Explained estimate vs final material bill policy in Help Centre.",
+      "createdAt": "2026-11-03T06:16:57.145Z"
+    }
+  ],
+  "emergencyRequests": [
+    {
+      "id": "emg-1",
+      "customerId": "user-demo-customer",
+      "customerName": "Arjun Menon (Demo Customer)",
+      "phone": "+91 98470 11223",
+      "serviceType": "emergency-electrician",
+      "description": "Resolved sample: Kitchen socket sparking during heavy rain.",
+      "district": "Malappuram",
+      "town": "Tirur",
+      "pincode": "676101",
+      "lat": 10.9165,
+      "lng": 75.9245,
+      "locationShared": true,
+      "eligibleProviderIds": [
+        "prov-1",
+        "prov-16"
+      ],
+      "estimatedResponseWindow": "Estimated 30–60 mins (estimate only, not guaranteed)",
+      "status": "resolved",
+      "createdAt": "2026-10-29T06:16:57.145Z"
+    }
+  ],
+  "talentProfiles": [
+    {
+      "id": "tal-1",
+      "userId": "user-demo-provider",
+      "name": "Rajesh Nair",
+      "skillCategory": "Electrician",
+      "headline": "Solar-Hybrid Inverter & Smart Home Automation Craftsman",
+      "bio": "Independent electrical craftsman specializing in clean residential load balancing, surge protection, and solar-inverter hybrid wiring across Malappuram.",
+      "district": "Malappuram",
+      "town": "Tirur",
+      "locality": "BP Angadi",
+      "experienceYears": 12,
+      "languages": [
+        "Malayalam",
+        "English",
+        "Hindi"
+      ],
+      "selfReportedQualifications": [
+        "ITI Electrician Trade Certificate",
+        "KSEB Wireman Permit (Self-Reported)"
+      ],
+      "certificates": [
+        "Solar Off-Grid Wiring Workshop (2023)"
+      ],
+      "workSamples": [
+        {
+          "title": "Dual-Inverter Home DB Dressing",
+          "imageUrl": "/src/assets/images/hero_kerala_craftsman_1794634394731.jpg",
+          "notes": "Labelled 12-way ELCB distribution panel in Tirur."
+        }
+      ],
+      "platformVerified": true,
+      "isFeatured": true,
+      "isDemo": true,
+      "phone": "+91 98471 44556",
+      "createdAt": "2026-10-23T06:16:57.145Z"
+    },
+    {
+      "id": "tal-2",
+      "userId": "seed-tal-2",
+      "name": "Fathima Beevi M.",
+      "skillCategory": "Tailor",
+      "headline": "Bespoke Bridal Kasavu Blouses & Boutique Pattern Maker",
+      "bio": "22 years tailoring bridal pattu pavadai, custom kasavu saree blouses, and hand-embroidered kids wear with home measurements in Kottakkal and Tirur.",
+      "district": "Malappuram",
+      "town": "Kottakkal",
+      "locality": "Changuvetty",
+      "experienceYears": 14,
+      "languages": [
+        "Malayalam",
+        "English"
+      ],
+      "selfReportedQualifications": [
+        "Kerala Govt. KGTE Garment Making Diploma"
+      ],
+      "certificates": [
+        "Hand Aari & Zardosi Embroidery Showcase"
+      ],
+      "workSamples": [
+        {
+          "title": "Onam Kasavu Bridal Ensemble",
+          "imageUrl": "/src/assets/images/cat_events_beauty_1794634396437.jpg",
+          "notes": "Custom lotus-motif handwork delivered in 5 days."
+        }
+      ],
+      "platformVerified": true,
+      "isFeatured": true,
+      "isDemo": true,
+      "phone": "+91 97452 33018",
+      "createdAt": "2026-11-03T06:16:57.145Z"
+    },
+    {
+      "id": "tal-3",
+      "userId": "seed-tal-3",
+      "name": "Nikhil Chandran",
+      "skillCategory": "Artist & Designer",
+      "headline": "Traditional Kerala Mural Painter & Brand Designer",
+      "bio": "Fine arts graduate painting authentic panchavarna Kerala murals on living-room walls and designing clean local business signage in Thrissur & Kochi.",
+      "district": "Thrissur",
+      "town": "Thrissur",
+      "locality": "Swaraj Round",
+      "experienceYears": 7,
+      "languages": [
+        "Malayalam",
+        "English",
+        "Hindi"
+      ],
+      "selfReportedQualifications": [
+        "BFA Mural Painting (Self-Reported)"
+      ],
+      "certificates": [
+        "Lalithakala Akademi District Camp Participant"
+      ],
+      "workSamples": [
+        {
+          "title": "Living Room Laterite & Lime Mural",
+          "imageUrl": "/src/assets/images/cat_construction_interior_1794634395444.jpg",
+          "notes": "6x4 ft natural pigment wall artwork."
+        }
+      ],
+      "platformVerified": false,
+      "isFeatured": true,
+      "isDemo": true,
+      "phone": "+91 99473 12809",
+      "createdAt": "2026-11-08T06:16:57.145Z"
+    },
+    {
+      "id": "tal-4",
+      "userId": "seed-tal-4",
+      "name": "Kalamandalam Vishnu P.",
+      "skillCategory": "Musician",
+      "headline": "Classical Flute, Chenda & Housewarming Ensemble Artist",
+      "bio": "Available for serene temple-style Carnatic flute recitals, sopana sangeetham, and cultural housewarming welcomes across Kozhikode, Malappuram, and Thrissur.",
+      "district": "Kozhikode",
+      "town": "Kozhikode",
+      "locality": "Tali",
+      "experienceYears": 10,
+      "languages": [
+        "Malayalam",
+        "English"
+      ],
+      "selfReportedQualifications": [
+        "8-Year Classical Woodwind & Percussion Training (Self-Reported)"
+      ],
+      "certificates": [
+        "District Youth Festival A-Grade Mentor"
+      ],
+      "workSamples": [
+        {
+          "title": "Gruhapravesham Morning Flute Ensemble",
+          "imageUrl": "/src/assets/images/cat_events_beauty_1794634396437.jpg",
+          "notes": "90-minute acoustic welcoming set."
+        }
+      ],
+      "platformVerified": false,
+      "isFeatured": false,
+      "isDemo": true,
+      "phone": "+91 94471 80912",
+      "createdAt": "2026-11-11T06:16:57.145Z"
+    },
+    {
+      "id": "tal-5",
+      "userId": "seed-tal-5",
+      "name": "Suhail Latheef",
+      "skillCategory": "Mechanic",
+      "headline": "Two-Wheeler & EV Scooter Doorstep Diagnostics Mechanic",
+      "bio": "Mobile roadside and home-service mechanic for Activa/Royal Enfield periodic service, battery jumpstarts, and electric scooter brake/controller checks.",
+      "district": "Malappuram",
+      "town": "Manjeri",
+      "locality": "Court Road",
+      "experienceYears": 8,
+      "languages": [
+        "Malayalam",
+        "Hindi"
+      ],
+      "selfReportedQualifications": [
+        "2-Wheeler & EV Diagnostic Course (Self-Reported)"
+      ],
+      "certificates": [
+        "Bosch Service Trainee Certificate"
+      ],
+      "workSamples": [
+        {
+          "title": "Doorstep Periodic Bike Service",
+          "imageUrl": "/src/assets/images/cat_appliance_home_1794634394694.jpg",
+          "notes": "Oil change, brake pad service, and battery health check."
+        }
+      ],
+      "platformVerified": true,
+      "isFeatured": false,
+      "isDemo": true,
+      "phone": "+91 98468 74011",
+      "createdAt": "2026-11-14T06:16:57.145Z"
+    },
+    {
+      "id": "tal-6",
+      "userId": "seed-u4",
+      "name": "Suresh Babu P.",
+      "skillCategory": "Carpenter",
+      "headline": "Teakwood Joinery, Antique Door Restoration & Modular Kitchens",
+      "bio": "Traditional Malappuram woodcraft paired with moisture-resistant marine-ply kitchen shutters and custom pooja room carvings.",
+      "district": "Malappuram",
+      "town": "Tirur",
+      "locality": "Thunchan Parambu",
+      "experienceYears": 14,
+      "languages": [
+        "Malayalam",
+        "English"
+      ],
+      "selfReportedQualifications": [
+        "Master Woodcraft Apprenticeship (Self-Reported)"
+      ],
+      "certificates": [
+        "Heritage Timber Restoration Guild Member"
+      ],
+      "workSamples": [
+        {
+          "title": "Hand-Fitted Teak Main Door Frame",
+          "imageUrl": "/src/assets/images/cat_construction_interior_1794634395444.jpg",
+          "notes": "Traditional brass lock mortising and melamine polish."
+        }
+      ],
+      "platformVerified": true,
+      "isFeatured": false,
+      "isDemo": true,
+      "phone": "+91 98952 33410",
+      "createdAt": "2026-11-15T06:16:57.145Z"
+    }
+  ],
+  "userAddresses": [
+    {
+      "id": "addr-1",
+      "userId": "user-demo-customer",
+      "label": "Home (Payyanangadi)",
+      "district": "Malappuram",
+      "town": "Tirur",
+      "locality": "Payyanangadi",
+      "pincode": "676101",
+      "addressLine": "Thanal House, Near Payyanangadi Juma Masjid Road, Tirur",
+      "isDefault": true
+    },
+    {
+      "id": "addr-2",
+      "userId": "user-demo-customer",
+      "label": "Parents Home (Kottakkal)",
+      "district": "Malappuram",
+      "town": "Kottakkal",
+      "locality": "Changuvetty",
+      "pincode": "676503",
+      "addressLine": "Green View Villa, Changuvetty Bypass, Kottakkal",
+      "isDefault": false
+    }
+  ],
+  "serviceReminders": [
+    {
+      "id": "rem-1",
+      "userId": "user-demo-customer",
+      "title": "Pre-Monsoon Inverter & ELCB Earth Check",
+      "categoryId": "home-services",
+      "dueDate": "2026-11-27",
+      "cadence": "yearly",
+      "notes": "Schedule electrician inspection before heavy rains.",
+      "completed": false,
+      "createdAt": "2026-11-12T06:16:57.145Z"
+    },
+    {
+      "id": "rem-2",
+      "userId": "user-demo-customer",
+      "title": "RO Water Purifier Filter Replacement",
+      "categoryId": "appliance-repair",
+      "dueDate": "2026-12-12",
+      "cadence": "quarterly",
+      "notes": "Sediment and carbon cartridges due every 6 months.",
+      "completed": false,
+      "createdAt": "2026-11-15T06:16:57.145Z"
+    }
+  ],
+  "accessibilityPreferences": {
+    "user-demo-customer": {
+      "fontScale": "normal",
+      "highContrast": false,
+      "reducedMotion": false,
+      "largeTargets": false,
+      "screenReaderHints": true,
+      "preferredVoiceLang": "en",
+      "chatAutoTranslateTo": "off"
+    }
+  }
+}

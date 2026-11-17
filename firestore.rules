@@ -1,0 +1,1095 @@
+rules_version = '2';
+service cloud.firestore {
+  match /databases/{database}/documents {
+    // 1. Global Safety Net (Default-Deny Catch-All)
+    match /{document=**} {
+      allow read, write: if false;
+    }
+
+    // --- Global Hardened Primitives ---
+    function isValidId(id) {
+      return id is string && id.size() >= 1 && id.size() <= 128 && id.matches('^[a-zA-Z0-9_\\-]+$');
+    }
+
+    function incoming() {
+      return request.resource.data;
+    }
+
+    function existing() {
+      return resource.data;
+    }
+
+    function isSignedIn() {
+      return request.auth != null;
+    }
+
+    function isVerifiedUser() {
+      return isSignedIn() && request.auth.token.email_verified == true;
+    }
+
+    function isOwner(uid) {
+      return isSignedIn() && request.auth.uid == uid;
+    }
+
+    function isAdmin() {
+      return isVerifiedUser() && (
+        exists(/databases/$(database)/documents/admins/$(request.auth.uid)) ||
+        request.auth.token.email == 'drakefc45678@gmail.com'
+      );
+    }
+
+    function isTokenAdmin() {
+      return isVerifiedUser() && request.auth.token.email == 'drakefc45678@gmail.com';
+    }
+
+    function isValidString(val, minLen, maxLen) {
+      return val is string && val.size() >= minLen && val.size() <= maxLen;
+    }
+
+    function isValidPincode(val) {
+      return val is string && val.size() == 6 && val.matches('^[0-9]{6}$');
+    }
+
+    function isValidStringList(arr, maxCount, maxElemLen) {
+      return arr is list
+        && arr.size() <= maxCount
+        && (arr.size() == 0 || (arr[0] is string && arr[0].size() <= maxElemLen));
+    }
+
+    // --- Validation Blueprints ---
+    function isValidAdminRecord(data) {
+      return data.keys().hasAll(['uid', 'email', 'grantedAt'])
+        && data.keys().hasOnly(['uid', 'email', 'grantedAt'])
+        && isValidId(data.uid)
+        && isValidString(data.email, 3, 254)
+        && data.grantedAt is timestamp;
+    }
+
+    function isValidUserPublicProfile(data, userId) {
+      return data.keys().hasAll(['id', 'name', 'role', 'activeMode', 'canSwitchToProvider', 'ageVerified', 'isDemo', 'language', 'createdAt', 'updatedAt'])
+        && data.keys().hasOnly(['id', 'name', 'role', 'activeMode', 'canSwitchToProvider', 'ageVerified', 'isDemo', 'isSuspended', 'language', 'allowRecommendations', 'createdAt', 'updatedAt'])
+        && isValidId(data.id)
+        && data.id == userId
+        && isValidString(data.name, 1, 120)
+        && data.role in ['customer', 'provider', 'admin']
+        && data.activeMode in ['customer', 'provider']
+        && data.canSwitchToProvider is bool
+        && data.ageVerified is bool
+        && data.isDemo is bool
+        && (!('isSuspended' in data) || data.isSuspended is bool)
+        && data.language in ['en', 'ml', 'hi']
+        && (!('allowRecommendations' in data) || data.allowRecommendations is bool)
+        && data.createdAt is timestamp
+        && data.updatedAt is timestamp;
+    }
+
+    function isValidUserPrivateInfo(data, userId) {
+      return data.keys().hasAll(['userId', 'email', 'district', 'town', 'pincode', 'createdAt', 'updatedAt'])
+        && data.keys().hasOnly(['userId', 'email', 'phone', 'district', 'town', 'locality', 'pincode', 'lat', 'lng', 'searchHistory', 'createdAt', 'updatedAt'])
+        && isValidId(data.userId)
+        && data.userId == userId
+        && isValidString(data.email, 3, 254)
+        && (!('phone' in data) || isValidString(data.phone, 0, 32))
+        && isValidString(data.district, 1, 80)
+        && isValidString(data.town, 1, 80)
+        && (!('locality' in data) || isValidString(data.locality, 0, 120))
+        && isValidPincode(data.pincode)
+        && (!('lat' in data) || data.lat is number)
+        && (!('lng' in data) || data.lng is number)
+        && (!('searchHistory' in data) || isValidStringList(data.searchHistory, 25, 100))
+        && data.createdAt is timestamp
+        && data.updatedAt is timestamp;
+    }
+
+    function isValidProviderProfile(data, providerId) {
+      return data.keys().hasAll(['id', 'userId', 'name', 'title', 'categoryIds', 'subcategoryIds', 'startingPrice', 'district', 'town', 'pincode', 'isAvailable', 'rating', 'reviewCount', 'completedJobs', 'identityVerified', 'skillVerified', 'profileVerified', 'createdAt', 'updatedAt'])
+        && data.keys().hasOnly(['id', 'userId', 'name', 'title', 'bio', 'avatarUrl', 'categoryIds', 'subcategoryIds', 'startingPrice', 'district', 'town', 'locality', 'pincode', 'serviceRadiusKm', 'experienceYears', 'workingHours', 'isAvailable', 'urgentAvailable', 'rating', 'reviewCount', 'completedJobs', 'identityVerified', 'skillVerified', 'profileVerified', 'isFeatured', 'isDemo', 'createdAt', 'updatedAt'])
+        && isValidId(data.id)
+        && data.id == providerId
+        && isValidId(data.userId)
+        && isValidString(data.name, 1, 120)
+        && isValidString(data.title, 1, 160)
+        && (!('bio' in data) || isValidString(data.bio, 0, 2000))
+        && (!('avatarUrl' in data) || isValidString(data.avatarUrl, 0, 500))
+        && isValidStringList(data.categoryIds, 10, 64)
+        && isValidStringList(data.subcategoryIds, 20, 64)
+        && data.startingPrice is number && data.startingPrice >= 0 && data.startingPrice <= 1000000
+        && isValidString(data.district, 1, 80)
+        && isValidString(data.town, 1, 80)
+        && (!('locality' in data) || isValidString(data.locality, 0, 120))
+        && isValidPincode(data.pincode)
+        && (!('serviceRadiusKm' in data) || (data.serviceRadiusKm is number && data.serviceRadiusKm >= 1 && data.serviceRadiusKm <= 250))
+        && (!('experienceYears' in data) || (data.experienceYears is number && data.experienceYears >= 0 && data.experienceYears <= 70))
+        && (!('workingHours' in data) || isValidString(data.workingHours, 0, 120))
+        && data.isAvailable is bool
+        && (!('urgentAvailable' in data) || data.urgentAvailable is bool)
+        && data.rating is number && data.rating >= 0 && data.rating <= 5
+        && data.reviewCount is number && data.reviewCount >= 0
+        && data.completedJobs is number && data.completedJobs >= 0
+        && data.identityVerified is bool
+        && data.skillVerified is bool
+        && data.profileVerified is bool
+        && (!('isFeatured' in data) || data.isFeatured is bool)
+        && (!('isDemo' in data) || data.isDemo is bool)
+        && data.createdAt is timestamp
+        && data.updatedAt is timestamp;
+    }
+
+    function isValidCategoryDoc(data, catId) {
+      return data.keys().hasAll(['id', 'name', 'description', 'createdAt', 'updatedAt'])
+        && data.keys().hasOnly(['id', 'name', 'nameMl', 'nameHi', 'description', 'iconName', 'createdAt', 'updatedAt'])
+        && isValidId(data.id)
+        && data.id == catId
+        && isValidString(data.name, 1, 120)
+        && (!('nameMl' in data) || isValidString(data.nameMl, 0, 120))
+        && (!('nameHi' in data) || isValidString(data.nameHi, 0, 120))
+        && isValidString(data.description, 1, 600)
+        && (!('iconName' in data) || isValidString(data.iconName, 0, 64))
+        && data.createdAt is timestamp
+        && data.updatedAt is timestamp;
+    }
+
+    function isValidServiceRequest(data, reqId) {
+      return data.keys().hasAll(['id', 'customerId', 'customerName', 'categoryId', 'subcategoryId', 'title', 'description', 'district', 'town', 'pincode', 'status', 'createdAt', 'updatedAt'])
+        && data.keys().hasOnly(['id', 'customerId', 'customerName', 'categoryId', 'subcategoryId', 'targetProviderId', 'title', 'description', 'district', 'town', 'locality', 'pincode', 'preferredDate', 'preferredTime', 'status', 'notifiedProviderIds', 'declinedByProviderIds', 'selectedQuotationId', 'selectedProviderId', 'isUrgent', 'createdAt', 'updatedAt'])
+        && isValidId(data.id)
+        && data.id == reqId
+        && isValidId(data.customerId)
+        && isValidString(data.customerName, 1, 120)
+        && isValidId(data.categoryId)
+        && isValidId(data.subcategoryId)
+        && (!('targetProviderId' in data) || isValidString(data.targetProviderId, 0, 128))
+        && isValidString(data.title, 2, 200)
+        && isValidString(data.description, 2, 2500)
+        && isValidString(data.district, 1, 80)
+        && isValidString(data.town, 1, 80)
+        && (!('locality' in data) || isValidString(data.locality, 0, 120))
+        && isValidPincode(data.pincode)
+        && (!('preferredDate' in data) || isValidString(data.preferredDate, 0, 32))
+        && (!('preferredTime' in data) || isValidString(data.preferredTime, 0, 64))
+        && data.status in ['request_submitted', 'providers_notified', 'quotations_received', 'provider_selected', 'booking_confirmed', 'service_started', 'service_completed', 'cancelled']
+        && (!('notifiedProviderIds' in data) || isValidStringList(data.notifiedProviderIds, 50, 128))
+        && (!('declinedByProviderIds' in data) || isValidStringList(data.declinedByProviderIds, 50, 128))
+        && (!('selectedQuotationId' in data) || isValidString(data.selectedQuotationId, 0, 128))
+        && (!('selectedProviderId' in data) || isValidString(data.selectedProviderId, 0, 128))
+        && (!('isUrgent' in data) || data.isUrgent is bool)
+        && data.createdAt is timestamp
+        && data.updatedAt is timestamp;
+    }
+
+    function isValidQuotation(data, qId) {
+      return data.keys().hasAll(['id', 'requestId', 'customerId', 'providerId', 'providerUserId', 'providerName', 'estimatedPrice', 'status', 'createdAt', 'updatedAt'])
+        && data.keys().hasOnly(['id', 'requestId', 'customerId', 'providerId', 'providerUserId', 'providerName', 'providerTitle', 'estimatedPrice', 'description', 'estimatedArrival', 'notes', 'status', 'createdAt', 'updatedAt'])
+        && isValidId(data.id)
+        && data.id == qId
+        && isValidId(data.requestId)
+        && isValidId(data.customerId)
+        && isValidId(data.providerId)
+        && isValidId(data.providerUserId)
+        && isValidString(data.providerName, 1, 120)
+        && (!('providerTitle' in data) || isValidString(data.providerTitle, 0, 160))
+        && data.estimatedPrice is number && data.estimatedPrice >= 0 && data.estimatedPrice <= 10000000
+        && (!('description' in data) || isValidString(data.description, 0, 1500))
+        && (!('estimatedArrival' in data) || isValidString(data.estimatedArrival, 0, 120))
+        && (!('notes' in data) || isValidString(data.notes, 0, 1000))
+        && data.status in ['pending', 'accepted', 'declined']
+        && data.createdAt is timestamp
+        && data.updatedAt is timestamp;
+    }
+
+    function isValidBooking(data, bId) {
+      return data.keys().hasAll(['id', 'requestId', 'customerId', 'providerId', 'providerUserId', 'serviceTitle', 'agreedPrice', 'status', 'otpVerified', 'reviewed', 'createdAt', 'updatedAt'])
+        && data.keys().hasOnly(['id', 'requestId', 'quotationId', 'customerId', 'customerName', 'providerId', 'providerUserId', 'providerName', 'serviceTitle', 'agreedPrice', 'preferredDate', 'preferredTime', 'locationLabel', 'status', 'otpVerified', 'reviewed', 'cancellationReason', 'createdAt', 'updatedAt'])
+        && isValidId(data.id)
+        && data.id == bId
+        && isValidId(data.requestId)
+        && (!('quotationId' in data) || isValidId(data.quotationId))
+        && isValidId(data.customerId)
+        && (!('customerName' in data) || isValidString(data.customerName, 1, 120))
+        && isValidId(data.providerId)
+        && isValidId(data.providerUserId)
+        && (!('providerName' in data) || isValidString(data.providerName, 1, 120))
+        && isValidString(data.serviceTitle, 1, 200)
+        && data.agreedPrice is number && data.agreedPrice >= 0 && data.agreedPrice <= 10000000
+        && (!('preferredDate' in data) || isValidString(data.preferredDate, 0, 32))
+        && (!('preferredTime' in data) || isValidString(data.preferredTime, 0, 64))
+        && (!('locationLabel' in data) || isValidString(data.locationLabel, 0, 200))
+        && data.status in ['booking_confirmed', 'service_started', 'service_completed', 'cancelled']
+        && data.otpVerified is bool
+        && data.reviewed is bool
+        && (!('cancellationReason' in data) || isValidString(data.cancellationReason, 0, 500))
+        && data.createdAt is timestamp
+        && data.updatedAt is timestamp;
+    }
+
+    function isValidConversation(data, convId) {
+      return data.keys().hasAll(['id', 'customerId', 'providerId', 'providerUserId', 'lastMessage', 'createdAt', 'updatedAt'])
+        && data.keys().hasOnly(['id', 'customerId', 'customerName', 'providerId', 'providerUserId', 'providerName', 'requestId', 'lastMessage', 'unreadCustomer', 'unreadProvider', 'createdAt', 'updatedAt'])
+        && isValidId(data.id)
+        && data.id == convId
+        && isValidId(data.customerId)
+        && (!('customerName' in data) || isValidString(data.customerName, 1, 120))
+        && isValidId(data.providerId)
+        && isValidId(data.providerUserId)
+        && (!('providerName' in data) || isValidString(data.providerName, 1, 120))
+        && (!('requestId' in data) || isValidId(data.requestId))
+        && isValidString(data.lastMessage, 0, 1000)
+        && (!('unreadCustomer' in data) || (data.unreadCustomer is number && data.unreadCustomer >= 0))
+        && (!('unreadProvider' in data) || (data.unreadProvider is number && data.unreadProvider >= 0))
+        && data.createdAt is timestamp
+        && data.updatedAt is timestamp;
+    }
+
+    function isValidChatMessage(data, convId, msgId) {
+      return data.keys().hasAll(['id', 'conversationId', 'senderId', 'senderRole', 'text', 'readByRecipient', 'createdAt', 'updatedAt'])
+        && data.keys().hasOnly(['id', 'conversationId', 'senderId', 'senderName', 'senderRole', 'text', 'detectedLanguage', 'readByRecipient', 'createdAt', 'updatedAt'])
+        && isValidId(data.id)
+        && data.id == msgId
+        && isValidId(data.conversationId)
+        && data.conversationId == convId
+        && isValidId(data.senderId)
+        && (!('senderName' in data) || isValidString(data.senderName, 1, 120))
+        && data.senderRole in ['customer', 'provider']
+        && isValidString(data.text, 0, 2000)
+        && (!('detectedLanguage' in data) || data.detectedLanguage in ['en', 'ml', 'hi'])
+        && data.readByRecipient is bool
+        && data.createdAt is timestamp
+        && data.updatedAt is timestamp;
+    }
+
+    function isValidNotification(data, nId) {
+      return data.keys().hasAll(['id', 'userId', 'title', 'body', 'linkPage', 'read', 'createdAt', 'updatedAt'])
+        && data.keys().hasOnly(['id', 'userId', 'type', 'title', 'body', 'linkPage', 'linkId', 'read', 'createdAt', 'updatedAt'])
+        && isValidId(data.id)
+        && data.id == nId
+        && isValidId(data.userId)
+        && (!('type' in data) || data.type in ['quotation', 'booking', 'message', 'request', 'emergency', 'verification', 'system'])
+        && isValidString(data.title, 1, 200)
+        && isValidString(data.body, 0, 1000)
+        && isValidString(data.linkPage, 1, 64)
+        && (!('linkId' in data) || isValidString(data.linkId, 0, 128))
+        && data.read is bool
+        && data.createdAt is timestamp
+        && data.updatedAt is timestamp;
+    }
+
+    function isValidReview(data, revId) {
+      return data.keys().hasAll(['id', 'bookingId', 'providerId', 'customerId', 'customerName', 'rating', 'comment', 'serviceName', 'moderatedStatus', 'createdAt', 'updatedAt'])
+        && data.keys().hasOnly(['id', 'bookingId', 'providerId', 'customerId', 'customerName', 'rating', 'comment', 'serviceName', 'moderatedStatus', 'createdAt', 'updatedAt'])
+        && isValidId(data.id)
+        && data.id == revId
+        && isValidId(data.bookingId)
+        && isValidId(data.providerId)
+        && isValidId(data.customerId)
+        && isValidString(data.customerName, 1, 120)
+        && data.rating is number && data.rating >= 1 && data.rating <= 5
+        && isValidString(data.comment, 2, 1500)
+        && isValidString(data.serviceName, 1, 160)
+        && data.moderatedStatus in ['published', 'flagged', 'hidden']
+        && data.createdAt is timestamp
+        && data.updatedAt is timestamp;
+    }
+
+    function isValidReport(data, repId) {
+      return data.keys().hasAll(['id', 'reporterId', 'reporterName', 'targetType', 'targetId', 'reason', 'details', 'status', 'createdAt', 'updatedAt'])
+        && data.keys().hasOnly(['id', 'reporterId', 'reporterName', 'targetType', 'targetId', 'targetName', 'reason', 'details', 'status', 'adminResolution', 'createdAt', 'updatedAt'])
+        && isValidId(data.id)
+        && data.id == repId
+        && isValidId(data.reporterId)
+        && isValidString(data.reporterName, 1, 120)
+        && data.targetType in ['provider', 'customer', 'review', 'platform']
+        && isValidId(data.targetId)
+        && (!('targetName' in data) || isValidString(data.targetName, 1, 120))
+        && isValidString(data.reason, 2, 200)
+        && isValidString(data.details, 2, 2000)
+        && data.status in ['open', 'investigating', 'resolved', 'dismissed']
+        && (!('adminResolution' in data) || isValidString(data.adminResolution, 0, 1000))
+        && data.createdAt is timestamp
+        && data.updatedAt is timestamp;
+    }
+
+    function isValidVerificationRequest(data, verId) {
+      return data.keys().hasAll(['id', 'providerId', 'providerUserId', 'type', 'summary', 'status', 'createdAt', 'updatedAt'])
+        && data.keys().hasOnly(['id', 'providerId', 'providerUserId', 'providerName', 'type', 'summary', 'experienceClaim', 'status', 'adminNote', 'createdAt', 'updatedAt'])
+        && isValidId(data.id)
+        && data.id == verId
+        && isValidId(data.providerId)
+        && isValidId(data.providerUserId)
+        && (!('providerName' in data) || isValidString(data.providerName, 1, 120))
+        && data.type in ['identity', 'skill', 'profile']
+        && isValidString(data.summary, 2, 1000)
+        && (!('experienceClaim' in data) || isValidString(data.experienceClaim, 0, 200))
+        && data.status in ['pending', 'approved', 'rejected']
+        && (!('adminNote' in data) || isValidString(data.adminNote, 0, 500))
+        && data.createdAt is timestamp
+        && data.updatedAt is timestamp;
+    }
+
+    function isValidEmergencyRequest(data, emId) {
+      return data.keys().hasAll(['id', 'customerId', 'customerName', 'serviceType', 'description', 'district', 'town', 'pincode', 'status', 'createdAt', 'updatedAt'])
+        && data.keys().hasOnly(['id', 'customerId', 'customerName', 'serviceType', 'description', 'district', 'town', 'pincode', 'locationShared', 'eligibleProviderIds', 'estimatedResponseWindow', 'status', 'createdAt', 'updatedAt'])
+        && isValidId(data.id)
+        && data.id == emId
+        && isValidId(data.customerId)
+        && isValidString(data.customerName, 1, 120)
+        && isValidString(data.serviceType, 2, 80)
+        && isValidString(data.description, 2, 1500)
+        && isValidString(data.district, 1, 80)
+        && isValidString(data.town, 1, 80)
+        && isValidPincode(data.pincode)
+        && (!('locationShared' in data) || data.locationShared is bool)
+        && (!('eligibleProviderIds' in data) || isValidStringList(data.eligibleProviderIds, 25, 128))
+        && (!('estimatedResponseWindow' in data) || isValidString(data.estimatedResponseWindow, 0, 80))
+        && data.status in ['submitted', 'provider_contacted', 'in_progress', 'resolved']
+        && data.createdAt is timestamp
+        && data.updatedAt is timestamp;
+    }
+
+    function isValidTalentProfile(data, tId) {
+      return data.keys().hasAll(['id', 'userId', 'name', 'skillCategory', 'headline', 'district', 'town', 'platformVerified', 'createdAt', 'updatedAt'])
+        && data.keys().hasOnly(['id', 'userId', 'name', 'skillCategory', 'headline', 'bio', 'district', 'town', 'locality', 'experienceYears', 'languages', 'selfReportedQualifications', 'certificates', 'platformVerified', 'isFeatured', 'isDemo', 'createdAt', 'updatedAt'])
+        && isValidId(data.id)
+        && data.id == tId
+        && isValidId(data.userId)
+        && isValidString(data.name, 1, 120)
+        && isValidString(data.skillCategory, 1, 100)
+        && isValidString(data.headline, 2, 200)
+        && (!('bio' in data) || isValidString(data.bio, 0, 1500))
+        && isValidString(data.district, 1, 80)
+        && isValidString(data.town, 1, 80)
+        && (!('locality' in data) || isValidString(data.locality, 0, 120))
+        && (!('experienceYears' in data) || (data.experienceYears is number && data.experienceYears >= 0 && data.experienceYears <= 70))
+        && (!('languages' in data) || isValidStringList(data.languages, 10, 40))
+        && (!('selfReportedQualifications' in data) || isValidStringList(data.selfReportedQualifications, 10, 120))
+        && (!('certificates' in data) || isValidStringList(data.certificates, 10, 120))
+        && data.platformVerified is bool
+        && (!('isFeatured' in data) || data.isFeatured is bool)
+        && (!('isDemo' in data) || data.isDemo is bool)
+        && data.createdAt is timestamp
+        && data.updatedAt is timestamp;
+    }
+
+    function isValidUserAddress(data, aId) {
+      return data.keys().hasAll(['id', 'userId', 'label', 'district', 'town', 'pincode', 'addressLine', 'isDefault', 'createdAt', 'updatedAt'])
+        && data.keys().hasOnly(['id', 'userId', 'label', 'district', 'town', 'locality', 'pincode', 'addressLine', 'isDefault', 'createdAt', 'updatedAt'])
+        && isValidId(data.id)
+        && data.id == aId
+        && isValidId(data.userId)
+        && isValidString(data.label, 1, 80)
+        && isValidString(data.district, 1, 80)
+        && isValidString(data.town, 1, 80)
+        && (!('locality' in data) || isValidString(data.locality, 0, 120))
+        && isValidPincode(data.pincode)
+        && isValidString(data.addressLine, 2, 300)
+        && data.isDefault is bool
+        && data.createdAt is timestamp
+        && data.updatedAt is timestamp;
+    }
+
+    function isValidServiceReminder(data, remId) {
+      return data.keys().hasAll(['id', 'userId', 'title', 'categoryId', 'dueDate', 'cadence', 'completed', 'createdAt', 'updatedAt'])
+        && data.keys().hasOnly(['id', 'userId', 'title', 'categoryId', 'dueDate', 'cadence', 'notes', 'completed', 'createdAt', 'updatedAt'])
+        && isValidId(data.id)
+        && data.id == remId
+        && isValidId(data.userId)
+        && isValidString(data.title, 2, 200)
+        && isValidId(data.categoryId)
+        && isValidString(data.dueDate, 4, 32)
+        && data.cadence in ['once', 'quarterly', 'yearly']
+        && (!('notes' in data) || isValidString(data.notes, 0, 500))
+        && data.completed is bool
+        && data.createdAt is timestamp
+        && data.updatedAt is timestamp;
+    }
+
+    function isValidFavouritesDoc(data, userId) {
+      return data.keys().hasAll(['userId', 'providerIds', 'createdAt', 'updatedAt'])
+        && data.keys().hasOnly(['userId', 'providerIds', 'createdAt', 'updatedAt'])
+        && isValidId(data.userId)
+        && data.userId == userId
+        && isValidStringList(data.providerIds, 100, 128)
+        && data.createdAt is timestamp
+        && data.updatedAt is timestamp;
+    }
+
+    function isValidAccessibilityDoc(data, userId) {
+      return data.keys().hasAll(['userId', 'fontScale', 'highContrast', 'reducedMotion', 'largeTargets', 'screenReaderHints', 'preferredVoiceLang', 'chatAutoTranslateTo', 'createdAt', 'updatedAt'])
+        && data.keys().hasOnly(['userId', 'fontScale', 'highContrast', 'reducedMotion', 'largeTargets', 'screenReaderHints', 'preferredVoiceLang', 'chatAutoTranslateTo', 'createdAt', 'updatedAt'])
+        && isValidId(data.userId)
+        && data.userId == userId
+        && data.fontScale in ['normal', 'large', 'xlarge']
+        && data.highContrast is bool
+        && data.reducedMotion is bool
+        && data.largeTargets is bool
+        && data.screenReaderHints is bool
+        && data.preferredVoiceLang in ['en', 'ml', 'hi']
+        && data.chatAutoTranslateTo in ['off', 'en', 'ml', 'hi']
+        && data.createdAt is timestamp
+        && data.updatedAt is timestamp;
+    }
+
+    // --- Collection Rules ---
+
+    // Admins registry (server/super-admin managed only)
+    match /admins/{adminId} {
+      allow get: if isValidId(adminId) && (isOwner(adminId) || isAdmin());
+      allow list: if isTokenAdmin();
+      allow create: if isValidId(adminId) && isAdmin() && isValidAdminRecord(incoming());
+      allow update: if false;
+      allow delete: if isValidId(adminId) && isAdmin();
+    }
+
+    // Public minimal user profile + strictly isolated PII subcollection
+    match /users/{userId} {
+      allow get: if isValidId(userId) && (isOwner(userId) || isAdmin());
+      allow list: if isTokenAdmin() || (isSignedIn() && existing().id == request.auth.uid);
+      allow create: if isValidId(userId)
+        && isVerifiedUser()
+        && isOwner(userId)
+        && isValidUserPublicProfile(incoming(), userId)
+        && incoming().role in ['customer', 'provider']
+        && (!('isSuspended' in incoming()) || incoming().isSuspended == false)
+        && incoming().isDemo == false
+        && incoming().createdAt == request.time
+        && incoming().updatedAt == request.time;
+      allow update: if isValidId(userId)
+        && isSignedIn()
+        && isVerifiedUser()
+        && isValidUserPublicProfile(incoming(), userId)
+        && incoming().id == existing().id
+        && incoming().createdAt == existing().createdAt
+        && incoming().updatedAt == request.time
+        && (
+          isAdmin() ||
+          (
+            isOwner(userId)
+            && incoming().role == existing().role
+            && incoming().diff(existing()).affectedKeys().hasOnly(['name', 'activeMode', 'language', 'allowRecommendations', 'updatedAt'])
+            && (incoming().activeMode == 'customer' || existing().canSwitchToProvider == true)
+          )
+        );
+      allow delete: if isValidId(userId) && isAdmin();
+
+      match /private/{docId} {
+        allow get: if isValidId(userId) && isValidId(docId)
+          && (isOwner(userId) || isAdmin())
+          && exists(/databases/$(database)/documents/users/$(userId));
+        allow list: if isTokenAdmin() || (isOwner(userId) && existing().userId == request.auth.uid);
+        allow create: if isValidId(userId) && isValidId(docId)
+          && isVerifiedUser()
+          && isOwner(userId)
+          && exists(/databases/$(database)/documents/users/$(userId))
+          && isValidUserPrivateInfo(incoming(), userId)
+          && incoming().createdAt == request.time
+          && incoming().updatedAt == request.time;
+        allow update: if isValidId(userId) && isValidId(docId)
+          && isSignedIn()
+          && isVerifiedUser()
+          && isValidUserPrivateInfo(incoming(), userId)
+          && incoming().userId == existing().userId
+          && incoming().createdAt == existing().createdAt
+          && incoming().updatedAt == request.time
+          && (
+            isAdmin() ||
+            (
+              isOwner(userId)
+              && exists(/databases/$(database)/documents/users/$(userId))
+              && incoming().diff(existing()).affectedKeys().hasOnly(['phone', 'district', 'town', 'locality', 'pincode', 'lat', 'lng', 'searchHistory', 'updatedAt'])
+            )
+          );
+        allow delete: if isValidId(userId) && isValidId(docId) && isAdmin();
+      }
+    }
+
+    // Service Providers directory (public browseable profile; verification & aggregates locked to admin)
+    match /providers/{providerId} {
+      allow get: if isValidId(providerId);
+      allow list: if true;
+      allow create: if isValidId(providerId)
+        && isVerifiedUser()
+        && isValidProviderProfile(incoming(), providerId)
+        && incoming().userId == request.auth.uid
+        && incoming().identityVerified == false
+        && incoming().skillVerified == false
+        && incoming().profileVerified == false
+        && (!('isFeatured' in incoming()) || incoming().isFeatured == false)
+        && (!('isDemo' in incoming()) || incoming().isDemo == false)
+        && incoming().rating == 0
+        && incoming().reviewCount == 0
+        && incoming().completedJobs == 0
+        && incoming().createdAt == request.time
+        && incoming().updatedAt == request.time;
+      allow update: if isValidId(providerId)
+        && isSignedIn()
+        && isVerifiedUser()
+        && isValidProviderProfile(incoming(), providerId)
+        && incoming().id == existing().id
+        && incoming().userId == existing().userId
+        && incoming().createdAt == existing().createdAt
+        && incoming().updatedAt == request.time
+        && (
+          isAdmin() ||
+          (
+            existing().userId == request.auth.uid
+            && incoming().identityVerified == existing().identityVerified
+            && incoming().skillVerified == existing().skillVerified
+            && incoming().profileVerified == existing().profileVerified
+            && incoming().rating == existing().rating
+            && incoming().reviewCount == existing().reviewCount
+            && incoming().completedJobs == existing().completedJobs
+            && incoming().diff(existing()).affectedKeys().hasOnly(['name', 'title', 'bio', 'avatarUrl', 'categoryIds', 'subcategoryIds', 'startingPrice', 'district', 'town', 'locality', 'pincode', 'serviceRadiusKm', 'experienceYears', 'workingHours', 'isAvailable', 'urgentAvailable', 'updatedAt'])
+          )
+        );
+      allow delete: if isValidId(providerId) && isAdmin();
+    }
+
+    // Service Categories (public browseable, admin managed)
+    match /categories/{categoryId} {
+      allow get: if isValidId(categoryId);
+      allow list: if true;
+      allow create: if isValidId(categoryId)
+        && isAdmin()
+        && isValidCategoryDoc(incoming(), categoryId)
+        && incoming().createdAt == request.time
+        && incoming().updatedAt == request.time;
+      allow update: if isValidId(categoryId)
+        && isSignedIn()
+        && isVerifiedUser()
+        && isValidCategoryDoc(incoming(), categoryId)
+        && isAdmin()
+        && incoming().id == existing().id
+        && incoming().createdAt == existing().createdAt
+        && incoming().updatedAt == request.time
+        && incoming().diff(existing()).affectedKeys().hasOnly(['name', 'nameMl', 'nameHi', 'description', 'iconName', 'updatedAt']);
+      allow delete: if isValidId(categoryId) && isAdmin();
+    }
+
+    // Service Requests (customer-owned, readable by customer, target/notified providers, or admin)
+    match /serviceRequests/{requestId} {
+      allow get: if isValidId(requestId) && isSignedIn() && (
+        isAdmin() ||
+        existing().customerId == request.auth.uid ||
+        existing().targetProviderId == request.auth.uid ||
+        request.auth.uid in existing().notifiedProviderIds
+      );
+      allow list: if isTokenAdmin() || (
+        isSignedIn() && (
+          existing().customerId == request.auth.uid ||
+          existing().targetProviderId == request.auth.uid
+        )
+      );
+      allow create: if isValidId(requestId)
+        && isVerifiedUser()
+        && isValidServiceRequest(incoming(), requestId)
+        && incoming().customerId == request.auth.uid
+        && incoming().status == 'request_submitted'
+        && incoming().createdAt == request.time
+        && incoming().updatedAt == request.time;
+      allow update: if isValidId(requestId)
+        && isSignedIn()
+        && isVerifiedUser()
+        && isValidServiceRequest(incoming(), requestId)
+        && incoming().id == existing().id
+        && incoming().customerId == existing().customerId
+        && incoming().createdAt == existing().createdAt
+        && incoming().updatedAt == request.time
+        && (
+          isAdmin() ||
+          (
+            !(existing().status in ['service_completed', 'cancelled']) &&
+            (
+              (
+                existing().customerId == request.auth.uid
+                && incoming().diff(existing()).affectedKeys().hasOnly(['title', 'description', 'preferredDate', 'preferredTime', 'status', 'selectedQuotationId', 'selectedProviderId', 'updatedAt'])
+              ) ||
+              (
+                (!('declinedByProviderIds' in existing()) || incoming().declinedByProviderIds.size() >= existing().declinedByProviderIds.size())
+                && incoming().diff(existing()).affectedKeys().hasOnly(['declinedByProviderIds', 'updatedAt'])
+              )
+            )
+          )
+        );
+      allow delete: if isValidId(requestId) && isAdmin();
+    }
+
+    // Quotations (linked strictly to existing parent request)
+    match /quotations/{quotationId} {
+      allow get: if isValidId(quotationId) && isSignedIn() && (
+        isAdmin() ||
+        existing().customerId == request.auth.uid ||
+        existing().providerUserId == request.auth.uid
+      );
+      allow list: if isTokenAdmin() || (
+        isSignedIn() && (
+          existing().customerId == request.auth.uid ||
+          existing().providerUserId == request.auth.uid
+        )
+      );
+      allow create: if isValidId(quotationId)
+        && isVerifiedUser()
+        && isValidQuotation(incoming(), quotationId)
+        && incoming().providerUserId == request.auth.uid
+        && incoming().status == 'pending'
+        && exists(/databases/$(database)/documents/serviceRequests/$(incoming().requestId))
+        && get(/databases/$(database)/documents/serviceRequests/$(incoming().requestId)).data.customerId == incoming().customerId
+        && incoming().createdAt == request.time
+        && incoming().updatedAt == request.time;
+      allow update: if isValidId(quotationId)
+        && isSignedIn()
+        && isVerifiedUser()
+        && isValidQuotation(incoming(), quotationId)
+        && incoming().id == existing().id
+        && incoming().requestId == existing().requestId
+        && incoming().customerId == existing().customerId
+        && incoming().providerId == existing().providerId
+        && incoming().providerUserId == existing().providerUserId
+        && incoming().createdAt == existing().createdAt
+        && incoming().updatedAt == request.time
+        && (
+          isAdmin() ||
+          (
+            existing().status == 'pending'
+            && existing().customerId == request.auth.uid
+            && incoming().status in ['accepted', 'declined']
+            && incoming().diff(existing()).affectedKeys().hasOnly(['status', 'updatedAt'])
+          )
+        );
+      allow delete: if isValidId(quotationId) && isAdmin();
+    }
+
+    // Bookings (participant-only reads, tiered state updates, terminal state locking)
+    match /bookings/{bookingId} {
+      allow get: if isValidId(bookingId) && isSignedIn() && (
+        isAdmin() ||
+        existing().customerId == request.auth.uid ||
+        existing().providerUserId == request.auth.uid
+      );
+      allow list: if isTokenAdmin() || (
+        isSignedIn() && (
+          existing().customerId == request.auth.uid ||
+          existing().providerUserId == request.auth.uid
+        )
+      );
+      allow create: if isValidId(bookingId)
+        && isVerifiedUser()
+        && isValidBooking(incoming(), bookingId)
+        && (incoming().customerId == request.auth.uid || isAdmin())
+        && exists(/databases/$(database)/documents/serviceRequests/$(incoming().requestId))
+        && incoming().status == 'booking_confirmed'
+        && incoming().reviewed == false
+        && incoming().createdAt == request.time
+        && incoming().updatedAt == request.time;
+      allow update: if isValidId(bookingId)
+        && isSignedIn()
+        && isVerifiedUser()
+        && isValidBooking(incoming(), bookingId)
+        && incoming().id == existing().id
+        && incoming().requestId == existing().requestId
+        && incoming().customerId == existing().customerId
+        && incoming().providerId == existing().providerId
+        && incoming().providerUserId == existing().providerUserId
+        && incoming().createdAt == existing().createdAt
+        && incoming().updatedAt == request.time
+        && (
+          isAdmin() ||
+          (
+            (
+              existing().status == 'service_completed'
+              && existing().customerId == request.auth.uid
+              && existing().reviewed == false
+              && incoming().reviewed == true
+              && incoming().status == 'service_completed'
+              && incoming().diff(existing()).affectedKeys().hasOnly(['reviewed', 'updatedAt'])
+            ) ||
+            (
+              !(existing().status in ['service_completed', 'cancelled']) &&
+              (
+                (
+                  existing().customerId == request.auth.uid
+                  && incoming().diff(existing()).affectedKeys().hasOnly(['status', 'otpVerified', 'cancellationReason', 'updatedAt'])
+                ) ||
+                (
+                  existing().providerUserId == request.auth.uid
+                  && incoming().diff(existing()).affectedKeys().hasOnly(['status', 'otpVerified', 'updatedAt'])
+                )
+              )
+            )
+          )
+        );
+      allow delete: if isValidId(bookingId) && isAdmin();
+    }
+
+    // Conversations & Master-Gated Messages Subcollection
+    match /conversations/{conversationId} {
+      allow get: if isValidId(conversationId) && isSignedIn() && (
+        isAdmin() ||
+        existing().customerId == request.auth.uid ||
+        existing().providerUserId == request.auth.uid
+      );
+      allow list: if isTokenAdmin() || (
+        isSignedIn() && (
+          existing().customerId == request.auth.uid ||
+          existing().providerUserId == request.auth.uid
+        )
+      );
+      allow create: if isValidId(conversationId)
+        && isVerifiedUser()
+        && isValidConversation(incoming(), conversationId)
+        && (incoming().customerId == request.auth.uid || incoming().providerUserId == request.auth.uid)
+        && incoming().createdAt == request.time
+        && incoming().updatedAt == request.time;
+      allow update: if isValidId(conversationId)
+        && isSignedIn()
+        && isVerifiedUser()
+        && isValidConversation(incoming(), conversationId)
+        && incoming().id == existing().id
+        && incoming().customerId == existing().customerId
+        && incoming().providerId == existing().providerId
+        && incoming().providerUserId == existing().providerUserId
+        && incoming().createdAt == existing().createdAt
+        && incoming().updatedAt == request.time
+        && (
+          isAdmin() ||
+          (
+            (existing().customerId == request.auth.uid || existing().providerUserId == request.auth.uid)
+            && incoming().diff(existing()).affectedKeys().hasOnly(['lastMessage', 'unreadCustomer', 'unreadProvider', 'updatedAt'])
+          )
+        );
+      allow delete: if isValidId(conversationId) && isAdmin();
+
+      match /messages/{messageId} {
+        allow get: if isValidId(conversationId) && isValidId(messageId) && isSignedIn() && (
+          isAdmin() ||
+          get(/databases/$(database)/documents/conversations/$(conversationId)).data.customerId == request.auth.uid ||
+          get(/databases/$(database)/documents/conversations/$(conversationId)).data.providerUserId == request.auth.uid
+        );
+        allow list: if isTokenAdmin() || (
+          isSignedIn() && existing().senderId == request.auth.uid
+        );
+        allow create: if isValidId(conversationId) && isValidId(messageId)
+          && isVerifiedUser()
+          && isValidChatMessage(incoming(), conversationId, messageId)
+          && incoming().senderId == request.auth.uid
+          && exists(/databases/$(database)/documents/conversations/$(conversationId))
+          && (
+            get(/databases/$(database)/documents/conversations/$(conversationId)).data.customerId == request.auth.uid ||
+            get(/databases/$(database)/documents/conversations/$(conversationId)).data.providerUserId == request.auth.uid
+          )
+          && incoming().createdAt == request.time
+          && incoming().updatedAt == request.time;
+        allow update: if isValidId(conversationId) && isValidId(messageId)
+          && isSignedIn()
+          && isVerifiedUser()
+          && isValidChatMessage(incoming(), conversationId, messageId)
+          && incoming().id == existing().id
+          && incoming().conversationId == existing().conversationId
+          && incoming().senderId == existing().senderId
+          && incoming().createdAt == existing().createdAt
+          && incoming().updatedAt == request.time
+          && (
+            isAdmin() ||
+            (
+              exists(/databases/$(database)/documents/conversations/$(conversationId)) &&
+              (
+                get(/databases/$(database)/documents/conversations/$(conversationId)).data.customerId == request.auth.uid ||
+                get(/databases/$(database)/documents/conversations/$(conversationId)).data.providerUserId == request.auth.uid
+              ) &&
+              incoming().diff(existing()).affectedKeys().hasOnly(['readByRecipient', 'updatedAt'])
+            )
+          );
+        allow delete: if isValidId(conversationId) && isValidId(messageId) && isAdmin();
+      }
+    }
+
+    // Notifications (strictly userId-scoped)
+    match /notifications/{notificationId} {
+      allow get: if isValidId(notificationId) && isSignedIn() && (
+        isAdmin() || existing().userId == request.auth.uid
+      );
+      allow list: if isTokenAdmin() || (isSignedIn() && existing().userId == request.auth.uid);
+      allow create: if isValidId(notificationId)
+        && isVerifiedUser()
+        && isValidNotification(incoming(), notificationId)
+        && (isAdmin() || incoming().userId == request.auth.uid)
+        && incoming().read == false
+        && incoming().createdAt == request.time
+        && incoming().updatedAt == request.time;
+      allow update: if isValidId(notificationId)
+        && isSignedIn()
+        && isVerifiedUser()
+        && isValidNotification(incoming(), notificationId)
+        && incoming().id == existing().id
+        && incoming().userId == existing().userId
+        && incoming().createdAt == existing().createdAt
+        && incoming().updatedAt == request.time
+        && (
+          isAdmin() ||
+          (
+            existing().userId == request.auth.uid
+            && incoming().diff(existing()).affectedKeys().hasOnly(['read', 'updatedAt'])
+          )
+        );
+      allow delete: if isValidId(notificationId) && isAdmin();
+    }
+
+    // Reviews (public read, completed-booking verified creation, admin moderation only)
+    match /reviews/{reviewId} {
+      allow get: if isValidId(reviewId);
+      allow list: if existing().moderatedStatus == 'published' || isTokenAdmin() || (isSignedIn() && existing().customerId == request.auth.uid);
+      allow create: if isValidId(reviewId)
+        && isVerifiedUser()
+        && isValidReview(incoming(), reviewId)
+        && incoming().customerId == request.auth.uid
+        && incoming().moderatedStatus == 'published'
+        && exists(/databases/$(database)/documents/bookings/$(incoming().bookingId))
+        && get(/databases/$(database)/documents/bookings/$(incoming().bookingId)).data.customerId == request.auth.uid
+        && get(/databases/$(database)/documents/bookings/$(incoming().bookingId)).data.status == 'service_completed'
+        && incoming().createdAt == request.time
+        && incoming().updatedAt == request.time;
+      allow update: if isValidId(reviewId)
+        && isSignedIn()
+        && isVerifiedUser()
+        && isValidReview(incoming(), reviewId)
+        && isAdmin()
+        && incoming().id == existing().id
+        && incoming().customerId == existing().customerId
+        && incoming().createdAt == existing().createdAt
+        && incoming().updatedAt == request.time
+        && incoming().diff(existing()).affectedKeys().hasOnly(['moderatedStatus', 'updatedAt']);
+      allow delete: if isValidId(reviewId) && isAdmin();
+    }
+
+    // Reports & Complaints (strictly reporter or admin)
+    match /reports/{reportId} {
+      allow get: if isValidId(reportId) && isSignedIn() && (
+        isAdmin() || existing().reporterId == request.auth.uid
+      );
+      allow list: if isTokenAdmin() || (isSignedIn() && existing().reporterId == request.auth.uid);
+      allow create: if isValidId(reportId)
+        && isVerifiedUser()
+        && isValidReport(incoming(), reportId)
+        && incoming().reporterId == request.auth.uid
+        && incoming().status == 'open'
+        && incoming().createdAt == request.time
+        && incoming().updatedAt == request.time;
+      allow update: if isValidId(reportId)
+        && isSignedIn()
+        && isVerifiedUser()
+        && isValidReport(incoming(), reportId)
+        && isAdmin()
+        && !(existing().status in ['resolved', 'dismissed'])
+        && incoming().id == existing().id
+        && incoming().reporterId == existing().reporterId
+        && incoming().createdAt == existing().createdAt
+        && incoming().updatedAt == request.time
+        && incoming().diff(existing()).affectedKeys().hasOnly(['status', 'adminResolution', 'updatedAt']);
+      allow delete: if isValidId(reportId) && isAdmin();
+    }
+
+    // Verification Requests (provider creates pending, admin approves/rejects; terminal state locked)
+    match /verificationRequests/{verificationId} {
+      allow get: if isValidId(verificationId) && isSignedIn() && (
+        isAdmin() || existing().providerUserId == request.auth.uid
+      );
+      allow list: if isTokenAdmin() || (isSignedIn() && existing().providerUserId == request.auth.uid);
+      allow create: if isValidId(verificationId)
+        && isVerifiedUser()
+        && isValidVerificationRequest(incoming(), verificationId)
+        && incoming().providerUserId == request.auth.uid
+        && incoming().status == 'pending'
+        && incoming().createdAt == request.time
+        && incoming().updatedAt == request.time;
+      allow update: if isValidId(verificationId)
+        && isSignedIn()
+        && isVerifiedUser()
+        && isValidVerificationRequest(incoming(), verificationId)
+        && isAdmin()
+        && existing().status == 'pending'
+        && incoming().id == existing().id
+        && incoming().providerId == existing().providerId
+        && incoming().providerUserId == existing().providerUserId
+        && incoming().createdAt == existing().createdAt
+        && incoming().updatedAt == request.time
+        && incoming().diff(existing()).affectedKeys().hasOnly(['status', 'adminNote', 'updatedAt']);
+      allow delete: if isValidId(verificationId) && isAdmin();
+    }
+
+    // Emergency Dispatch Requests (owner or admin)
+    match /emergencyRequests/{emergencyId} {
+      allow get: if isValidId(emergencyId) && isSignedIn() && (
+        isAdmin() || existing().customerId == request.auth.uid
+      );
+      allow list: if isTokenAdmin() || (isSignedIn() && existing().customerId == request.auth.uid);
+      allow create: if isValidId(emergencyId)
+        && isVerifiedUser()
+        && isValidEmergencyRequest(incoming(), emergencyId)
+        && incoming().customerId == request.auth.uid
+        && incoming().status == 'submitted'
+        && incoming().createdAt == request.time
+        && incoming().updatedAt == request.time;
+      allow update: if isValidId(emergencyId)
+        && isSignedIn()
+        && isVerifiedUser()
+        && isValidEmergencyRequest(incoming(), emergencyId)
+        && incoming().id == existing().id
+        && incoming().customerId == existing().customerId
+        && incoming().createdAt == existing().createdAt
+        && incoming().updatedAt == request.time
+        && (
+          isAdmin() ||
+          (
+            existing().status != 'resolved'
+            && existing().customerId == request.auth.uid
+            && incoming().diff(existing()).affectedKeys().hasOnly(['status', 'updatedAt'])
+          )
+        );
+      allow delete: if isValidId(emergencyId) && isAdmin();
+    }
+
+    // Talent Hub Profiles (public browse, owner create/edit non-privileged fields, admin moderates verified/featured)
+    match /talentProfiles/{talentId} {
+      allow get: if isValidId(talentId);
+      allow list: if true;
+      allow create: if isValidId(talentId)
+        && isVerifiedUser()
+        && isValidTalentProfile(incoming(), talentId)
+        && incoming().userId == request.auth.uid
+        && incoming().platformVerified == false
+        && (!('isFeatured' in incoming()) || incoming().isFeatured == false)
+        && (!('isDemo' in incoming()) || incoming().isDemo == false)
+        && incoming().createdAt == request.time
+        && incoming().updatedAt == request.time;
+      allow update: if isValidId(talentId)
+        && isSignedIn()
+        && isVerifiedUser()
+        && isValidTalentProfile(incoming(), talentId)
+        && incoming().id == existing().id
+        && incoming().userId == existing().userId
+        && incoming().createdAt == existing().createdAt
+        && incoming().updatedAt == request.time
+        && (
+          isAdmin() ||
+          (
+            existing().userId == request.auth.uid
+            && incoming().platformVerified == existing().platformVerified
+            && incoming().diff(existing()).affectedKeys().hasOnly(['name', 'skillCategory', 'headline', 'bio', 'district', 'town', 'locality', 'experienceYears', 'languages', 'selfReportedQualifications', 'certificates', 'updatedAt'])
+          )
+        );
+      allow delete: if isValidId(talentId) && (isAdmin() || (isVerifiedUser() && existing().userId == request.auth.uid));
+    }
+
+    // User Saved Addresses (PII isolated to owner/admin)
+    match /userAddresses/{addressId} {
+      allow get: if isValidId(addressId) && isSignedIn() && (
+        isAdmin() || existing().userId == request.auth.uid
+      );
+      allow list: if isTokenAdmin() || (isSignedIn() && existing().userId == request.auth.uid);
+      allow create: if isValidId(addressId)
+        && isVerifiedUser()
+        && isValidUserAddress(incoming(), addressId)
+        && incoming().userId == request.auth.uid
+        && incoming().createdAt == request.time
+        && incoming().updatedAt == request.time;
+      allow update: if isValidId(addressId)
+        && isSignedIn()
+        && isVerifiedUser()
+        && isValidUserAddress(incoming(), addressId)
+        && incoming().id == existing().id
+        && incoming().userId == existing().userId
+        && incoming().createdAt == existing().createdAt
+        && incoming().updatedAt == request.time
+        && (
+          isAdmin() ||
+          (
+            existing().userId == request.auth.uid
+            && incoming().diff(existing()).affectedKeys().hasOnly(['label', 'district', 'town', 'locality', 'pincode', 'addressLine', 'isDefault', 'updatedAt'])
+          )
+        );
+      allow delete: if isValidId(addressId) && isSignedIn() && (isAdmin() || existing().userId == request.auth.uid);
+    }
+
+    // Seasonal Service Reminders (owner/admin only)
+    match /serviceReminders/{reminderId} {
+      allow get: if isValidId(reminderId) && isSignedIn() && (
+        isAdmin() || existing().userId == request.auth.uid
+      );
+      allow list: if isTokenAdmin() || (isSignedIn() && existing().userId == request.auth.uid);
+      allow create: if isValidId(reminderId)
+        && isVerifiedUser()
+        && isValidServiceReminder(incoming(), reminderId)
+        && incoming().userId == request.auth.uid
+        && incoming().createdAt == request.time
+        && incoming().updatedAt == request.time;
+      allow update: if isValidId(reminderId)
+        && isSignedIn()
+        && isVerifiedUser()
+        && isValidServiceReminder(incoming(), reminderId)
+        && incoming().id == existing().id
+        && incoming().userId == existing().userId
+        && incoming().createdAt == existing().createdAt
+        && incoming().updatedAt == request.time
+        && (
+          isAdmin() ||
+          (
+            existing().userId == request.auth.uid
+            && incoming().diff(existing()).affectedKeys().hasOnly(['title', 'categoryId', 'dueDate', 'cadence', 'notes', 'completed', 'updatedAt'])
+          )
+        );
+      allow delete: if isValidId(reminderId) && isSignedIn() && (isAdmin() || existing().userId == request.auth.uid);
+    }
+
+    // User Favourites (owner/admin only)
+    match /favourites/{userId} {
+      allow get: if isValidId(userId) && (isOwner(userId) || isAdmin());
+      allow list: if isTokenAdmin() || (isSignedIn() && existing().userId == request.auth.uid);
+      allow create: if isValidId(userId)
+        && isVerifiedUser()
+        && isOwner(userId)
+        && isValidFavouritesDoc(incoming(), userId)
+        && incoming().createdAt == request.time
+        && incoming().updatedAt == request.time;
+      allow update: if isValidId(userId)
+        && isSignedIn()
+        && isVerifiedUser()
+        && isValidFavouritesDoc(incoming(), userId)
+        && incoming().userId == existing().userId
+        && incoming().createdAt == existing().createdAt
+        && incoming().updatedAt == request.time
+        && (
+          isAdmin() ||
+          (
+            isOwner(userId)
+            && incoming().diff(existing()).affectedKeys().hasOnly(['providerIds', 'updatedAt'])
+          )
+        );
+      allow delete: if isValidId(userId) && isAdmin();
+    }
+
+    // Accessibility Preferences (owner/admin only)
+    match /accessibilityPreferences/{userId} {
+      allow get: if isValidId(userId) && (isOwner(userId) || isAdmin());
+      allow list: if isTokenAdmin() || (isSignedIn() && existing().userId == request.auth.uid);
+      allow create: if isValidId(userId)
+        && isVerifiedUser()
+        && isOwner(userId)
+        && isValidAccessibilityDoc(incoming(), userId)
+        && incoming().createdAt == request.time
+        && incoming().updatedAt == request.time;
+      allow update: if isValidId(userId)
+        && isSignedIn()
+        && isVerifiedUser()
+        && isValidAccessibilityDoc(incoming(), userId)
+        && incoming().userId == existing().userId
+        && incoming().createdAt == existing().createdAt
+        && incoming().updatedAt == request.time
+        && (
+          isAdmin() ||
+          (
+            isOwner(userId)
+            && incoming().diff(existing()).affectedKeys().hasOnly(['fontScale', 'highContrast', 'reducedMotion', 'largeTargets', 'screenReaderHints', 'preferredVoiceLang', 'chatAutoTranslateTo', 'updatedAt'])
+          )
+        );
+      allow delete: if isValidId(userId) && isAdmin();
+    }
+  }
+}

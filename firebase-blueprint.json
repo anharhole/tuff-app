@@ -1,0 +1,463 @@
+{
+  "entities": {
+    "AdminRecord": {
+      "title": "AdminRecord",
+      "description": "Trusted server-managed administrator authorization marker document.",
+      "type": "object",
+      "properties": {
+        "uid": { "type": "string", "minLength": 1, "maxLength": 128, "pattern": "^[a-zA-Z0-9_\\-]+$" },
+        "email": { "type": "string", "minLength": 3, "maxLength": 254 },
+        "grantedAt": { "type": "string", "format": "date-time", "maxLength": 64 }
+      },
+      "required": ["uid", "email", "grantedAt"]
+    },
+    "UserPublicProfile": {
+      "title": "UserPublicProfile",
+      "description": "Minimal non-PII user routing profile stored at /users/{userId}.",
+      "type": "object",
+      "properties": {
+        "id": { "type": "string", "minLength": 1, "maxLength": 128, "pattern": "^[a-zA-Z0-9_\\-]+$" },
+        "name": { "type": "string", "minLength": 1, "maxLength": 120 },
+        "role": { "type": "string", "enum": ["customer", "provider", "admin"], "maxLength": 20 },
+        "activeMode": { "type": "string", "enum": ["customer", "provider"], "maxLength": 20 },
+        "canSwitchToProvider": { "type": "boolean" },
+        "ageVerified": { "type": "boolean" },
+        "isDemo": { "type": "boolean" },
+        "isSuspended": { "type": "boolean" },
+        "language": { "type": "string", "enum": ["en", "ml", "hi"], "maxLength": 8 },
+        "allowRecommendations": { "type": "boolean" },
+        "createdAt": { "type": "string", "format": "date-time", "maxLength": 64 },
+        "updatedAt": { "type": "string", "format": "date-time", "maxLength": 64 }
+      },
+      "required": ["id", "name", "role", "activeMode", "canSwitchToProvider", "ageVerified", "isDemo", "language", "createdAt", "updatedAt"]
+    },
+    "UserPrivateInfo": {
+      "title": "UserPrivateInfo",
+      "description": "Strictly isolated PII document stored at /users/{userId}/private/{docId}.",
+      "type": "object",
+      "properties": {
+        "userId": { "type": "string", "minLength": 1, "maxLength": 128, "pattern": "^[a-zA-Z0-9_\\-]+$" },
+        "email": { "type": "string", "minLength": 3, "maxLength": 254 },
+        "phone": { "type": "string", "minLength": 0, "maxLength": 32 },
+        "district": { "type": "string", "minLength": 1, "maxLength": 80 },
+        "town": { "type": "string", "minLength": 1, "maxLength": 80 },
+        "locality": { "type": "string", "minLength": 0, "maxLength": 120 },
+        "pincode": { "type": "string", "pattern": "^[0-9]{6}$", "maxLength": 6 },
+        "lat": { "type": "number" },
+        "lng": { "type": "number" },
+        "searchHistory": { "type": "array" },
+        "createdAt": { "type": "string", "format": "date-time", "maxLength": 64 },
+        "updatedAt": { "type": "string", "format": "date-time", "maxLength": 64 }
+      },
+      "required": ["userId", "email", "district", "town", "pincode", "createdAt", "updatedAt"]
+    },
+    "ProviderProfile": {
+      "title": "ProviderProfile",
+      "description": "Public professional directory listing for a LocalConnect Kerala service provider.",
+      "type": "object",
+      "properties": {
+        "id": { "type": "string", "minLength": 1, "maxLength": 128, "pattern": "^[a-zA-Z0-9_\\-]+$" },
+        "userId": { "type": "string", "minLength": 1, "maxLength": 128, "pattern": "^[a-zA-Z0-9_\\-]+$" },
+        "name": { "type": "string", "minLength": 1, "maxLength": 120 },
+        "title": { "type": "string", "minLength": 1, "maxLength": 160 },
+        "bio": { "type": "string", "maxLength": 2000 },
+        "categoryIds": { "type": "array" },
+        "subcategoryIds": { "type": "array" },
+        "startingPrice": { "type": "number" },
+        "district": { "type": "string", "maxLength": 80 },
+        "town": { "type": "string", "maxLength": 80 },
+        "locality": { "type": "string", "maxLength": 120 },
+        "pincode": { "type": "string", "pattern": "^[0-9]{6}$", "maxLength": 6 },
+        "serviceRadiusKm": { "type": "number" },
+        "experienceYears": { "type": "number" },
+        "workingHours": { "type": "string", "maxLength": 120 },
+        "isAvailable": { "type": "boolean" },
+        "urgentAvailable": { "type": "boolean" },
+        "rating": { "type": "number" },
+        "reviewCount": { "type": "number" },
+        "completedJobs": { "type": "number" },
+        "identityVerified": { "type": "boolean" },
+        "skillVerified": { "type": "boolean" },
+        "profileVerified": { "type": "boolean" },
+        "isFeatured": { "type": "boolean" },
+        "isDemo": { "type": "boolean" },
+        "createdAt": { "type": "string", "format": "date-time", "maxLength": 64 },
+        "updatedAt": { "type": "string", "format": "date-time", "maxLength": 64 }
+      },
+      "required": ["id", "userId", "name", "title", "categoryIds", "subcategoryIds", "startingPrice", "district", "town", "pincode", "isAvailable", "rating", "reviewCount", "completedJobs", "identityVerified", "skillVerified", "profileVerified", "createdAt", "updatedAt"]
+    },
+    "ServiceCategoryDoc": {
+      "title": "ServiceCategoryDoc",
+      "description": "Admin-managed marketplace service category & subcategories.",
+      "type": "object",
+      "properties": {
+        "id": { "type": "string", "minLength": 1, "maxLength": 128, "pattern": "^[a-zA-Z0-9_\\-]+$" },
+        "name": { "type": "string", "minLength": 1, "maxLength": 120 },
+        "description": { "type": "string", "maxLength": 600 },
+        "createdAt": { "type": "string", "format": "date-time", "maxLength": 64 },
+        "updatedAt": { "type": "string", "format": "date-time", "maxLength": 64 }
+      },
+      "required": ["id", "name", "description", "createdAt", "updatedAt"]
+    },
+    "ServiceRequestDoc": {
+      "title": "ServiceRequestDoc",
+      "description": "Customer service request seeking quotations or directed to a chosen provider.",
+      "type": "object",
+      "properties": {
+        "id": { "type": "string", "minLength": 1, "maxLength": 128, "pattern": "^[a-zA-Z0-9_\\-]+$" },
+        "customerId": { "type": "string", "minLength": 1, "maxLength": 128, "pattern": "^[a-zA-Z0-9_\\-]+$" },
+        "customerName": { "type": "string", "minLength": 1, "maxLength": 120 },
+        "categoryId": { "type": "string", "minLength": 1, "maxLength": 64, "pattern": "^[a-zA-Z0-9_\\-]+$" },
+        "subcategoryId": { "type": "string", "minLength": 1, "maxLength": 64, "pattern": "^[a-zA-Z0-9_\\-]+$" },
+        "targetProviderId": { "type": "string", "maxLength": 128 },
+        "title": { "type": "string", "minLength": 2, "maxLength": 200 },
+        "description": { "type": "string", "minLength": 2, "maxLength": 2500 },
+        "district": { "type": "string", "maxLength": 80 },
+        "town": { "type": "string", "maxLength": 80 },
+        "pincode": { "type": "string", "pattern": "^[0-9]{6}$", "maxLength": 6 },
+        "preferredDate": { "type": "string", "maxLength": 32 },
+        "preferredTime": { "type": "string", "maxLength": 64 },
+        "status": {
+          "type": "string",
+          "enum": ["request_submitted", "providers_notified", "quotations_received", "provider_selected", "booking_confirmed", "service_started", "service_completed", "cancelled"],
+          "maxLength": 32
+        },
+        "notifiedProviderIds": { "type": "array" },
+        "declinedByProviderIds": { "type": "array" },
+        "createdAt": { "type": "string", "format": "date-time", "maxLength": 64 },
+        "updatedAt": { "type": "string", "format": "date-time", "maxLength": 64 }
+      },
+      "required": ["id", "customerId", "customerName", "categoryId", "subcategoryId", "title", "description", "district", "town", "pincode", "status", "createdAt", "updatedAt"]
+    },
+    "QuotationDoc": {
+      "title": "QuotationDoc",
+      "description": "Provider price quotation responding to a customer service request.",
+      "type": "object",
+      "properties": {
+        "id": { "type": "string", "minLength": 1, "maxLength": 128, "pattern": "^[a-zA-Z0-9_\\-]+$" },
+        "requestId": { "type": "string", "minLength": 1, "maxLength": 128, "pattern": "^[a-zA-Z0-9_\\-]+$" },
+        "customerId": { "type": "string", "minLength": 1, "maxLength": 128, "pattern": "^[a-zA-Z0-9_\\-]+$" },
+        "providerId": { "type": "string", "minLength": 1, "maxLength": 128, "pattern": "^[a-zA-Z0-9_\\-]+$" },
+        "providerUserId": { "type": "string", "minLength": 1, "maxLength": 128, "pattern": "^[a-zA-Z0-9_\\-]+$" },
+        "providerName": { "type": "string", "minLength": 1, "maxLength": 120 },
+        "estimatedPrice": { "type": "number" },
+        "description": { "type": "string", "maxLength": 1500 },
+        "estimatedArrival": { "type": "string", "maxLength": 120 },
+        "status": { "type": "string", "enum": ["pending", "accepted", "declined"], "maxLength": 20 },
+        "createdAt": { "type": "string", "format": "date-time", "maxLength": 64 },
+        "updatedAt": { "type": "string", "format": "date-time", "maxLength": 64 }
+      },
+      "required": ["id", "requestId", "customerId", "providerId", "providerUserId", "providerName", "estimatedPrice", "status", "createdAt", "updatedAt"]
+    },
+    "BookingDoc": {
+      "title": "BookingDoc",
+      "description": "Confirmed customer-provider service booking with status progression & OTP.",
+      "type": "object",
+      "properties": {
+        "id": { "type": "string", "minLength": 1, "maxLength": 128, "pattern": "^[a-zA-Z0-9_\\-]+$" },
+        "requestId": { "type": "string", "minLength": 1, "maxLength": 128, "pattern": "^[a-zA-Z0-9_\\-]+$" },
+        "customerId": { "type": "string", "minLength": 1, "maxLength": 128, "pattern": "^[a-zA-Z0-9_\\-]+$" },
+        "providerId": { "type": "string", "minLength": 1, "maxLength": 128, "pattern": "^[a-zA-Z0-9_\\-]+$" },
+        "providerUserId": { "type": "string", "minLength": 1, "maxLength": 128, "pattern": "^[a-zA-Z0-9_\\-]+$" },
+        "serviceTitle": { "type": "string", "minLength": 1, "maxLength": 200 },
+        "agreedPrice": { "type": "number" },
+        "status": {
+          "type": "string",
+          "enum": ["booking_confirmed", "service_started", "service_completed", "cancelled"],
+          "maxLength": 32
+        },
+        "otpVerified": { "type": "boolean" },
+        "reviewed": { "type": "boolean" },
+        "createdAt": { "type": "string", "format": "date-time", "maxLength": 64 },
+        "updatedAt": { "type": "string", "format": "date-time", "maxLength": 64 }
+      },
+      "required": ["id", "requestId", "customerId", "providerId", "providerUserId", "serviceTitle", "agreedPrice", "status", "otpVerified", "reviewed", "createdAt", "updatedAt"]
+    },
+    "ConversationDoc": {
+      "title": "ConversationDoc",
+      "description": "Customer-provider 1:1 messaging thread header.",
+      "type": "object",
+      "properties": {
+        "id": { "type": "string", "minLength": 1, "maxLength": 128, "pattern": "^[a-zA-Z0-9_\\-]+$" },
+        "customerId": { "type": "string", "minLength": 1, "maxLength": 128, "pattern": "^[a-zA-Z0-9_\\-]+$" },
+        "providerId": { "type": "string", "minLength": 1, "maxLength": 128, "pattern": "^[a-zA-Z0-9_\\-]+$" },
+        "providerUserId": { "type": "string", "minLength": 1, "maxLength": 128, "pattern": "^[a-zA-Z0-9_\\-]+$" },
+        "lastMessage": { "type": "string", "maxLength": 1000 },
+        "createdAt": { "type": "string", "format": "date-time", "maxLength": 64 },
+        "updatedAt": { "type": "string", "format": "date-time", "maxLength": 64 }
+      },
+      "required": ["id", "customerId", "providerId", "providerUserId", "lastMessage", "createdAt", "updatedAt"]
+    },
+    "ChatMessageDoc": {
+      "title": "ChatMessageDoc",
+      "description": "Individual message inside /conversations/{conversationId}/messages/{messageId}.",
+      "type": "object",
+      "properties": {
+        "id": { "type": "string", "minLength": 1, "maxLength": 128, "pattern": "^[a-zA-Z0-9_\\-]+$" },
+        "conversationId": { "type": "string", "minLength": 1, "maxLength": 128, "pattern": "^[a-zA-Z0-9_\\-]+$" },
+        "senderId": { "type": "string", "minLength": 1, "maxLength": 128, "pattern": "^[a-zA-Z0-9_\\-]+$" },
+        "senderRole": { "type": "string", "enum": ["customer", "provider"], "maxLength": 20 },
+        "text": { "type": "string", "maxLength": 2000 },
+        "readByRecipient": { "type": "boolean" },
+        "createdAt": { "type": "string", "format": "date-time", "maxLength": 64 },
+        "updatedAt": { "type": "string", "format": "date-time", "maxLength": 64 }
+      },
+      "required": ["id", "conversationId", "senderId", "senderRole", "text", "readByRecipient", "createdAt", "updatedAt"]
+    },
+    "NotificationDoc": {
+      "title": "NotificationDoc",
+      "description": "User-scoped notification item.",
+      "type": "object",
+      "properties": {
+        "id": { "type": "string", "minLength": 1, "maxLength": 128, "pattern": "^[a-zA-Z0-9_\\-]+$" },
+        "userId": { "type": "string", "minLength": 1, "maxLength": 128, "pattern": "^[a-zA-Z0-9_\\-]+$" },
+        "title": { "type": "string", "minLength": 1, "maxLength": 200 },
+        "body": { "type": "string", "maxLength": 1000 },
+        "linkPage": { "type": "string", "maxLength": 64 },
+        "read": { "type": "boolean" },
+        "createdAt": { "type": "string", "format": "date-time", "maxLength": 64 },
+        "updatedAt": { "type": "string", "format": "date-time", "maxLength": 64 }
+      },
+      "required": ["id", "userId", "title", "body", "linkPage", "read", "createdAt", "updatedAt"]
+    },
+    "ReviewDoc": {
+      "title": "ReviewDoc",
+      "description": "Customer review for a completed service booking.",
+      "type": "object",
+      "properties": {
+        "id": { "type": "string", "minLength": 1, "maxLength": 128, "pattern": "^[a-zA-Z0-9_\\-]+$" },
+        "bookingId": { "type": "string", "minLength": 1, "maxLength": 128, "pattern": "^[a-zA-Z0-9_\\-]+$" },
+        "providerId": { "type": "string", "minLength": 1, "maxLength": 128, "pattern": "^[a-zA-Z0-9_\\-]+$" },
+        "customerId": { "type": "string", "minLength": 1, "maxLength": 128, "pattern": "^[a-zA-Z0-9_\\-]+$" },
+        "customerName": { "type": "string", "minLength": 1, "maxLength": 120 },
+        "rating": { "type": "number" },
+        "comment": { "type": "string", "minLength": 2, "maxLength": 1500 },
+        "serviceName": { "type": "string", "minLength": 1, "maxLength": 160 },
+        "moderatedStatus": { "type": "string", "enum": ["published", "flagged", "hidden"], "maxLength": 20 },
+        "createdAt": { "type": "string", "format": "date-time", "maxLength": 64 },
+        "updatedAt": { "type": "string", "format": "date-time", "maxLength": 64 }
+      },
+      "required": ["id", "bookingId", "providerId", "customerId", "customerName", "rating", "comment", "serviceName", "moderatedStatus", "createdAt", "updatedAt"]
+    },
+    "ReportDoc": {
+      "title": "ReportDoc",
+      "description": "User complaint or trust/safety report reviewed by administrators.",
+      "type": "object",
+      "properties": {
+        "id": { "type": "string", "minLength": 1, "maxLength": 128, "pattern": "^[a-zA-Z0-9_\\-]+$" },
+        "reporterId": { "type": "string", "minLength": 1, "maxLength": 128, "pattern": "^[a-zA-Z0-9_\\-]+$" },
+        "reporterName": { "type": "string", "minLength": 1, "maxLength": 120 },
+        "targetType": { "type": "string", "enum": ["provider", "customer", "review", "platform"], "maxLength": 20 },
+        "targetId": { "type": "string", "minLength": 1, "maxLength": 128, "pattern": "^[a-zA-Z0-9_\\-]+$" },
+        "reason": { "type": "string", "minLength": 2, "maxLength": 200 },
+        "details": { "type": "string", "minLength": 2, "maxLength": 2000 },
+        "status": { "type": "string", "enum": ["open", "investigating", "resolved", "dismissed"], "maxLength": 24 },
+        "createdAt": { "type": "string", "format": "date-time", "maxLength": 64 },
+        "updatedAt": { "type": "string", "format": "date-time", "maxLength": 64 }
+      },
+      "required": ["id", "reporterId", "reporterName", "targetType", "targetId", "reason", "details", "status", "createdAt", "updatedAt"]
+    },
+    "VerificationRequestDoc": {
+      "title": "VerificationRequestDoc",
+      "description": "Provider verification request submitted for admin approval.",
+      "type": "object",
+      "properties": {
+        "id": { "type": "string", "minLength": 1, "maxLength": 128, "pattern": "^[a-zA-Z0-9_\\-]+$" },
+        "providerId": { "type": "string", "minLength": 1, "maxLength": 128, "pattern": "^[a-zA-Z0-9_\\-]+$" },
+        "providerUserId": { "type": "string", "minLength": 1, "maxLength": 128, "pattern": "^[a-zA-Z0-9_\\-]+$" },
+        "type": { "type": "string", "enum": ["identity", "skill", "profile"], "maxLength": 20 },
+        "summary": { "type": "string", "minLength": 2, "maxLength": 1000 },
+        "status": { "type": "string", "enum": ["pending", "approved", "rejected"], "maxLength": 20 },
+        "createdAt": { "type": "string", "format": "date-time", "maxLength": 64 },
+        "updatedAt": { "type": "string", "format": "date-time", "maxLength": 64 }
+      },
+      "required": ["id", "providerId", "providerUserId", "type", "summary", "status", "createdAt", "updatedAt"]
+    },
+    "EmergencyRequestDoc": {
+      "title": "EmergencyRequestDoc",
+      "description": "Urgent household dispatch request.",
+      "type": "object",
+      "properties": {
+        "id": { "type": "string", "minLength": 1, "maxLength": 128, "pattern": "^[a-zA-Z0-9_\\-]+$" },
+        "customerId": { "type": "string", "minLength": 1, "maxLength": 128, "pattern": "^[a-zA-Z0-9_\\-]+$" },
+        "customerName": { "type": "string", "minLength": 1, "maxLength": 120 },
+        "serviceType": { "type": "string", "minLength": 2, "maxLength": 80 },
+        "description": { "type": "string", "minLength": 2, "maxLength": 1500 },
+        "district": { "type": "string", "maxLength": 80 },
+        "town": { "type": "string", "maxLength": 80 },
+        "pincode": { "type": "string", "pattern": "^[0-9]{6}$", "maxLength": 6 },
+        "status": { "type": "string", "enum": ["submitted", "provider_contacted", "in_progress", "resolved"], "maxLength": 28 },
+        "createdAt": { "type": "string", "format": "date-time", "maxLength": 64 },
+        "updatedAt": { "type": "string", "format": "date-time", "maxLength": 64 }
+      },
+      "required": ["id", "customerId", "customerName", "serviceType", "description", "district", "town", "pincode", "status", "createdAt", "updatedAt"]
+    },
+    "TalentProfileDoc": {
+      "title": "TalentProfileDoc",
+      "description": "Local Talent & Skill Hub profile.",
+      "type": "object",
+      "properties": {
+        "id": { "type": "string", "minLength": 1, "maxLength": 128, "pattern": "^[a-zA-Z0-9_\\-]+$" },
+        "userId": { "type": "string", "minLength": 1, "maxLength": 128, "pattern": "^[a-zA-Z0-9_\\-]+$" },
+        "name": { "type": "string", "minLength": 1, "maxLength": 120 },
+        "skillCategory": { "type": "string", "minLength": 1, "maxLength": 100 },
+        "headline": { "type": "string", "minLength": 2, "maxLength": 200 },
+        "bio": { "type": "string", "maxLength": 1500 },
+        "district": { "type": "string", "maxLength": 80 },
+        "town": { "type": "string", "maxLength": 80 },
+        "platformVerified": { "type": "boolean" },
+        "isFeatured": { "type": "boolean" },
+        "createdAt": { "type": "string", "format": "date-time", "maxLength": 64 },
+        "updatedAt": { "type": "string", "format": "date-time", "maxLength": 64 }
+      },
+      "required": ["id", "userId", "name", "skillCategory", "headline", "district", "town", "platformVerified", "createdAt", "updatedAt"]
+    },
+    "UserAddressDoc": {
+      "title": "UserAddressDoc",
+      "description": "Saved household address belonging to a user.",
+      "type": "object",
+      "properties": {
+        "id": { "type": "string", "minLength": 1, "maxLength": 128, "pattern": "^[a-zA-Z0-9_\\-]+$" },
+        "userId": { "type": "string", "minLength": 1, "maxLength": 128, "pattern": "^[a-zA-Z0-9_\\-]+$" },
+        "label": { "type": "string", "minLength": 1, "maxLength": 80 },
+        "district": { "type": "string", "maxLength": 80 },
+        "town": { "type": "string", "maxLength": 80 },
+        "pincode": { "type": "string", "pattern": "^[0-9]{6}$", "maxLength": 6 },
+        "addressLine": { "type": "string", "minLength": 2, "maxLength": 300 },
+        "isDefault": { "type": "boolean" },
+        "createdAt": { "type": "string", "format": "date-time", "maxLength": 64 },
+        "updatedAt": { "type": "string", "format": "date-time", "maxLength": 64 }
+      },
+      "required": ["id", "userId", "label", "district", "town", "pincode", "addressLine", "isDefault", "createdAt", "updatedAt"]
+    },
+    "ServiceReminderDoc": {
+      "title": "ServiceReminderDoc",
+      "description": "Seasonal household maintenance reminder belonging to a user.",
+      "type": "object",
+      "properties": {
+        "id": { "type": "string", "minLength": 1, "maxLength": 128, "pattern": "^[a-zA-Z0-9_\\-]+$" },
+        "userId": { "type": "string", "minLength": 1, "maxLength": 128, "pattern": "^[a-zA-Z0-9_\\-]+$" },
+        "title": { "type": "string", "minLength": 2, "maxLength": 200 },
+        "categoryId": { "type": "string", "minLength": 1, "maxLength": 64, "pattern": "^[a-zA-Z0-9_\\-]+$" },
+        "dueDate": { "type": "string", "maxLength": 32 },
+        "cadence": { "type": "string", "enum": ["once", "quarterly", "yearly"], "maxLength": 16 },
+        "completed": { "type": "boolean" },
+        "createdAt": { "type": "string", "format": "date-time", "maxLength": 64 },
+        "updatedAt": { "type": "string", "format": "date-time", "maxLength": 64 }
+      },
+      "required": ["id", "userId", "title", "categoryId", "dueDate", "cadence", "completed", "createdAt", "updatedAt"]
+    },
+    "FavouritesDoc": {
+      "title": "FavouritesDoc",
+      "description": "Per-user list of favourite provider IDs (capped).",
+      "type": "object",
+      "properties": {
+        "userId": { "type": "string", "minLength": 1, "maxLength": 128, "pattern": "^[a-zA-Z0-9_\\-]+$" },
+        "providerIds": { "type": "array" },
+        "createdAt": { "type": "string", "format": "date-time", "maxLength": 64 },
+        "updatedAt": { "type": "string", "format": "date-time", "maxLength": 64 }
+      },
+      "required": ["userId", "providerIds", "createdAt", "updatedAt"]
+    },
+    "AccessibilityDoc": {
+      "title": "AccessibilityDoc",
+      "description": "Per-user accessibility & translator preferences.",
+      "type": "object",
+      "properties": {
+        "userId": { "type": "string", "minLength": 1, "maxLength": 128, "pattern": "^[a-zA-Z0-9_\\-]+$" },
+        "fontScale": { "type": "string", "enum": ["normal", "large", "xlarge"], "maxLength": 16 },
+        "highContrast": { "type": "boolean" },
+        "reducedMotion": { "type": "boolean" },
+        "largeTargets": { "type": "boolean" },
+        "screenReaderHints": { "type": "boolean" },
+        "preferredVoiceLang": { "type": "string", "enum": ["en", "ml", "hi"], "maxLength": 8 },
+        "chatAutoTranslateTo": { "type": "string", "enum": ["off", "en", "ml", "hi"], "maxLength": 8 },
+        "createdAt": { "type": "string", "format": "date-time", "maxLength": 64 },
+        "updatedAt": { "type": "string", "format": "date-time", "maxLength": 64 }
+      },
+      "required": ["userId", "fontScale", "highContrast", "reducedMotion", "largeTargets", "screenReaderHints", "preferredVoiceLang", "chatAutoTranslateTo", "createdAt", "updatedAt"]
+    }
+  },
+  "firestore": {
+    "/admins/{adminId}": {
+      "schema": { "$ref": "#/entities/AdminRecord" },
+      "description": "Protected administrator lookup collection."
+    },
+    "/users/{userId}": {
+      "schema": { "$ref": "#/entities/UserPublicProfile" },
+      "description": "Minimal non-PII user profile and activeMode flags."
+    },
+    "/users/{userId}/private/{docId}": {
+      "schema": { "$ref": "#/entities/UserPrivateInfo" },
+      "description": "Isolated PII (email, phone, Kerala location, searchHistory) readable/writable only by owner or admin."
+    },
+    "/providers/{providerId}": {
+      "schema": { "$ref": "#/entities/ProviderProfile" },
+      "description": "Public directory of LocalConnect service providers."
+    },
+    "/categories/{categoryId}": {
+      "schema": { "$ref": "#/entities/ServiceCategoryDoc" },
+      "description": "Marketplace categories and subcategories."
+    },
+    "/serviceRequests/{requestId}": {
+      "schema": { "$ref": "#/entities/ServiceRequestDoc" },
+      "description": "Customer service requests."
+    },
+    "/quotations/{quotationId}": {
+      "schema": { "$ref": "#/entities/QuotationDoc" },
+      "description": "Provider quotations for service requests."
+    },
+    "/bookings/{bookingId}": {
+      "schema": { "$ref": "#/entities/BookingDoc" },
+      "description": "Confirmed customer-provider bookings."
+    },
+    "/conversations/{conversationId}": {
+      "schema": { "$ref": "#/entities/ConversationDoc" },
+      "description": "1:1 customer-provider messaging threads."
+    },
+    "/conversations/{conversationId}/messages/{messageId}": {
+      "schema": { "$ref": "#/entities/ChatMessageDoc" },
+      "description": "Messages inside a conversation thread."
+    },
+    "/notifications/{notificationId}": {
+      "schema": { "$ref": "#/entities/NotificationDoc" },
+      "description": "User-scoped real-time notifications."
+    },
+    "/reviews/{reviewId}": {
+      "schema": { "$ref": "#/entities/ReviewDoc" },
+      "description": "Customer reviews for completed bookings."
+    },
+    "/reports/{reportId}": {
+      "schema": { "$ref": "#/entities/ReportDoc" },
+      "description": "Complaints and reports submitted by users."
+    },
+    "/verificationRequests/{verificationId}": {
+      "schema": { "$ref": "#/entities/VerificationRequestDoc" },
+      "description": "Provider identity/skill/profile verification submissions."
+    },
+    "/emergencyRequests/{emergencyId}": {
+      "schema": { "$ref": "#/entities/EmergencyRequestDoc" },
+      "description": "Urgent dispatch requests."
+    },
+    "/talentProfiles/{talentId}": {
+      "schema": { "$ref": "#/entities/TalentProfileDoc" },
+      "description": "Local Talent & Skill Hub profiles."
+    },
+    "/userAddresses/{addressId}": {
+      "schema": { "$ref": "#/entities/UserAddressDoc" },
+      "description": "Saved household addresses per user."
+    },
+    "/serviceReminders/{reminderId}": {
+      "schema": { "$ref": "#/entities/ServiceReminderDoc" },
+      "description": "Seasonal household maintenance reminders per user."
+    },
+    "/favourites/{userId}": {
+      "schema": { "$ref": "#/entities/FavouritesDoc" },
+      "description": "Saved favourite providers per user."
+    },
+    "/accessibilityPreferences/{userId}": {
+      "schema": { "$ref": "#/entities/AccessibilityDoc" },
+      "description": "Accessibility and auto-translation settings per user."
+    }
+  }
+}
